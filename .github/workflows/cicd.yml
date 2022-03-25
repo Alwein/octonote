@@ -1,11 +1,11 @@
 name : CI
-
 on:
   push:
-     branches: [ main ]
+     branches:
+        - main
    pull_request:
-     branches: [ main ]
-
+     branches:
+        - main
 steps:
 - uses: actions/checkout@v2
 - uses: actions/setup-java@v2
@@ -13,6 +13,5 @@ steps:
   with:
     flutter-version: '2.10.2'
     channel: 'stable'
-
 - run: flutter pub get
 - run: flutter test
