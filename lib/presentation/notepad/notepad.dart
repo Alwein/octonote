@@ -27,7 +27,7 @@ class NotePadField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: LayoutValues.HorizontalPadding),
+      padding: const EdgeInsets.symmetric(horizontal: LayoutValues.horizontalPadding),
       child: Row(
         children: [
           Expanded(

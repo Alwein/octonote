@@ -13,7 +13,7 @@ class MenuAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     final backGroundColor = Theme.of(context).scaffoldBackgroundColor;
     return AppBar(
-      titleSpacing: LayoutValues.HorizontalPadding,
+      titleSpacing: LayoutValues.horizontalPadding,
       toolbarHeight: 36,
       backgroundColor: backGroundColor,
       elevation: 0,

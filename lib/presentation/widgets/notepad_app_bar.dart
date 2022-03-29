@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:octonote/application/breakpoints.dart';
+import 'package:octonote/application/utils/breakpoints.dart';
 
 class NotepadAppBar extends StatelessWidget with PreferredSizeWidget {
   @override

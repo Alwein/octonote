@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:octonote/application/get_platform.dart';
+import 'package:octonote/application/utils/app_service.dart';
 
 class FormFactor {
   static double desktop = 900;

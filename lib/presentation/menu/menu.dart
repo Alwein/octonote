@@ -22,7 +22,7 @@ class Menu extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: LayoutValues.HorizontalPadding, vertical: 5),
+                          horizontal: LayoutValues.horizontalPadding, vertical: 5),
                       child: Text("Note $index", style: Theme.of(context).textTheme.headline6));
                 }),
           ),

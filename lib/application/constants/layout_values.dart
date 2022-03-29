@@ -1,3 +1,3 @@
 class LayoutValues {
-  static const HorizontalPadding = 15.0;
+  static const horizontalPadding = 15.0;
 }

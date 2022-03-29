@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:octonote/application/get_platform.dart';
+import 'package:octonote/application/utils/app_service.dart';
 
 final getIt = GetIt.instance;
 
