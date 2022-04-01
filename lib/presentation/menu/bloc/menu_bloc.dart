@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:octonote/data/hive/note_page_hive.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/repositories/note_page/note_page_repository.dart';
 import 'package:octonote/domain/usecases/note_page/get_note_page_usecase.dart';
