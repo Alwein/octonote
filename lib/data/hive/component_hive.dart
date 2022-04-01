@@ -34,7 +34,7 @@ class ComponentRepositoryHive implements ComponentRepository {
       List<Component> components = _componentsBox.values
           .map((doc) => ComponentEntity.fromDocument(doc).toComponent())
           .toList();
-      return Future.value(Left(components));
+      return Future.value(Left(components..where((element) => element.pageId == notePage.id)));
     } catch (e) {
       return Right(AppError(message: e.toString()));
     }
