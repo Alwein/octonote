@@ -43,3 +43,12 @@ class MenuDivider extends StatelessWidget {
     );
   }
 }
+
+class AddPageButton extends StatelessWidget {
+  const AddPageButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}

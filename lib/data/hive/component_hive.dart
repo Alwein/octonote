@@ -13,8 +13,14 @@ class ComponentRepositoryHive implements ComponentRepository {
   late final Box<dynamic> _componentsBox;
   static const componentBoxName = 'component';
 
-  Future init() async {
-    _componentsBox = await _hive.openBox(componentBoxName);
+  @override
+  Future<Either<Unit, AppError>> init() async {
+    try {
+      _componentsBox = await _hive.openBox(componentBoxName);
+      return const Left(unit);
+    } catch (e) {
+      return Right(AppError(message: e.toString()));
+    }
   }
 
   @override

@@ -13,8 +13,14 @@ class NotePageRepositoryHive implements NotePageRepository {
   late final Box<dynamic> _notePagesBox;
   static const notePageBoxName = 'note_page';
 
-  Future init() async {
-    _notePagesBox = await _hive.openBox(notePageBoxName);
+  @override
+  Future<Either<Unit, AppError>> init() async {
+    try {
+      _notePagesBox = await _hive.openBox(notePageBoxName);
+      return const Left(unit);
+    } catch (e) {
+      return Right(AppError(message: e.toString()));
+    }
   }
 
   @override

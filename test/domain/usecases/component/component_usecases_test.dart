@@ -6,6 +6,7 @@ import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/repositories/component/component_repository.dart';
 import 'package:octonote/domain/usecases/component/add_component_usecase.dart';
 import 'package:octonote/domain/usecases/component/get_components_usecase.dart';
+import 'package:octonote/domain/usecases/component/init_component_usecase.dart';
 import 'package:octonote/domain/usecases/component/remove_component_usecase.dart';
 import 'package:octonote/domain/usecases/component/update_component_usecase.dart';
 
@@ -28,6 +29,16 @@ void main() {
   );
 
   const notePage = NotePage(id: "id", index: 0, title: "title");
+
+  test("should init the repository", () async {
+    when(() => componentRepository.init()).thenAnswer((_) async => const Left(unit));
+    final useCase = InitComponent(componentRepository);
+
+    final result = await useCase();
+    expect(result, const Left(unit));
+    verify(() => componentRepository.init()).called(1);
+  });
+
   test("should get components from the repository", () async {
     when(() => componentRepository.getComponents(notePage: notePage))
         .thenAnswer((_) async => const Left([component]));

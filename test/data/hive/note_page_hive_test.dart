@@ -27,8 +27,9 @@ void main() {
   const notePage = NotePage(id: "id", index: 0, title: "title");
   group("NotePageRepositoryHive", () {
     test('should init proprely', () async {
-      await notePageRepositoryHive.init();
+      final result = await notePageRepositoryHive.init();
       verify(() => mockHiveInterface.openBox(NotePageRepositoryHive.notePageBoxName)).called(1);
+      expect(result, const Left(unit));
     });
 
     test('should add a NotePage to hive', () async {

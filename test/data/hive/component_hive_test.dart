@@ -37,8 +37,9 @@ void main() {
 
   group("ComponentRepositoryHive", () {
     test('should init proprely', () async {
-      await componentRepositoryHive.init();
+      final result = await componentRepositoryHive.init();
       verify(() => mockHiveInterface.openBox(ComponentRepositoryHive.componentBoxName)).called(1);
+      expect(result, const Left(unit));
     });
 
     test('should add a Component to hive', () async {
