@@ -4,9 +4,8 @@ import 'package:mocktail/mocktail.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/repositories/note_page/note_page_repository.dart';
 import 'package:octonote/domain/usecases/note_page/add_note_page_usecase.dart';
-import 'package:octonote/domain/usecases/note_page/get_note_page_usecase.dart';
-import 'package:octonote/domain/usecases/note_page/init_note_page_usecase.dart';
-import 'package:octonote/domain/usecases/note_page/remove_not_page_usecase.dart';
+import 'package:octonote/domain/usecases/note_page/get_note_pages_usecase.dart';
+import 'package:octonote/domain/usecases/note_page/remove_note_page_usecase.dart';
 import 'package:octonote/domain/usecases/note_page/update_note_page_usecase.dart';
 
 class MockNotePageRepository with Mock implements NotePageRepository {}
@@ -19,15 +18,6 @@ void main() {
   });
 
   const notePage = NotePage(id: "id", index: 0, title: "title");
-
-  test("should init the repository", () async {
-    when(() => notePageRepository.init()).thenAnswer((_) async => const Left(unit));
-    final useCase = InitNotePage(notePageRepository);
-
-    final result = await useCase();
-    expect(result, const Left(unit));
-    verify(() => notePageRepository.init()).called(1);
-  });
 
   test("should get notePages from the repository", () async {
     when(() => notePageRepository.getNotePages()).thenAnswer((_) async => const Left([notePage]));

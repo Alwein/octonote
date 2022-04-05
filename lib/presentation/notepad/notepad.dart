@@ -13,10 +13,11 @@ class Notepad extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: NotepadAppBar(),
       body: ListView.builder(
-          itemCount: 4,
-          itemBuilder: ((context, index) {
-            return const NotePadField();
-          })),
+        itemCount: 4,
+        itemBuilder: (context, index) {
+          return const NotePadField();
+        },
+      ),
     );
   }
 }

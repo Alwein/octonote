@@ -5,5 +5,5 @@ class MenuEvent with _$MenuEvent {
   const factory MenuEvent.fetchStarted() = _FetchStarted;
   const factory MenuEvent.addPage({required NotePage notePage}) = _AddPage;
   const factory MenuEvent.updatePage({required NotePage notePage}) = _UpdatePage;
-  const factory MenuEvent.deletePage({required NotePage notePage}) = _DeletePage;
+  const factory MenuEvent.removePage({required NotePage notePage}) = _RemovePage;
 }

@@ -1,7 +1,7 @@
-import 'package:octonote/application/utils/app_service.dart' as a_s;
-import 'package:octonote/locator.dart' as sl;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:octonote/application/utils/app_service.dart' as a_s;
+import 'package:octonote/locator.dart' as sl;
 
 class MockAppService extends Mock implements a_s.AppService {}
 

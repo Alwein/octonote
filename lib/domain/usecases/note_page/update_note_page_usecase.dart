@@ -9,6 +9,6 @@ class UpdateNotePage {
   final NotePageRepository notePageRepository;
 
   Future<Either<Unit, AppError>> call({required NotePage notePage}) async {
-    return await notePageRepository.updateNotePage(notePage: notePage);
+    return notePageRepository.updateNotePage(notePage: notePage);
   }
 }

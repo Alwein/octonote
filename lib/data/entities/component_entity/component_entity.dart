@@ -1,8 +1,12 @@
 import "package:octonote/domain/models/component/component.dart";
 
 class ComponentEntity {
-  const ComponentEntity(
-      {required this.id, required this.pageId, required this.index, required this.componentEntity});
+  const ComponentEntity({
+    required this.id,
+    required this.pageId,
+    required this.index,
+    required this.componentEntity,
+  });
 
   final String id;
   final String pageId;
@@ -38,10 +42,11 @@ class ComponentEntity {
 
   static ComponentEntity fromDocument(Map<String, dynamic> doc) {
     return ComponentEntity(
-      id: doc["id"],
-      pageId: doc["pageId"],
-      index: doc["index"],
-      componentEntity: ComponentContentEntity.fromDocument(doc["componentEntity"]),
+      id: doc["id"] as String,
+      pageId: doc["pageId"] as String,
+      index: doc["index"] as int,
+      componentEntity:
+          ComponentContentEntity.fromDocument(doc["componentEntity"] as Map<String, dynamic>),
     );
   }
 }
@@ -116,9 +121,9 @@ class ComponentContentEntity {
 
   static ComponentContentEntity fromDocument(Map<String, dynamic> doc) {
     return ComponentContentEntity(
-      type: ComponentTypeExt.fromString(doc["type"]),
-      text: doc["text"],
-      value: doc["value"],
+      type: ComponentTypeExt.fromString(doc["type"] as String),
+      text: doc["text"] as String,
+      value: doc["value"] as bool,
     );
   }
 }

@@ -1,16 +1,17 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'component.freezed.dart';
 part 'component.g.dart';
 
 @freezed
 class Component with _$Component {
-  const factory Component(
-      {required String id,
-      required String pageId,
-      required int index,
-      required ComponentContent content}) = _Component;
+  const factory Component({
+    required String id,
+    required String pageId,
+    required int index,
+    required ComponentContent content,
+  }) = _Component;
 
   factory Component.fromJson(Map<String, dynamic> json) => _$ComponentFromJson(json);
 }

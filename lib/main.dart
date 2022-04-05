@@ -6,7 +6,7 @@ import 'package:octonote/locator.dart' as sl;
 import 'package:octonote/presentation/app/app.dart';
 import 'package:octonote/presentation/app/bloc_observer.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sl.init();
   await EasyLocalization.ensureInitialized();

@@ -751,8 +751,8 @@ class _$MenuEventTearOff {
     );
   }
 
-  _DeletePage deletePage({required NotePage notePage}) {
-    return _DeletePage(
+  _RemovePage removePage({required NotePage notePage}) {
+    return _RemovePage(
       notePage: notePage,
     );
   }
@@ -768,7 +768,7 @@ mixin _$MenuEvent {
     required TResult Function() fetchStarted,
     required TResult Function(NotePage notePage) addPage,
     required TResult Function(NotePage notePage) updatePage,
-    required TResult Function(NotePage notePage) deletePage,
+    required TResult Function(NotePage notePage) removePage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -776,7 +776,7 @@ mixin _$MenuEvent {
     TResult Function()? fetchStarted,
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
-    TResult Function(NotePage notePage)? deletePage,
+    TResult Function(NotePage notePage)? removePage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -784,7 +784,7 @@ mixin _$MenuEvent {
     TResult Function()? fetchStarted,
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
-    TResult Function(NotePage notePage)? deletePage,
+    TResult Function(NotePage notePage)? removePage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -793,7 +793,7 @@ mixin _$MenuEvent {
     required TResult Function(_FetchStarted value) fetchStarted,
     required TResult Function(_AddPage value) addPage,
     required TResult Function(_UpdatePage value) updatePage,
-    required TResult Function(_DeletePage value) deletePage,
+    required TResult Function(_RemovePage value) removePage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -801,7 +801,7 @@ mixin _$MenuEvent {
     TResult Function(_FetchStarted value)? fetchStarted,
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
-    TResult Function(_DeletePage value)? deletePage,
+    TResult Function(_RemovePage value)? removePage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -809,7 +809,7 @@ mixin _$MenuEvent {
     TResult Function(_FetchStarted value)? fetchStarted,
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
-    TResult Function(_DeletePage value)? deletePage,
+    TResult Function(_RemovePage value)? removePage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -873,7 +873,7 @@ class _$_FetchStarted implements _FetchStarted {
     required TResult Function() fetchStarted,
     required TResult Function(NotePage notePage) addPage,
     required TResult Function(NotePage notePage) updatePage,
-    required TResult Function(NotePage notePage) deletePage,
+    required TResult Function(NotePage notePage) removePage,
   }) {
     return fetchStarted();
   }
@@ -884,7 +884,7 @@ class _$_FetchStarted implements _FetchStarted {
     TResult Function()? fetchStarted,
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
-    TResult Function(NotePage notePage)? deletePage,
+    TResult Function(NotePage notePage)? removePage,
   }) {
     return fetchStarted?.call();
   }
@@ -895,7 +895,7 @@ class _$_FetchStarted implements _FetchStarted {
     TResult Function()? fetchStarted,
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
-    TResult Function(NotePage notePage)? deletePage,
+    TResult Function(NotePage notePage)? removePage,
     required TResult orElse(),
   }) {
     if (fetchStarted != null) {
@@ -910,7 +910,7 @@ class _$_FetchStarted implements _FetchStarted {
     required TResult Function(_FetchStarted value) fetchStarted,
     required TResult Function(_AddPage value) addPage,
     required TResult Function(_UpdatePage value) updatePage,
-    required TResult Function(_DeletePage value) deletePage,
+    required TResult Function(_RemovePage value) removePage,
   }) {
     return fetchStarted(this);
   }
@@ -921,7 +921,7 @@ class _$_FetchStarted implements _FetchStarted {
     TResult Function(_FetchStarted value)? fetchStarted,
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
-    TResult Function(_DeletePage value)? deletePage,
+    TResult Function(_RemovePage value)? removePage,
   }) {
     return fetchStarted?.call(this);
   }
@@ -932,7 +932,7 @@ class _$_FetchStarted implements _FetchStarted {
     TResult Function(_FetchStarted value)? fetchStarted,
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
-    TResult Function(_DeletePage value)? deletePage,
+    TResult Function(_RemovePage value)? removePage,
     required TResult orElse(),
   }) {
     if (fetchStarted != null) {
@@ -1020,7 +1020,7 @@ class _$_AddPage implements _AddPage {
     required TResult Function() fetchStarted,
     required TResult Function(NotePage notePage) addPage,
     required TResult Function(NotePage notePage) updatePage,
-    required TResult Function(NotePage notePage) deletePage,
+    required TResult Function(NotePage notePage) removePage,
   }) {
     return addPage(notePage);
   }
@@ -1031,7 +1031,7 @@ class _$_AddPage implements _AddPage {
     TResult Function()? fetchStarted,
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
-    TResult Function(NotePage notePage)? deletePage,
+    TResult Function(NotePage notePage)? removePage,
   }) {
     return addPage?.call(notePage);
   }
@@ -1042,7 +1042,7 @@ class _$_AddPage implements _AddPage {
     TResult Function()? fetchStarted,
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
-    TResult Function(NotePage notePage)? deletePage,
+    TResult Function(NotePage notePage)? removePage,
     required TResult orElse(),
   }) {
     if (addPage != null) {
@@ -1057,7 +1057,7 @@ class _$_AddPage implements _AddPage {
     required TResult Function(_FetchStarted value) fetchStarted,
     required TResult Function(_AddPage value) addPage,
     required TResult Function(_UpdatePage value) updatePage,
-    required TResult Function(_DeletePage value) deletePage,
+    required TResult Function(_RemovePage value) removePage,
   }) {
     return addPage(this);
   }
@@ -1068,7 +1068,7 @@ class _$_AddPage implements _AddPage {
     TResult Function(_FetchStarted value)? fetchStarted,
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
-    TResult Function(_DeletePage value)? deletePage,
+    TResult Function(_RemovePage value)? removePage,
   }) {
     return addPage?.call(this);
   }
@@ -1079,7 +1079,7 @@ class _$_AddPage implements _AddPage {
     TResult Function(_FetchStarted value)? fetchStarted,
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
-    TResult Function(_DeletePage value)? deletePage,
+    TResult Function(_RemovePage value)? removePage,
     required TResult orElse(),
   }) {
     if (addPage != null) {
@@ -1174,7 +1174,7 @@ class _$_UpdatePage implements _UpdatePage {
     required TResult Function() fetchStarted,
     required TResult Function(NotePage notePage) addPage,
     required TResult Function(NotePage notePage) updatePage,
-    required TResult Function(NotePage notePage) deletePage,
+    required TResult Function(NotePage notePage) removePage,
   }) {
     return updatePage(notePage);
   }
@@ -1185,7 +1185,7 @@ class _$_UpdatePage implements _UpdatePage {
     TResult Function()? fetchStarted,
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
-    TResult Function(NotePage notePage)? deletePage,
+    TResult Function(NotePage notePage)? removePage,
   }) {
     return updatePage?.call(notePage);
   }
@@ -1196,7 +1196,7 @@ class _$_UpdatePage implements _UpdatePage {
     TResult Function()? fetchStarted,
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
-    TResult Function(NotePage notePage)? deletePage,
+    TResult Function(NotePage notePage)? removePage,
     required TResult orElse(),
   }) {
     if (updatePage != null) {
@@ -1211,7 +1211,7 @@ class _$_UpdatePage implements _UpdatePage {
     required TResult Function(_FetchStarted value) fetchStarted,
     required TResult Function(_AddPage value) addPage,
     required TResult Function(_UpdatePage value) updatePage,
-    required TResult Function(_DeletePage value) deletePage,
+    required TResult Function(_RemovePage value) removePage,
   }) {
     return updatePage(this);
   }
@@ -1222,7 +1222,7 @@ class _$_UpdatePage implements _UpdatePage {
     TResult Function(_FetchStarted value)? fetchStarted,
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
-    TResult Function(_DeletePage value)? deletePage,
+    TResult Function(_RemovePage value)? removePage,
   }) {
     return updatePage?.call(this);
   }
@@ -1233,7 +1233,7 @@ class _$_UpdatePage implements _UpdatePage {
     TResult Function(_FetchStarted value)? fetchStarted,
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
-    TResult Function(_DeletePage value)? deletePage,
+    TResult Function(_RemovePage value)? removePage,
     required TResult orElse(),
   }) {
     if (updatePage != null) {
@@ -1253,30 +1253,30 @@ abstract class _UpdatePage implements MenuEvent {
 }
 
 /// @nodoc
-abstract class _$DeletePageCopyWith<$Res> {
-  factory _$DeletePageCopyWith(
-          _DeletePage value, $Res Function(_DeletePage) then) =
-      __$DeletePageCopyWithImpl<$Res>;
+abstract class _$RemovePageCopyWith<$Res> {
+  factory _$RemovePageCopyWith(
+          _RemovePage value, $Res Function(_RemovePage) then) =
+      __$RemovePageCopyWithImpl<$Res>;
   $Res call({NotePage notePage});
 
   $NotePageCopyWith<$Res> get notePage;
 }
 
 /// @nodoc
-class __$DeletePageCopyWithImpl<$Res> extends _$MenuEventCopyWithImpl<$Res>
-    implements _$DeletePageCopyWith<$Res> {
-  __$DeletePageCopyWithImpl(
-      _DeletePage _value, $Res Function(_DeletePage) _then)
-      : super(_value, (v) => _then(v as _DeletePage));
+class __$RemovePageCopyWithImpl<$Res> extends _$MenuEventCopyWithImpl<$Res>
+    implements _$RemovePageCopyWith<$Res> {
+  __$RemovePageCopyWithImpl(
+      _RemovePage _value, $Res Function(_RemovePage) _then)
+      : super(_value, (v) => _then(v as _RemovePage));
 
   @override
-  _DeletePage get _value => super._value as _DeletePage;
+  _RemovePage get _value => super._value as _RemovePage;
 
   @override
   $Res call({
     Object? notePage = freezed,
   }) {
-    return _then(_DeletePage(
+    return _then(_RemovePage(
       notePage: notePage == freezed
           ? _value.notePage
           : notePage // ignore: cast_nullable_to_non_nullable
@@ -1294,22 +1294,22 @@ class __$DeletePageCopyWithImpl<$Res> extends _$MenuEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DeletePage implements _DeletePage {
-  const _$_DeletePage({required this.notePage});
+class _$_RemovePage implements _RemovePage {
+  const _$_RemovePage({required this.notePage});
 
   @override
   final NotePage notePage;
 
   @override
   String toString() {
-    return 'MenuEvent.deletePage(notePage: $notePage)';
+    return 'MenuEvent.removePage(notePage: $notePage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DeletePage &&
+            other is _RemovePage &&
             const DeepCollectionEquality().equals(other.notePage, notePage));
   }
 
@@ -1319,8 +1319,8 @@ class _$_DeletePage implements _DeletePage {
 
   @JsonKey(ignore: true)
   @override
-  _$DeletePageCopyWith<_DeletePage> get copyWith =>
-      __$DeletePageCopyWithImpl<_DeletePage>(this, _$identity);
+  _$RemovePageCopyWith<_RemovePage> get copyWith =>
+      __$RemovePageCopyWithImpl<_RemovePage>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1328,9 +1328,9 @@ class _$_DeletePage implements _DeletePage {
     required TResult Function() fetchStarted,
     required TResult Function(NotePage notePage) addPage,
     required TResult Function(NotePage notePage) updatePage,
-    required TResult Function(NotePage notePage) deletePage,
+    required TResult Function(NotePage notePage) removePage,
   }) {
-    return deletePage(notePage);
+    return removePage(notePage);
   }
 
   @override
@@ -1339,9 +1339,9 @@ class _$_DeletePage implements _DeletePage {
     TResult Function()? fetchStarted,
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
-    TResult Function(NotePage notePage)? deletePage,
+    TResult Function(NotePage notePage)? removePage,
   }) {
-    return deletePage?.call(notePage);
+    return removePage?.call(notePage);
   }
 
   @override
@@ -1350,11 +1350,11 @@ class _$_DeletePage implements _DeletePage {
     TResult Function()? fetchStarted,
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
-    TResult Function(NotePage notePage)? deletePage,
+    TResult Function(NotePage notePage)? removePage,
     required TResult orElse(),
   }) {
-    if (deletePage != null) {
-      return deletePage(notePage);
+    if (removePage != null) {
+      return removePage(notePage);
     }
     return orElse();
   }
@@ -1365,9 +1365,9 @@ class _$_DeletePage implements _DeletePage {
     required TResult Function(_FetchStarted value) fetchStarted,
     required TResult Function(_AddPage value) addPage,
     required TResult Function(_UpdatePage value) updatePage,
-    required TResult Function(_DeletePage value) deletePage,
+    required TResult Function(_RemovePage value) removePage,
   }) {
-    return deletePage(this);
+    return removePage(this);
   }
 
   @override
@@ -1376,9 +1376,9 @@ class _$_DeletePage implements _DeletePage {
     TResult Function(_FetchStarted value)? fetchStarted,
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
-    TResult Function(_DeletePage value)? deletePage,
+    TResult Function(_RemovePage value)? removePage,
   }) {
-    return deletePage?.call(this);
+    return removePage?.call(this);
   }
 
   @override
@@ -1387,21 +1387,21 @@ class _$_DeletePage implements _DeletePage {
     TResult Function(_FetchStarted value)? fetchStarted,
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
-    TResult Function(_DeletePage value)? deletePage,
+    TResult Function(_RemovePage value)? removePage,
     required TResult orElse(),
   }) {
-    if (deletePage != null) {
-      return deletePage(this);
+    if (removePage != null) {
+      return removePage(this);
     }
     return orElse();
   }
 }
 
-abstract class _DeletePage implements MenuEvent {
-  const factory _DeletePage({required NotePage notePage}) = _$_DeletePage;
+abstract class _RemovePage implements MenuEvent {
+  const factory _RemovePage({required NotePage notePage}) = _$_RemovePage;
 
   NotePage get notePage;
   @JsonKey(ignore: true)
-  _$DeletePageCopyWith<_DeletePage> get copyWith =>
+  _$RemovePageCopyWith<_RemovePage> get copyWith =>
       throw _privateConstructorUsedError;
 }

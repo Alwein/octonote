@@ -9,6 +9,6 @@ class RemoveComponent {
   final ComponentRepository componentRepository;
 
   Future<Either<Unit, AppError>> call({required Component component}) async {
-    return await componentRepository.removeComponent(component: component);
+    return componentRepository.removeComponent(component: component);
   }
 }

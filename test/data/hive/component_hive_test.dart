@@ -37,14 +37,13 @@ void main() {
 
   group("ComponentRepositoryHive", () {
     test('should init proprely', () async {
-      final result = await componentRepositoryHive.init();
+      await componentRepositoryHive.initializeOrNot();
       verify(() => mockHiveInterface.openBox(ComponentRepositoryHive.componentBoxName)).called(1);
-      expect(result, const Left(unit));
+      // expect(result, const Left(unit));
     });
 
     test('should add a Component to hive', () async {
       when(() => mockHiveBox.put(component.id, any())).thenAnswer((_) async => {});
-      await componentRepositoryHive.init();
       final result = await componentRepositoryHive.addComponent(component: component);
       verify(() => mockHiveBox.put(component.id, any())).called(1);
       expect(result, const Left(unit));
@@ -52,14 +51,12 @@ void main() {
 
     test('should get a list of Component of a page from hive', () async {
       when(() => mockHiveBox.values).thenReturn([ComponentEntity.toEntity(component).toDocument()]);
-      await componentRepositoryHive.init();
       final result = await componentRepositoryHive.getComponents(notePage: notePage);
       expect(result.fold((l) => l, (r) => r), [component]);
     });
 
     test('should remove a Component from hive', () async {
       when(() => mockHiveBox.delete(component.id)).thenAnswer((_) async => {});
-      await componentRepositoryHive.init();
       final result = await componentRepositoryHive.removeComponent(component: component);
       verify(() => mockHiveBox.delete(component.id)).called(1);
       expect(result, const Left(unit));
@@ -67,7 +64,6 @@ void main() {
 
     test('should update a Component from hive', () async {
       when(() => mockHiveBox.put(component.id, any())).thenAnswer((_) async => {});
-      await componentRepositoryHive.init();
       final result = await componentRepositoryHive.updateComponent(component: component);
       verify(() => mockHiveBox.put(component.id, any())).called(1);
       expect(result, const Left(unit));

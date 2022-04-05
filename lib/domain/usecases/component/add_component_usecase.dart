@@ -9,6 +9,6 @@ class AddComponent {
   final ComponentRepository componentRepository;
 
   Future<Either<Unit, AppError>> call({required Component component}) async {
-    return await componentRepository.addComponent(component: component);
+    return componentRepository.addComponent(component: component);
   }
 }

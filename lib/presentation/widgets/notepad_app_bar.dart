@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:octonote/application/utils/breakpoints.dart';
 
 class NotepadAppBar extends StatelessWidget with PreferredSizeWidget {
-  @override
-  final Size preferredSize;
-
   NotepadAppBar({Key? key})
       : preferredSize = const Size.fromHeight(36),
         super(key: key);
+
+  @override
+  final Size preferredSize;
 
   @override
   Widget build(BuildContext context) {

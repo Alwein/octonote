@@ -9,6 +9,6 @@ class GetNotePages {
   final NotePageRepository notePageRepository;
 
   Future<Either<List<NotePage>, AppError>> call() async {
-    return await notePageRepository.getNotePages();
+    return notePageRepository.getNotePages();
   }
 }

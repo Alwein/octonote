@@ -37,10 +37,10 @@ class NotePageEntity {
 
   static NotePageEntity fromDocument(Map<String, dynamic> doc) {
     return NotePageEntity(
-      id: doc["id"],
-      title: doc["title"],
-      index: doc["index"],
-      parentId: doc["parentId"],
+      id: doc["id"] as String,
+      title: doc["title"] as String,
+      index: doc["index"] as int,
+      parentId: doc["parentId"] as String?,
     );
   }
 }

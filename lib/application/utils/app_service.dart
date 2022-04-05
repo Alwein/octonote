@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:octonote/locator.dart' as sl;
 import 'package:flutter/foundation.dart';
+import 'package:octonote/locator.dart' as sl;
 
 abstract class IAppService {
   bool getkIsWeb();

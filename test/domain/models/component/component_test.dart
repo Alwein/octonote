@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:octonote/domain/models/component/component.dart';
 
 void main() {
-  group(("Component"), () {
+  group("Component", () {
     test("should support value comparison", () {
       const componentContent = ComponentContent.text(text: "text");
 

@@ -18,13 +18,17 @@ class Menu extends StatelessWidget {
           Expanded(
             //TODO: Implements with future repo
             child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: LayoutValues.horizontalPadding, vertical: 5),
-                      child: Text("Note $index", style: Theme.of(context).textTheme.headline6));
-                }),
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: LayoutValues.horizontalPadding,
+                    vertical: 5,
+                  ),
+                  child: Text("Note $index", style: Theme.of(context).textTheme.headline6),
+                );
+              },
+            ),
           ),
         ],
       ),

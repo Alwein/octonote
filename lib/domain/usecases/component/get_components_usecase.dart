@@ -10,6 +10,6 @@ class GetComponents {
   final ComponentRepository componentRepository;
 
   Future<Either<List<Component>, AppError>> call({required NotePage notePage}) async {
-    return await componentRepository.getComponents(notePage: notePage);
+    return componentRepository.getComponents(notePage: notePage);
   }
 }

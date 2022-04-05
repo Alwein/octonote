@@ -9,6 +9,6 @@ class RemoveNotePage {
   final NotePageRepository notePageRepository;
 
   Future<Either<Unit, AppError>> call({required NotePage notePage}) async {
-    return await notePageRepository.removeNotePage(notePage: notePage);
+    return notePageRepository.removeNotePage(notePage: notePage);
   }
 }

@@ -2,9 +2,10 @@ part of 'menu_bloc.dart';
 
 @freezed
 class MenuState with _$MenuState {
-  const factory MenuState(
-      {@Default([]) List<NotePage> notePages,
-      @Default(MenuInitial()) MenuStatus status}) = _MenuState;
+  const factory MenuState({
+    @Default([]) List<NotePage> notePages,
+    @Default(MenuInitial()) MenuStatus status,
+  }) = _MenuState;
 }
 
 @freezed
