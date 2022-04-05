@@ -72,94 +72,94 @@ void main() {
           MenuState(status: MenuStatus.error(), notePages: []),
         ],
       );
+    });
 
-      group("addPage", () {
-        blocTest<MenuBloc, MenuState>(
-          'should emit same state with a new page',
-          setUp: () {
-            when(() => addNotePage(notePage: exampleNotePage))
-                .thenAnswer((_) async => const Left(unit));
-          },
-          build: () => _buildBloc(),
-          seed: () => const MenuState(status: MenuStatus.success(), notePages: []),
-          act: (bloc) => bloc.add(const MenuEvent.addPage(notePage: exampleNotePage)),
-          expect: () => const [
-            MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
-          ],
-        );
+    group("addPage", () {
+      blocTest<MenuBloc, MenuState>(
+        'should emit same state with a new page',
+        setUp: () {
+          when(() => addNotePage(notePage: exampleNotePage))
+              .thenAnswer((_) async => const Left(unit));
+        },
+        build: () => _buildBloc(),
+        seed: () => const MenuState(status: MenuStatus.success(), notePages: []),
+        act: (bloc) => bloc.add(const MenuEvent.addPage(notePage: exampleNotePage)),
+        expect: () => const [
+          MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
+        ],
+      );
 
-        blocTest<MenuBloc, MenuState>(
-          'should emit nothing when addNotePage fails',
-          setUp: () {
-            when(() => addNotePage(notePage: exampleNotePage)).thenAnswer(
-              (_) async => Right(AppError()),
-            );
-          },
-          build: () => _buildBloc(),
-          seed: () => const MenuState(status: MenuStatus.success(), notePages: []),
-          act: (bloc) => bloc.add(const MenuEvent.addPage(notePage: exampleNotePage)),
-          expect: () => const [],
-        );
-      });
-      group("updatePage", () {
-        final NotePage updatedNotePage = exampleNotePage.copyWith(title: 'updated NotePage');
-        blocTest<MenuBloc, MenuState>(
-          'should emit same state with an updated list of page',
-          setUp: () {
-            when(
-              () => updateNotePage(notePage: updatedNotePage),
-            ).thenAnswer((_) async => const Left(unit));
-          },
-          build: () => _buildBloc(),
-          seed: () => const MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
-          act: (bloc) => bloc.add(MenuEvent.updatePage(notePage: updatedNotePage)),
-          expect: () => [
-            MenuState(status: const MenuStatus.success(), notePages: [updatedNotePage]),
-          ],
-        );
+      blocTest<MenuBloc, MenuState>(
+        'should emit nothing when addNotePage fails',
+        setUp: () {
+          when(() => addNotePage(notePage: exampleNotePage)).thenAnswer(
+            (_) async => Right(AppError()),
+          );
+        },
+        build: () => _buildBloc(),
+        seed: () => const MenuState(status: MenuStatus.success(), notePages: []),
+        act: (bloc) => bloc.add(const MenuEvent.addPage(notePage: exampleNotePage)),
+        expect: () => const [],
+      );
+    });
+    group("updatePage", () {
+      final NotePage updatedNotePage = exampleNotePage.copyWith(title: 'updated NotePage');
+      blocTest<MenuBloc, MenuState>(
+        'should emit same state with an updated list of page',
+        setUp: () {
+          when(
+            () => updateNotePage(notePage: updatedNotePage),
+          ).thenAnswer((_) async => const Left(unit));
+        },
+        build: () => _buildBloc(),
+        seed: () => const MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
+        act: (bloc) => bloc.add(MenuEvent.updatePage(notePage: updatedNotePage)),
+        expect: () => [
+          MenuState(status: const MenuStatus.success(), notePages: [updatedNotePage]),
+        ],
+      );
 
-        blocTest<MenuBloc, MenuState>(
-          'should emit nothing when updateNotePage fails',
-          setUp: () {
-            when(() => updateNotePage(notePage: updatedNotePage)).thenAnswer(
-              (_) async => Right(AppError()),
-            );
-          },
-          build: () => _buildBloc(),
-          seed: () => const MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
-          act: (bloc) => bloc.add(MenuEvent.updatePage(notePage: updatedNotePage)),
-          expect: () => const [],
-        );
-      });
-      group("deletePage", () {
-        blocTest<MenuBloc, MenuState>(
-          'should emit same state with one page less',
-          setUp: () {
-            when(() => removeNotePage(notePage: exampleNotePage)).thenAnswer(
-              (_) async => const Left(unit),
-            );
-          },
-          build: () => _buildBloc(),
-          seed: () => const MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
-          act: (bloc) => bloc.add(const MenuEvent.removePage(notePage: exampleNotePage)),
-          expect: () => const [
-            MenuState(status: MenuStatus.success(), notePages: []),
-          ],
-        );
+      blocTest<MenuBloc, MenuState>(
+        'should emit nothing when updateNotePage fails',
+        setUp: () {
+          when(() => updateNotePage(notePage: updatedNotePage)).thenAnswer(
+            (_) async => Right(AppError()),
+          );
+        },
+        build: () => _buildBloc(),
+        seed: () => const MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
+        act: (bloc) => bloc.add(MenuEvent.updatePage(notePage: updatedNotePage)),
+        expect: () => const [],
+      );
+    });
+    group("deletePage", () {
+      blocTest<MenuBloc, MenuState>(
+        'should emit same state with one page less',
+        setUp: () {
+          when(() => removeNotePage(notePage: exampleNotePage)).thenAnswer(
+            (_) async => const Left(unit),
+          );
+        },
+        build: () => _buildBloc(),
+        seed: () => const MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
+        act: (bloc) => bloc.add(const MenuEvent.removePage(notePage: exampleNotePage)),
+        expect: () => const [
+          MenuState(status: MenuStatus.success(), notePages: []),
+        ],
+      );
 
-        blocTest<MenuBloc, MenuState>(
-          'should emit nothing when removeNotePage fails',
-          setUp: () {
-            when(() => removeNotePage(notePage: exampleNotePage)).thenAnswer(
-              (_) async => Right(AppError()),
-            );
-          },
-          build: () => _buildBloc(),
-          seed: () => const MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
-          act: (bloc) => bloc.add(const MenuEvent.removePage(notePage: exampleNotePage)),
-          expect: () => const [],
-        );
-      });
+      blocTest<MenuBloc, MenuState>(
+        'should emit nothing when removeNotePage fails',
+        setUp: () {
+          when(() => removeNotePage(notePage: exampleNotePage)).thenAnswer(
+            (_) async => Right(AppError()),
+          );
+        },
+        build: () => _buildBloc(),
+        seed: () => const MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
+        act: (bloc) => bloc.add(const MenuEvent.removePage(notePage: exampleNotePage)),
+        expect: () => const [],
+      );
     });
   });
 }
