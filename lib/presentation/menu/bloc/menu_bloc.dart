@@ -49,7 +49,8 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     final addResult = await _addNotePage(notePage: event.notePage);
     addResult.fold(
       (onSuccess) => emit(
-          state.copyWith(notePages: List<NotePage>.from(state.notePages)..add(event.notePage))),
+        state.copyWith(notePages: List<NotePage>.from(state.notePages)..add(event.notePage)),
+      ),
       (onError) => null,
     );
   }
