@@ -122,8 +122,8 @@ class ComponentContentEntity {
   static ComponentContentEntity fromDocument(Map<String, dynamic> doc) {
     return ComponentContentEntity(
       type: ComponentTypeExt.fromString(doc["type"] as String),
-      text: doc["text"] as String,
-      value: doc["value"] as bool,
+      text: doc["text"] as String?,
+      value: doc["value"] as bool?,
     );
   }
 }
