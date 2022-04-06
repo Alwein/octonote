@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:octonote/application/utils/app_service.dart' as a_s;
@@ -8,6 +9,7 @@ import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/usecases/note_page/note_page_usecases.dart';
 import 'package:octonote/locator.dart' as sl;
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MockAppService extends Mock implements a_s.AppService {
   @override
@@ -30,6 +32,9 @@ void main() {
     late GetNotePages getNotePages;
 
     setUp(() async {
+      SharedPreferences.setMockInitialValues({});
+      TestWidgetsFlutterBinding.ensureInitialized();
+      await EasyLocalization.ensureInitialized();
       await sl.getIt.reset();
       sl.getIt.registerLazySingleton<a_s.AppService>(() => MockAppService());
       addNotePage = MockAddNotePage();
@@ -48,6 +53,7 @@ void main() {
     }
 
     const exampleNotePage = NotePage(id: "id", index: 0, title: "title");
+    final testGeneratedNotePage = NotePage(id: 'test', index: 0, title: tr('note_page.untitled'));
 
     test('default state should have initial status and empty list of NotePage', () {
       expect(
@@ -79,8 +85,6 @@ void main() {
         ],
       );
 
-      const testGeneratedNotePage = NotePage(id: 'test', index: 0, title: 'Sans titre');
-
       blocTest<MenuBloc, MenuState>(
         'should call CreateEmptyNotePage when notePages is empty',
         setUp: () {
@@ -90,12 +94,12 @@ void main() {
         },
         build: () => _buildBloc(),
         act: (bloc) => bloc.add(const MenuEvent.fetchStarted()),
-        expect: () => const [
-          MenuState(notePageSelected: NotePage.empty(), status: MenuStatus.fetchInProgress()),
-          MenuState(notePageSelected: NotePage.empty(), status: MenuStatus.success()),
+        expect: () => [
+          const MenuState(notePageSelected: NotePage.empty(), status: MenuStatus.fetchInProgress()),
+          const MenuState(notePageSelected: NotePage.empty(), status: MenuStatus.success()),
           MenuState(
             notePageSelected: testGeneratedNotePage,
-            status: MenuStatus.success(),
+            status: const MenuStatus.success(),
             notePages: [testGeneratedNotePage],
           ),
         ],
@@ -260,7 +264,6 @@ void main() {
     });
 
     group('CreateEmptyNotePage', () {
-      const testGeneratedNotePage = NotePage(id: 'test', index: 0, title: 'Sans titre');
       blocTest<MenuBloc, MenuState>(
         'should add an event to create a new default notePage and another to select it',
         setUp: () {
@@ -274,11 +277,11 @@ void main() {
           notePages: [],
         ),
         act: (bloc) => bloc.add(const MenuEvent.createEmptyNotePage()),
-        expect: () => const [
+        expect: () => [
           MenuState(
             notePageSelected: testGeneratedNotePage,
             notePages: [testGeneratedNotePage],
-            status: MenuStatus.success(),
+            status: const MenuStatus.success(),
           )
         ],
       );
