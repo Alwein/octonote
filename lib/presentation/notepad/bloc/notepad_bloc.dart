@@ -12,8 +12,7 @@ part 'notepad_state.dart';
 part 'notepad_bloc.freezed.dart';
 
 class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
-  NotePadBloc(
-    NotePage notePage, {
+  NotePadBloc({
     required GetComponents getComponents,
     required AddComponent addComponent,
     required UpdateComponent updateComponent,
@@ -22,7 +21,7 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
         _addComponent = addComponent,
         _updateComponent = updateComponent,
         _removeComponent = removeComponent,
-        super(NotePadState(notePage: notePage)) {
+        super(const NotePadState(notePage: NotePage.empty())) {
     on(
       (NotePadEvent event, emit) => event.map(
         fetchStarted: (event) => _onFetchStarted(event, emit),
@@ -39,7 +38,7 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
   final RemoveComponent _removeComponent;
 
   FutureOr<void> _onFetchStarted(_FetchStarted event, Emitter<NotePadState> emit) async {
-    emit(state.copyWith(status: const NotePadStatus.fetchInProgress()));
+    emit(state.copyWith(notePage: event.notePage, status: const NotePadStatus.fetchInProgress()));
 
     final componentsResult = await _getComponents(notePage: state.notePage);
     componentsResult.fold(

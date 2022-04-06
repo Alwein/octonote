@@ -10,7 +10,7 @@ class FormFactor {
 enum ScreenType { watch, phone, tablet, desktop }
 
 ScreenType getSize(BuildContext context) {
-  final deviceWidth = MediaQuery.of(context).size.shortestSide;
+  final deviceWidth = MediaQuery.of(context).size.width;
   if (deviceWidth > FormFactor.desktop) return ScreenType.desktop;
   if (deviceWidth > FormFactor.tablet) return ScreenType.tablet;
   if (deviceWidth > FormFactor.phone) return ScreenType.phone;

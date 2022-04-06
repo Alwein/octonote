@@ -3,16 +3,17 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:octonote/locator.dart' as sl;
 
-abstract class IAppService {
+abstract class AppService {
   bool getkIsWeb();
   bool getIsIOS();
   bool getIsMacOS();
   bool getIsWindows();
   bool getIsLinux();
   bool getIsAndroid();
+  bool getIsTestEnvironment();
 }
 
-class AppService implements IAppService {
+class AppServiceImpl implements AppService {
   @override
   bool getkIsWeb() => kIsWeb;
   @override
@@ -25,6 +26,8 @@ class AppService implements IAppService {
   bool getIsLinux() => Platform.isLinux;
   @override
   bool getIsAndroid() => Platform.isAndroid;
+  @override
+  bool getIsTestEnvironment() => false;
 }
 
 bool get isIOS => sl.getIt<AppService>().getIsIOS();
@@ -33,3 +36,4 @@ bool get isWindows => sl.getIt<AppService>().getIsWindows();
 bool get isLinux => sl.getIt<AppService>().getIsLinux();
 bool get isAndroid => sl.getIt<AppService>().getIsAndroid();
 bool get isWeb => sl.getIt<AppService>().getkIsWeb();
+bool get isTestEnvironment => sl.getIt<AppService>().getIsTestEnvironment();

@@ -1,14 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:octonote/application/utils/breakpoints.dart';
-import 'package:octonote/presentation/menu/menu.dart';
-import 'package:octonote/presentation/notepad/notepad.dart';
+import 'package:octonote/locator.dart' as sl;
+import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
+import 'package:octonote/presentation/menu/menu_view.dart';
+import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
+import 'package:octonote/presentation/notepad/notepad_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return getSize(context).isGreatherThanMobile ? const DesktopView() : const MobileView();
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => sl.getIt<MenuBloc>()..add(const MenuEvent.fetchStarted()),
+        ),
+        BlocProvider(
+          create: (context) => sl.getIt<NotePadBloc>(),
+        ),
+      ],
+      child: getSize(context).isGreatherThanMobile ? const DesktopView() : const MobileView(),
+    );
   }
 }
 

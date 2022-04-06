@@ -18,9 +18,11 @@ class _$MenuStateTearOff {
   const _$MenuStateTearOff();
 
   _MenuState call(
-      {List<NotePage> notePages = const [],
+      {required NotePage notePageSelected,
+      List<NotePage> notePages = const [],
       MenuStatus status = const MenuInitial()}) {
     return _MenuState(
+      notePageSelected: notePageSelected,
       notePages: notePages,
       status: status,
     );
@@ -32,6 +34,7 @@ const $MenuState = _$MenuStateTearOff();
 
 /// @nodoc
 mixin _$MenuState {
+  NotePage get notePageSelected => throw _privateConstructorUsedError;
   List<NotePage> get notePages => throw _privateConstructorUsedError;
   MenuStatus get status => throw _privateConstructorUsedError;
 
@@ -44,8 +47,10 @@ mixin _$MenuState {
 abstract class $MenuStateCopyWith<$Res> {
   factory $MenuStateCopyWith(MenuState value, $Res Function(MenuState) then) =
       _$MenuStateCopyWithImpl<$Res>;
-  $Res call({List<NotePage> notePages, MenuStatus status});
+  $Res call(
+      {NotePage notePageSelected, List<NotePage> notePages, MenuStatus status});
 
+  $NotePageCopyWith<$Res> get notePageSelected;
   $MenuStatusCopyWith<$Res> get status;
 }
 
@@ -59,10 +64,15 @@ class _$MenuStateCopyWithImpl<$Res> implements $MenuStateCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? notePageSelected = freezed,
     Object? notePages = freezed,
     Object? status = freezed,
   }) {
     return _then(_value.copyWith(
+      notePageSelected: notePageSelected == freezed
+          ? _value.notePageSelected
+          : notePageSelected // ignore: cast_nullable_to_non_nullable
+              as NotePage,
       notePages: notePages == freezed
           ? _value.notePages
           : notePages // ignore: cast_nullable_to_non_nullable
@@ -72,6 +82,13 @@ class _$MenuStateCopyWithImpl<$Res> implements $MenuStateCopyWith<$Res> {
           : status // ignore: cast_nullable_to_non_nullable
               as MenuStatus,
     ));
+  }
+
+  @override
+  $NotePageCopyWith<$Res> get notePageSelected {
+    return $NotePageCopyWith<$Res>(_value.notePageSelected, (value) {
+      return _then(_value.copyWith(notePageSelected: value));
+    });
   }
 
   @override
@@ -88,8 +105,11 @@ abstract class _$MenuStateCopyWith<$Res> implements $MenuStateCopyWith<$Res> {
           _MenuState value, $Res Function(_MenuState) then) =
       __$MenuStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<NotePage> notePages, MenuStatus status});
+  $Res call(
+      {NotePage notePageSelected, List<NotePage> notePages, MenuStatus status});
 
+  @override
+  $NotePageCopyWith<$Res> get notePageSelected;
   @override
   $MenuStatusCopyWith<$Res> get status;
 }
@@ -105,10 +125,15 @@ class __$MenuStateCopyWithImpl<$Res> extends _$MenuStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? notePageSelected = freezed,
     Object? notePages = freezed,
     Object? status = freezed,
   }) {
     return _then(_MenuState(
+      notePageSelected: notePageSelected == freezed
+          ? _value.notePageSelected
+          : notePageSelected // ignore: cast_nullable_to_non_nullable
+              as NotePage,
       notePages: notePages == freezed
           ? _value.notePages
           : notePages // ignore: cast_nullable_to_non_nullable
@@ -123,10 +148,14 @@ class __$MenuStateCopyWithImpl<$Res> extends _$MenuStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MenuState implements _MenuState {
+class _$_MenuState with DiagnosticableTreeMixin implements _MenuState {
   const _$_MenuState(
-      {this.notePages = const [], this.status = const MenuInitial()});
+      {required this.notePageSelected,
+      this.notePages = const [],
+      this.status = const MenuInitial()});
 
+  @override
+  final NotePage notePageSelected;
   @JsonKey()
   @override
   final List<NotePage> notePages;
@@ -135,8 +164,18 @@ class _$_MenuState implements _MenuState {
   final MenuStatus status;
 
   @override
-  String toString() {
-    return 'MenuState(notePages: $notePages, status: $status)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'MenuState(notePageSelected: $notePageSelected, notePages: $notePages, status: $status)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'MenuState'))
+      ..add(DiagnosticsProperty('notePageSelected', notePageSelected))
+      ..add(DiagnosticsProperty('notePages', notePages))
+      ..add(DiagnosticsProperty('status', status));
   }
 
   @override
@@ -144,6 +183,8 @@ class _$_MenuState implements _MenuState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _MenuState &&
+            const DeepCollectionEquality()
+                .equals(other.notePageSelected, notePageSelected) &&
             const DeepCollectionEquality().equals(other.notePages, notePages) &&
             const DeepCollectionEquality().equals(other.status, status));
   }
@@ -151,6 +192,7 @@ class _$_MenuState implements _MenuState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(notePageSelected),
       const DeepCollectionEquality().hash(notePages),
       const DeepCollectionEquality().hash(status));
 
@@ -161,9 +203,13 @@ class _$_MenuState implements _MenuState {
 }
 
 abstract class _MenuState implements MenuState {
-  const factory _MenuState({List<NotePage> notePages, MenuStatus status}) =
-      _$_MenuState;
+  const factory _MenuState(
+      {required NotePage notePageSelected,
+      List<NotePage> notePages,
+      MenuStatus status}) = _$_MenuState;
 
+  @override
+  NotePage get notePageSelected;
   @override
   List<NotePage> get notePages;
   @override
@@ -288,12 +334,18 @@ class _$MenuInitialCopyWithImpl<$Res> extends _$MenuStatusCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MenuInitial implements MenuInitial {
+class _$MenuInitial with DiagnosticableTreeMixin implements MenuInitial {
   const _$MenuInitial();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'MenuStatus.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'MenuStatus.initial'));
   }
 
   @override
@@ -405,12 +457,20 @@ class _$MenuFetchInProgressCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MenuFetchInProgress implements MenuFetchInProgress {
+class _$MenuFetchInProgress
+    with DiagnosticableTreeMixin
+    implements MenuFetchInProgress {
   const _$MenuFetchInProgress();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'MenuStatus.fetchInProgress()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'MenuStatus.fetchInProgress'));
   }
 
   @override
@@ -521,12 +581,18 @@ class _$MenuSuccessCopyWithImpl<$Res> extends _$MenuStatusCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MenuSuccess implements MenuSuccess {
+class _$MenuSuccess with DiagnosticableTreeMixin implements MenuSuccess {
   const _$MenuSuccess();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'MenuStatus.success()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'MenuStatus.success'));
   }
 
   @override
@@ -635,12 +701,18 @@ class _$MenuErrorCopyWithImpl<$Res> extends _$MenuStatusCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MenuError implements MenuError {
+class _$MenuError with DiagnosticableTreeMixin implements MenuError {
   const _$MenuError();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'MenuStatus.error()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'MenuStatus.error'));
   }
 
   @override
@@ -756,6 +828,16 @@ class _$MenuEventTearOff {
       notePage: notePage,
     );
   }
+
+  _NotePageSelected notePageSelected({required NotePage notePage}) {
+    return _NotePageSelected(
+      notePage: notePage,
+    );
+  }
+
+  _CreateEmptyNotePage createEmptyNotePage() {
+    return const _CreateEmptyNotePage();
+  }
 }
 
 /// @nodoc
@@ -769,6 +851,8 @@ mixin _$MenuEvent {
     required TResult Function(NotePage notePage) addPage,
     required TResult Function(NotePage notePage) updatePage,
     required TResult Function(NotePage notePage) removePage,
+    required TResult Function(NotePage notePage) notePageSelected,
+    required TResult Function() createEmptyNotePage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -777,6 +861,8 @@ mixin _$MenuEvent {
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
     TResult Function(NotePage notePage)? removePage,
+    TResult Function(NotePage notePage)? notePageSelected,
+    TResult Function()? createEmptyNotePage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -785,6 +871,8 @@ mixin _$MenuEvent {
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
     TResult Function(NotePage notePage)? removePage,
+    TResult Function(NotePage notePage)? notePageSelected,
+    TResult Function()? createEmptyNotePage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -794,6 +882,8 @@ mixin _$MenuEvent {
     required TResult Function(_AddPage value) addPage,
     required TResult Function(_UpdatePage value) updatePage,
     required TResult Function(_RemovePage value) removePage,
+    required TResult Function(_NotePageSelected value) notePageSelected,
+    required TResult Function(_CreateEmptyNotePage value) createEmptyNotePage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -802,6 +892,8 @@ mixin _$MenuEvent {
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
     TResult Function(_RemovePage value)? removePage,
+    TResult Function(_NotePageSelected value)? notePageSelected,
+    TResult Function(_CreateEmptyNotePage value)? createEmptyNotePage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -810,6 +902,8 @@ mixin _$MenuEvent {
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
     TResult Function(_RemovePage value)? removePage,
+    TResult Function(_NotePageSelected value)? notePageSelected,
+    TResult Function(_CreateEmptyNotePage value)? createEmptyNotePage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -850,12 +944,18 @@ class __$FetchStartedCopyWithImpl<$Res> extends _$MenuEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_FetchStarted implements _FetchStarted {
+class _$_FetchStarted with DiagnosticableTreeMixin implements _FetchStarted {
   const _$_FetchStarted();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'MenuEvent.fetchStarted()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'MenuEvent.fetchStarted'));
   }
 
   @override
@@ -874,6 +974,8 @@ class _$_FetchStarted implements _FetchStarted {
     required TResult Function(NotePage notePage) addPage,
     required TResult Function(NotePage notePage) updatePage,
     required TResult Function(NotePage notePage) removePage,
+    required TResult Function(NotePage notePage) notePageSelected,
+    required TResult Function() createEmptyNotePage,
   }) {
     return fetchStarted();
   }
@@ -885,6 +987,8 @@ class _$_FetchStarted implements _FetchStarted {
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
     TResult Function(NotePage notePage)? removePage,
+    TResult Function(NotePage notePage)? notePageSelected,
+    TResult Function()? createEmptyNotePage,
   }) {
     return fetchStarted?.call();
   }
@@ -896,6 +1000,8 @@ class _$_FetchStarted implements _FetchStarted {
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
     TResult Function(NotePage notePage)? removePage,
+    TResult Function(NotePage notePage)? notePageSelected,
+    TResult Function()? createEmptyNotePage,
     required TResult orElse(),
   }) {
     if (fetchStarted != null) {
@@ -911,6 +1017,8 @@ class _$_FetchStarted implements _FetchStarted {
     required TResult Function(_AddPage value) addPage,
     required TResult Function(_UpdatePage value) updatePage,
     required TResult Function(_RemovePage value) removePage,
+    required TResult Function(_NotePageSelected value) notePageSelected,
+    required TResult Function(_CreateEmptyNotePage value) createEmptyNotePage,
   }) {
     return fetchStarted(this);
   }
@@ -922,6 +1030,8 @@ class _$_FetchStarted implements _FetchStarted {
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
     TResult Function(_RemovePage value)? removePage,
+    TResult Function(_NotePageSelected value)? notePageSelected,
+    TResult Function(_CreateEmptyNotePage value)? createEmptyNotePage,
   }) {
     return fetchStarted?.call(this);
   }
@@ -933,6 +1043,8 @@ class _$_FetchStarted implements _FetchStarted {
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
     TResult Function(_RemovePage value)? removePage,
+    TResult Function(_NotePageSelected value)? notePageSelected,
+    TResult Function(_CreateEmptyNotePage value)? createEmptyNotePage,
     required TResult orElse(),
   }) {
     if (fetchStarted != null) {
@@ -986,15 +1098,23 @@ class __$AddPageCopyWithImpl<$Res> extends _$MenuEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AddPage implements _AddPage {
+class _$_AddPage with DiagnosticableTreeMixin implements _AddPage {
   const _$_AddPage({required this.notePage});
 
   @override
   final NotePage notePage;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'MenuEvent.addPage(notePage: $notePage)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'MenuEvent.addPage'))
+      ..add(DiagnosticsProperty('notePage', notePage));
   }
 
   @override
@@ -1021,6 +1141,8 @@ class _$_AddPage implements _AddPage {
     required TResult Function(NotePage notePage) addPage,
     required TResult Function(NotePage notePage) updatePage,
     required TResult Function(NotePage notePage) removePage,
+    required TResult Function(NotePage notePage) notePageSelected,
+    required TResult Function() createEmptyNotePage,
   }) {
     return addPage(notePage);
   }
@@ -1032,6 +1154,8 @@ class _$_AddPage implements _AddPage {
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
     TResult Function(NotePage notePage)? removePage,
+    TResult Function(NotePage notePage)? notePageSelected,
+    TResult Function()? createEmptyNotePage,
   }) {
     return addPage?.call(notePage);
   }
@@ -1043,6 +1167,8 @@ class _$_AddPage implements _AddPage {
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
     TResult Function(NotePage notePage)? removePage,
+    TResult Function(NotePage notePage)? notePageSelected,
+    TResult Function()? createEmptyNotePage,
     required TResult orElse(),
   }) {
     if (addPage != null) {
@@ -1058,6 +1184,8 @@ class _$_AddPage implements _AddPage {
     required TResult Function(_AddPage value) addPage,
     required TResult Function(_UpdatePage value) updatePage,
     required TResult Function(_RemovePage value) removePage,
+    required TResult Function(_NotePageSelected value) notePageSelected,
+    required TResult Function(_CreateEmptyNotePage value) createEmptyNotePage,
   }) {
     return addPage(this);
   }
@@ -1069,6 +1197,8 @@ class _$_AddPage implements _AddPage {
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
     TResult Function(_RemovePage value)? removePage,
+    TResult Function(_NotePageSelected value)? notePageSelected,
+    TResult Function(_CreateEmptyNotePage value)? createEmptyNotePage,
   }) {
     return addPage?.call(this);
   }
@@ -1080,6 +1210,8 @@ class _$_AddPage implements _AddPage {
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
     TResult Function(_RemovePage value)? removePage,
+    TResult Function(_NotePageSelected value)? notePageSelected,
+    TResult Function(_CreateEmptyNotePage value)? createEmptyNotePage,
     required TResult orElse(),
   }) {
     if (addPage != null) {
@@ -1140,15 +1272,23 @@ class __$UpdatePageCopyWithImpl<$Res> extends _$MenuEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UpdatePage implements _UpdatePage {
+class _$_UpdatePage with DiagnosticableTreeMixin implements _UpdatePage {
   const _$_UpdatePage({required this.notePage});
 
   @override
   final NotePage notePage;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'MenuEvent.updatePage(notePage: $notePage)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'MenuEvent.updatePage'))
+      ..add(DiagnosticsProperty('notePage', notePage));
   }
 
   @override
@@ -1175,6 +1315,8 @@ class _$_UpdatePage implements _UpdatePage {
     required TResult Function(NotePage notePage) addPage,
     required TResult Function(NotePage notePage) updatePage,
     required TResult Function(NotePage notePage) removePage,
+    required TResult Function(NotePage notePage) notePageSelected,
+    required TResult Function() createEmptyNotePage,
   }) {
     return updatePage(notePage);
   }
@@ -1186,6 +1328,8 @@ class _$_UpdatePage implements _UpdatePage {
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
     TResult Function(NotePage notePage)? removePage,
+    TResult Function(NotePage notePage)? notePageSelected,
+    TResult Function()? createEmptyNotePage,
   }) {
     return updatePage?.call(notePage);
   }
@@ -1197,6 +1341,8 @@ class _$_UpdatePage implements _UpdatePage {
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
     TResult Function(NotePage notePage)? removePage,
+    TResult Function(NotePage notePage)? notePageSelected,
+    TResult Function()? createEmptyNotePage,
     required TResult orElse(),
   }) {
     if (updatePage != null) {
@@ -1212,6 +1358,8 @@ class _$_UpdatePage implements _UpdatePage {
     required TResult Function(_AddPage value) addPage,
     required TResult Function(_UpdatePage value) updatePage,
     required TResult Function(_RemovePage value) removePage,
+    required TResult Function(_NotePageSelected value) notePageSelected,
+    required TResult Function(_CreateEmptyNotePage value) createEmptyNotePage,
   }) {
     return updatePage(this);
   }
@@ -1223,6 +1371,8 @@ class _$_UpdatePage implements _UpdatePage {
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
     TResult Function(_RemovePage value)? removePage,
+    TResult Function(_NotePageSelected value)? notePageSelected,
+    TResult Function(_CreateEmptyNotePage value)? createEmptyNotePage,
   }) {
     return updatePage?.call(this);
   }
@@ -1234,6 +1384,8 @@ class _$_UpdatePage implements _UpdatePage {
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
     TResult Function(_RemovePage value)? removePage,
+    TResult Function(_NotePageSelected value)? notePageSelected,
+    TResult Function(_CreateEmptyNotePage value)? createEmptyNotePage,
     required TResult orElse(),
   }) {
     if (updatePage != null) {
@@ -1294,15 +1446,23 @@ class __$RemovePageCopyWithImpl<$Res> extends _$MenuEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RemovePage implements _RemovePage {
+class _$_RemovePage with DiagnosticableTreeMixin implements _RemovePage {
   const _$_RemovePage({required this.notePage});
 
   @override
   final NotePage notePage;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'MenuEvent.removePage(notePage: $notePage)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'MenuEvent.removePage'))
+      ..add(DiagnosticsProperty('notePage', notePage));
   }
 
   @override
@@ -1329,6 +1489,8 @@ class _$_RemovePage implements _RemovePage {
     required TResult Function(NotePage notePage) addPage,
     required TResult Function(NotePage notePage) updatePage,
     required TResult Function(NotePage notePage) removePage,
+    required TResult Function(NotePage notePage) notePageSelected,
+    required TResult Function() createEmptyNotePage,
   }) {
     return removePage(notePage);
   }
@@ -1340,6 +1502,8 @@ class _$_RemovePage implements _RemovePage {
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
     TResult Function(NotePage notePage)? removePage,
+    TResult Function(NotePage notePage)? notePageSelected,
+    TResult Function()? createEmptyNotePage,
   }) {
     return removePage?.call(notePage);
   }
@@ -1351,6 +1515,8 @@ class _$_RemovePage implements _RemovePage {
     TResult Function(NotePage notePage)? addPage,
     TResult Function(NotePage notePage)? updatePage,
     TResult Function(NotePage notePage)? removePage,
+    TResult Function(NotePage notePage)? notePageSelected,
+    TResult Function()? createEmptyNotePage,
     required TResult orElse(),
   }) {
     if (removePage != null) {
@@ -1366,6 +1532,8 @@ class _$_RemovePage implements _RemovePage {
     required TResult Function(_AddPage value) addPage,
     required TResult Function(_UpdatePage value) updatePage,
     required TResult Function(_RemovePage value) removePage,
+    required TResult Function(_NotePageSelected value) notePageSelected,
+    required TResult Function(_CreateEmptyNotePage value) createEmptyNotePage,
   }) {
     return removePage(this);
   }
@@ -1377,6 +1545,8 @@ class _$_RemovePage implements _RemovePage {
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
     TResult Function(_RemovePage value)? removePage,
+    TResult Function(_NotePageSelected value)? notePageSelected,
+    TResult Function(_CreateEmptyNotePage value)? createEmptyNotePage,
   }) {
     return removePage?.call(this);
   }
@@ -1388,6 +1558,8 @@ class _$_RemovePage implements _RemovePage {
     TResult Function(_AddPage value)? addPage,
     TResult Function(_UpdatePage value)? updatePage,
     TResult Function(_RemovePage value)? removePage,
+    TResult Function(_NotePageSelected value)? notePageSelected,
+    TResult Function(_CreateEmptyNotePage value)? createEmptyNotePage,
     required TResult orElse(),
   }) {
     if (removePage != null) {
@@ -1404,4 +1576,320 @@ abstract class _RemovePage implements MenuEvent {
   @JsonKey(ignore: true)
   _$RemovePageCopyWith<_RemovePage> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$NotePageSelectedCopyWith<$Res> {
+  factory _$NotePageSelectedCopyWith(
+          _NotePageSelected value, $Res Function(_NotePageSelected) then) =
+      __$NotePageSelectedCopyWithImpl<$Res>;
+  $Res call({NotePage notePage});
+
+  $NotePageCopyWith<$Res> get notePage;
+}
+
+/// @nodoc
+class __$NotePageSelectedCopyWithImpl<$Res>
+    extends _$MenuEventCopyWithImpl<$Res>
+    implements _$NotePageSelectedCopyWith<$Res> {
+  __$NotePageSelectedCopyWithImpl(
+      _NotePageSelected _value, $Res Function(_NotePageSelected) _then)
+      : super(_value, (v) => _then(v as _NotePageSelected));
+
+  @override
+  _NotePageSelected get _value => super._value as _NotePageSelected;
+
+  @override
+  $Res call({
+    Object? notePage = freezed,
+  }) {
+    return _then(_NotePageSelected(
+      notePage: notePage == freezed
+          ? _value.notePage
+          : notePage // ignore: cast_nullable_to_non_nullable
+              as NotePage,
+    ));
+  }
+
+  @override
+  $NotePageCopyWith<$Res> get notePage {
+    return $NotePageCopyWith<$Res>(_value.notePage, (value) {
+      return _then(_value.copyWith(notePage: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_NotePageSelected
+    with DiagnosticableTreeMixin
+    implements _NotePageSelected {
+  const _$_NotePageSelected({required this.notePage});
+
+  @override
+  final NotePage notePage;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'MenuEvent.notePageSelected(notePage: $notePage)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'MenuEvent.notePageSelected'))
+      ..add(DiagnosticsProperty('notePage', notePage));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _NotePageSelected &&
+            const DeepCollectionEquality().equals(other.notePage, notePage));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(notePage));
+
+  @JsonKey(ignore: true)
+  @override
+  _$NotePageSelectedCopyWith<_NotePageSelected> get copyWith =>
+      __$NotePageSelectedCopyWithImpl<_NotePageSelected>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchStarted,
+    required TResult Function(NotePage notePage) addPage,
+    required TResult Function(NotePage notePage) updatePage,
+    required TResult Function(NotePage notePage) removePage,
+    required TResult Function(NotePage notePage) notePageSelected,
+    required TResult Function() createEmptyNotePage,
+  }) {
+    return notePageSelected(notePage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? fetchStarted,
+    TResult Function(NotePage notePage)? addPage,
+    TResult Function(NotePage notePage)? updatePage,
+    TResult Function(NotePage notePage)? removePage,
+    TResult Function(NotePage notePage)? notePageSelected,
+    TResult Function()? createEmptyNotePage,
+  }) {
+    return notePageSelected?.call(notePage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchStarted,
+    TResult Function(NotePage notePage)? addPage,
+    TResult Function(NotePage notePage)? updatePage,
+    TResult Function(NotePage notePage)? removePage,
+    TResult Function(NotePage notePage)? notePageSelected,
+    TResult Function()? createEmptyNotePage,
+    required TResult orElse(),
+  }) {
+    if (notePageSelected != null) {
+      return notePageSelected(notePage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchStarted value) fetchStarted,
+    required TResult Function(_AddPage value) addPage,
+    required TResult Function(_UpdatePage value) updatePage,
+    required TResult Function(_RemovePage value) removePage,
+    required TResult Function(_NotePageSelected value) notePageSelected,
+    required TResult Function(_CreateEmptyNotePage value) createEmptyNotePage,
+  }) {
+    return notePageSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_FetchStarted value)? fetchStarted,
+    TResult Function(_AddPage value)? addPage,
+    TResult Function(_UpdatePage value)? updatePage,
+    TResult Function(_RemovePage value)? removePage,
+    TResult Function(_NotePageSelected value)? notePageSelected,
+    TResult Function(_CreateEmptyNotePage value)? createEmptyNotePage,
+  }) {
+    return notePageSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchStarted value)? fetchStarted,
+    TResult Function(_AddPage value)? addPage,
+    TResult Function(_UpdatePage value)? updatePage,
+    TResult Function(_RemovePage value)? removePage,
+    TResult Function(_NotePageSelected value)? notePageSelected,
+    TResult Function(_CreateEmptyNotePage value)? createEmptyNotePage,
+    required TResult orElse(),
+  }) {
+    if (notePageSelected != null) {
+      return notePageSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NotePageSelected implements MenuEvent {
+  const factory _NotePageSelected({required NotePage notePage}) =
+      _$_NotePageSelected;
+
+  NotePage get notePage;
+  @JsonKey(ignore: true)
+  _$NotePageSelectedCopyWith<_NotePageSelected> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$CreateEmptyNotePageCopyWith<$Res> {
+  factory _$CreateEmptyNotePageCopyWith(_CreateEmptyNotePage value,
+          $Res Function(_CreateEmptyNotePage) then) =
+      __$CreateEmptyNotePageCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$CreateEmptyNotePageCopyWithImpl<$Res>
+    extends _$MenuEventCopyWithImpl<$Res>
+    implements _$CreateEmptyNotePageCopyWith<$Res> {
+  __$CreateEmptyNotePageCopyWithImpl(
+      _CreateEmptyNotePage _value, $Res Function(_CreateEmptyNotePage) _then)
+      : super(_value, (v) => _then(v as _CreateEmptyNotePage));
+
+  @override
+  _CreateEmptyNotePage get _value => super._value as _CreateEmptyNotePage;
+}
+
+/// @nodoc
+
+class _$_CreateEmptyNotePage
+    with DiagnosticableTreeMixin
+    implements _CreateEmptyNotePage {
+  const _$_CreateEmptyNotePage();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'MenuEvent.createEmptyNotePage()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'MenuEvent.createEmptyNotePage'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _CreateEmptyNotePage);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchStarted,
+    required TResult Function(NotePage notePage) addPage,
+    required TResult Function(NotePage notePage) updatePage,
+    required TResult Function(NotePage notePage) removePage,
+    required TResult Function(NotePage notePage) notePageSelected,
+    required TResult Function() createEmptyNotePage,
+  }) {
+    return createEmptyNotePage();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? fetchStarted,
+    TResult Function(NotePage notePage)? addPage,
+    TResult Function(NotePage notePage)? updatePage,
+    TResult Function(NotePage notePage)? removePage,
+    TResult Function(NotePage notePage)? notePageSelected,
+    TResult Function()? createEmptyNotePage,
+  }) {
+    return createEmptyNotePage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchStarted,
+    TResult Function(NotePage notePage)? addPage,
+    TResult Function(NotePage notePage)? updatePage,
+    TResult Function(NotePage notePage)? removePage,
+    TResult Function(NotePage notePage)? notePageSelected,
+    TResult Function()? createEmptyNotePage,
+    required TResult orElse(),
+  }) {
+    if (createEmptyNotePage != null) {
+      return createEmptyNotePage();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchStarted value) fetchStarted,
+    required TResult Function(_AddPage value) addPage,
+    required TResult Function(_UpdatePage value) updatePage,
+    required TResult Function(_RemovePage value) removePage,
+    required TResult Function(_NotePageSelected value) notePageSelected,
+    required TResult Function(_CreateEmptyNotePage value) createEmptyNotePage,
+  }) {
+    return createEmptyNotePage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_FetchStarted value)? fetchStarted,
+    TResult Function(_AddPage value)? addPage,
+    TResult Function(_UpdatePage value)? updatePage,
+    TResult Function(_RemovePage value)? removePage,
+    TResult Function(_NotePageSelected value)? notePageSelected,
+    TResult Function(_CreateEmptyNotePage value)? createEmptyNotePage,
+  }) {
+    return createEmptyNotePage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchStarted value)? fetchStarted,
+    TResult Function(_AddPage value)? addPage,
+    TResult Function(_UpdatePage value)? updatePage,
+    TResult Function(_RemovePage value)? removePage,
+    TResult Function(_NotePageSelected value)? notePageSelected,
+    TResult Function(_CreateEmptyNotePage value)? createEmptyNotePage,
+    required TResult orElse(),
+  }) {
+    if (createEmptyNotePage != null) {
+      return createEmptyNotePage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateEmptyNotePage implements MenuEvent {
+  const factory _CreateEmptyNotePage() = _$_CreateEmptyNotePage;
 }

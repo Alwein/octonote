@@ -2,10 +2,17 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:octonote/application/utils/app_service.dart' as a_s;
 import 'package:octonote/domain/models/app_error/app_error.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/usecases/note_page/note_page_usecases.dart';
+import 'package:octonote/locator.dart' as sl;
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
+
+class MockAppService extends Mock implements a_s.AppService {
+  @override
+  bool getIsTestEnvironment() => true;
+}
 
 class MockAddNotePage extends Mock implements AddNotePage {}
 
@@ -22,7 +29,9 @@ void main() {
     late RemoveNotePage removeNotePage;
     late GetNotePages getNotePages;
 
-    setUp(() {
+    setUp(() async {
+      await sl.getIt.reset();
+      sl.getIt.registerLazySingleton<a_s.AppService>(() => MockAppService());
       addNotePage = MockAddNotePage();
       updateNotePage = MockUpdateNotePage();
       removeNotePage = MockRemoveNotePage();
@@ -43,23 +52,52 @@ void main() {
     test('default state should have initial status and empty list of NotePage', () {
       expect(
         _buildBloc().state,
-        const MenuState(notePages: [], status: MenuStatus.initial()),
+        const MenuState(
+            notePageSelected: NotePage.empty(), notePages: [], status: MenuStatus.initial()),
       );
     });
 
     group('fetchStarted', () {
       blocTest<MenuBloc, MenuState>(
-        'should emit MenuStatus.success() and a list of NotePage',
+        'should emit MenuStatus.success(), a list of NotePage and the first selected page',
         setUp: () {
           when(() => getNotePages()).thenAnswer((_) async => const Left([exampleNotePage]));
         },
         build: () => _buildBloc(),
         act: (bloc) => bloc.add(const MenuEvent.fetchStarted()),
         expect: () => const [
-          MenuState(status: MenuStatus.fetchInProgress()),
-          MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
+          MenuState(notePageSelected: NotePage.empty(), status: MenuStatus.fetchInProgress()),
+          MenuState(notePageSelected: NotePage.empty(), status: MenuStatus.success()),
+          MenuState(
+            notePageSelected: exampleNotePage,
+            notePages: [exampleNotePage],
+            status: MenuStatus.success(),
+          ),
         ],
       );
+
+      const testGeneratedNotePage = NotePage(id: 'test', index: 0, title: 'Sans titre');
+
+      blocTest<MenuBloc, MenuState>(
+        'should call CreateEmptyNotePage when notePages is empty',
+        setUp: () {
+          when(() => getNotePages()).thenAnswer((_) async => const Left([]));
+          when(() => addNotePage(notePage: testGeneratedNotePage))
+              .thenAnswer((_) async => const Left(unit));
+        },
+        build: () => _buildBloc(),
+        act: (bloc) => bloc.add(const MenuEvent.fetchStarted()),
+        expect: () => const [
+          MenuState(notePageSelected: NotePage.empty(), status: MenuStatus.fetchInProgress()),
+          MenuState(notePageSelected: NotePage.empty(), status: MenuStatus.success()),
+          MenuState(
+            notePageSelected: testGeneratedNotePage,
+            status: MenuStatus.success(),
+            notePages: [testGeneratedNotePage],
+          ),
+        ],
+      );
+
       blocTest<MenuBloc, MenuState>(
         'should emit MenuStatus.error() when getNotePages fails',
         setUp: () {
@@ -68,8 +106,8 @@ void main() {
         build: () => _buildBloc(),
         act: (bloc) => bloc.add(const MenuEvent.fetchStarted()),
         expect: () => const [
-          MenuState(status: MenuStatus.fetchInProgress()),
-          MenuState(status: MenuStatus.error(), notePages: []),
+          MenuState(notePageSelected: NotePage.empty(), status: MenuStatus.fetchInProgress()),
+          MenuState(notePageSelected: NotePage.empty(), status: MenuStatus.error(), notePages: []),
         ],
       );
     });
@@ -82,10 +120,15 @@ void main() {
               .thenAnswer((_) async => const Left(unit));
         },
         build: () => _buildBloc(),
-        seed: () => const MenuState(status: MenuStatus.success(), notePages: []),
+        seed: () => const MenuState(
+            notePageSelected: NotePage.empty(), status: MenuStatus.success(), notePages: []),
         act: (bloc) => bloc.add(const MenuEvent.addPage(notePage: exampleNotePage)),
         expect: () => const [
-          MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
+          MenuState(
+            notePageSelected: exampleNotePage,
+            status: MenuStatus.success(),
+            notePages: [exampleNotePage],
+          ),
         ],
       );
 
@@ -97,7 +140,8 @@ void main() {
           );
         },
         build: () => _buildBloc(),
-        seed: () => const MenuState(status: MenuStatus.success(), notePages: []),
+        seed: () => const MenuState(
+            notePageSelected: NotePage.empty(), status: MenuStatus.success(), notePages: []),
         act: (bloc) => bloc.add(const MenuEvent.addPage(notePage: exampleNotePage)),
         expect: () => const [],
       );
@@ -112,10 +156,16 @@ void main() {
           ).thenAnswer((_) async => const Left(unit));
         },
         build: () => _buildBloc(),
-        seed: () => const MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
+        seed: () => const MenuState(
+            notePageSelected: NotePage.empty(),
+            status: MenuStatus.success(),
+            notePages: [exampleNotePage]),
         act: (bloc) => bloc.add(MenuEvent.updatePage(notePage: updatedNotePage)),
         expect: () => [
-          MenuState(status: const MenuStatus.success(), notePages: [updatedNotePage]),
+          MenuState(
+              notePageSelected: NotePage.empty(),
+              status: const MenuStatus.success(),
+              notePages: [updatedNotePage]),
         ],
       );
 
@@ -127,7 +177,10 @@ void main() {
           );
         },
         build: () => _buildBloc(),
-        seed: () => const MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
+        seed: () => const MenuState(
+            notePageSelected: NotePage.empty(),
+            status: MenuStatus.success(),
+            notePages: [exampleNotePage]),
         act: (bloc) => bloc.add(MenuEvent.updatePage(notePage: updatedNotePage)),
         expect: () => const [],
       );
@@ -141,10 +194,14 @@ void main() {
           );
         },
         build: () => _buildBloc(),
-        seed: () => const MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
+        seed: () => const MenuState(
+            notePageSelected: NotePage.empty(),
+            status: MenuStatus.success(),
+            notePages: [exampleNotePage]),
         act: (bloc) => bloc.add(const MenuEvent.removePage(notePage: exampleNotePage)),
         expect: () => const [
-          MenuState(status: MenuStatus.success(), notePages: []),
+          MenuState(
+              notePageSelected: NotePage.empty(), status: MenuStatus.success(), notePages: []),
         ],
       );
 
@@ -156,9 +213,57 @@ void main() {
           );
         },
         build: () => _buildBloc(),
-        seed: () => const MenuState(status: MenuStatus.success(), notePages: [exampleNotePage]),
+        seed: () => const MenuState(
+            notePageSelected: NotePage.empty(),
+            status: MenuStatus.success(),
+            notePages: [exampleNotePage]),
         act: (bloc) => bloc.add(const MenuEvent.removePage(notePage: exampleNotePage)),
         expect: () => const [],
+      );
+    });
+
+    group('notePageSelected', () {
+      blocTest<MenuBloc, MenuState>(
+        'should emit same state with new pageSelected',
+        build: () => _buildBloc(),
+        seed: () => const MenuState(
+          notePageSelected: NotePage.empty(),
+          status: MenuStatus.success(),
+          notePages: [exampleNotePage],
+        ),
+        act: (bloc) => bloc.add(const MenuEvent.notePageSelected(notePage: exampleNotePage)),
+        expect: () => const [
+          MenuState(
+            notePageSelected: exampleNotePage,
+            status: MenuStatus.success(),
+            notePages: [exampleNotePage],
+          )
+        ],
+      );
+    });
+
+    group('CreateEmptyNotePage', () {
+      const testGeneratedNotePage = NotePage(id: 'test', index: 0, title: 'Sans titre');
+      blocTest<MenuBloc, MenuState>(
+        'should add an event to create a new default notePage and another to select it',
+        setUp: () {
+          when(() => addNotePage(notePage: testGeneratedNotePage))
+              .thenAnswer((_) async => const Left(unit));
+        },
+        build: () => _buildBloc(),
+        seed: () => const MenuState(
+          notePageSelected: NotePage.empty(),
+          status: MenuStatus.success(),
+          notePages: [],
+        ),
+        act: (bloc) => bloc.add(const MenuEvent.createEmptyNotePage()),
+        expect: () => const [
+          MenuState(
+            notePageSelected: testGeneratedNotePage,
+            notePages: [testGeneratedNotePage],
+            status: MenuStatus.success(),
+          )
+        ],
       );
     });
   });

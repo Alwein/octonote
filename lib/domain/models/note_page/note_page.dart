@@ -11,4 +11,11 @@ class NotePage with _$NotePage {
     required String title,
     String? parentId,
   }) = _NotePage;
+
+  const factory NotePage.empty({
+    @Default('') String id,
+    @Default(0) int index,
+    @Default('') String title,
+    String? parentId,
+  }) = _EmptyNotePage;
 }

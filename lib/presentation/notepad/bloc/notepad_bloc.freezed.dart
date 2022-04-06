@@ -17,8 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$NotePadEventTearOff {
   const _$NotePadEventTearOff();
 
-  _FetchStarted fetchStarted() {
-    return const _FetchStarted();
+  _FetchStarted fetchStarted({required NotePage notePage}) {
+    return _FetchStarted(
+      notePage: notePage,
+    );
   }
 
   _AddComponent addComponent({required Component component}) {
@@ -47,7 +49,7 @@ const $NotePadEvent = _$NotePadEventTearOff();
 mixin _$NotePadEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchStarted,
+    required TResult Function(NotePage notePage) fetchStarted,
     required TResult Function(Component component) addComponent,
     required TResult Function(Component component) updateComponent,
     required TResult Function(Component component) removeComponent,
@@ -55,7 +57,7 @@ mixin _$NotePadEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? fetchStarted,
+    TResult Function(NotePage notePage)? fetchStarted,
     TResult Function(Component component)? addComponent,
     TResult Function(Component component)? updateComponent,
     TResult Function(Component component)? removeComponent,
@@ -63,7 +65,7 @@ mixin _$NotePadEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchStarted,
+    TResult Function(NotePage notePage)? fetchStarted,
     TResult Function(Component component)? addComponent,
     TResult Function(Component component)? updateComponent,
     TResult Function(Component component)? removeComponent,
@@ -118,6 +120,9 @@ abstract class _$FetchStartedCopyWith<$Res> {
   factory _$FetchStartedCopyWith(
           _FetchStarted value, $Res Function(_FetchStarted) then) =
       __$FetchStartedCopyWithImpl<$Res>;
+  $Res call({NotePage notePage});
+
+  $NotePageCopyWith<$Res> get notePage;
 }
 
 /// @nodoc
@@ -129,60 +134,90 @@ class __$FetchStartedCopyWithImpl<$Res> extends _$NotePadEventCopyWithImpl<$Res>
 
   @override
   _FetchStarted get _value => super._value as _FetchStarted;
+
+  @override
+  $Res call({
+    Object? notePage = freezed,
+  }) {
+    return _then(_FetchStarted(
+      notePage: notePage == freezed
+          ? _value.notePage
+          : notePage // ignore: cast_nullable_to_non_nullable
+              as NotePage,
+    ));
+  }
+
+  @override
+  $NotePageCopyWith<$Res> get notePage {
+    return $NotePageCopyWith<$Res>(_value.notePage, (value) {
+      return _then(_value.copyWith(notePage: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_FetchStarted implements _FetchStarted {
-  const _$_FetchStarted();
+  const _$_FetchStarted({required this.notePage});
+
+  @override
+  final NotePage notePage;
 
   @override
   String toString() {
-    return 'NotePadEvent.fetchStarted()';
+    return 'NotePadEvent.fetchStarted(notePage: $notePage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _FetchStarted);
+        (other.runtimeType == runtimeType &&
+            other is _FetchStarted &&
+            const DeepCollectionEquality().equals(other.notePage, notePage));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(notePage));
+
+  @JsonKey(ignore: true)
+  @override
+  _$FetchStartedCopyWith<_FetchStarted> get copyWith =>
+      __$FetchStartedCopyWithImpl<_FetchStarted>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchStarted,
+    required TResult Function(NotePage notePage) fetchStarted,
     required TResult Function(Component component) addComponent,
     required TResult Function(Component component) updateComponent,
     required TResult Function(Component component) removeComponent,
   }) {
-    return fetchStarted();
+    return fetchStarted(notePage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? fetchStarted,
+    TResult Function(NotePage notePage)? fetchStarted,
     TResult Function(Component component)? addComponent,
     TResult Function(Component component)? updateComponent,
     TResult Function(Component component)? removeComponent,
   }) {
-    return fetchStarted?.call();
+    return fetchStarted?.call(notePage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchStarted,
+    TResult Function(NotePage notePage)? fetchStarted,
     TResult Function(Component component)? addComponent,
     TResult Function(Component component)? updateComponent,
     TResult Function(Component component)? removeComponent,
     required TResult orElse(),
   }) {
     if (fetchStarted != null) {
-      return fetchStarted();
+      return fetchStarted(notePage);
     }
     return orElse();
   }
@@ -226,7 +261,12 @@ class _$_FetchStarted implements _FetchStarted {
 }
 
 abstract class _FetchStarted implements NotePadEvent {
-  const factory _FetchStarted() = _$_FetchStarted;
+  const factory _FetchStarted({required NotePage notePage}) = _$_FetchStarted;
+
+  NotePage get notePage;
+  @JsonKey(ignore: true)
+  _$FetchStartedCopyWith<_FetchStarted> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -302,7 +342,7 @@ class _$_AddComponent implements _AddComponent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchStarted,
+    required TResult Function(NotePage notePage) fetchStarted,
     required TResult Function(Component component) addComponent,
     required TResult Function(Component component) updateComponent,
     required TResult Function(Component component) removeComponent,
@@ -313,7 +353,7 @@ class _$_AddComponent implements _AddComponent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? fetchStarted,
+    TResult Function(NotePage notePage)? fetchStarted,
     TResult Function(Component component)? addComponent,
     TResult Function(Component component)? updateComponent,
     TResult Function(Component component)? removeComponent,
@@ -324,7 +364,7 @@ class _$_AddComponent implements _AddComponent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchStarted,
+    TResult Function(NotePage notePage)? fetchStarted,
     TResult Function(Component component)? addComponent,
     TResult Function(Component component)? updateComponent,
     TResult Function(Component component)? removeComponent,
@@ -457,7 +497,7 @@ class _$_UpdateComponent implements _UpdateComponent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchStarted,
+    required TResult Function(NotePage notePage) fetchStarted,
     required TResult Function(Component component) addComponent,
     required TResult Function(Component component) updateComponent,
     required TResult Function(Component component) removeComponent,
@@ -468,7 +508,7 @@ class _$_UpdateComponent implements _UpdateComponent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? fetchStarted,
+    TResult Function(NotePage notePage)? fetchStarted,
     TResult Function(Component component)? addComponent,
     TResult Function(Component component)? updateComponent,
     TResult Function(Component component)? removeComponent,
@@ -479,7 +519,7 @@ class _$_UpdateComponent implements _UpdateComponent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchStarted,
+    TResult Function(NotePage notePage)? fetchStarted,
     TResult Function(Component component)? addComponent,
     TResult Function(Component component)? updateComponent,
     TResult Function(Component component)? removeComponent,
@@ -613,7 +653,7 @@ class _$_RemoveComponent implements _RemoveComponent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchStarted,
+    required TResult Function(NotePage notePage) fetchStarted,
     required TResult Function(Component component) addComponent,
     required TResult Function(Component component) updateComponent,
     required TResult Function(Component component) removeComponent,
@@ -624,7 +664,7 @@ class _$_RemoveComponent implements _RemoveComponent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? fetchStarted,
+    TResult Function(NotePage notePage)? fetchStarted,
     TResult Function(Component component)? addComponent,
     TResult Function(Component component)? updateComponent,
     TResult Function(Component component)? removeComponent,
@@ -635,7 +675,7 @@ class _$_RemoveComponent implements _RemoveComponent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchStarted,
+    TResult Function(NotePage notePage)? fetchStarted,
     TResult Function(Component component)? addComponent,
     TResult Function(Component component)? updateComponent,
     TResult Function(Component component)? removeComponent,

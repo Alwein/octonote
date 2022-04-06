@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:octonote/application/factories/note_page_factory.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/usecases/note_page/note_page_usecases.dart';
 
@@ -20,13 +22,15 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
         _addNotePage = addNotePage,
         _updateNotePage = updateNotePage,
         _removeNotePage = removeNotePage,
-        super(const _MenuState()) {
+        super(const _MenuState(notePageSelected: NotePage.empty())) {
     on(
       (MenuEvent event, emit) => event.map(
         fetchStarted: (event) => _onFetchStarted(event, emit),
         addPage: (event) => _onAddPage(event, emit),
         updatePage: (event) => _onUpdatePage(event, emit),
         removePage: (event) => _onRemovePage(event, emit),
+        notePageSelected: (event) => _onNotePageSelected(event, emit),
+        createEmptyNotePage: (event) => _onCreateEmptyNotePage(event, emit),
       ),
     );
   }
@@ -40,17 +44,33 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
 
     final notePagesResult = await _getNotePages();
     notePagesResult.fold(
-      (notePages) => emit(state.copyWith(notePages: notePages, status: const MenuStatus.success())),
+      (notePages) {
+        emit(state.copyWith(status: const MenuStatus.success()));
+        notePages.isNotEmpty
+            ? emit(
+                state.copyWith(
+                  notePages: notePages,
+                  notePageSelected: notePages.first,
+                ),
+              )
+            : add(const MenuEvent.createEmptyNotePage());
+      },
       (initError) => emit(state.copyWith(status: const MenuStatus.error())),
     );
   }
 
   FutureOr<void> _onAddPage(_AddPage event, Emitter<MenuState> emit) async {
-    final addResult = await _addNotePage(notePage: event.notePage);
+    final NotePage notePageToAdd = event.notePage;
+    final addResult = await _addNotePage(notePage: notePageToAdd);
     addResult.fold(
-      (onSuccess) => emit(
-        state.copyWith(notePages: List<NotePage>.from(state.notePages)..add(event.notePage)),
-      ),
+      (onSuccess) {
+        emit(
+          state.copyWith(
+            notePageSelected: notePageToAdd,
+            notePages: List<NotePage>.from(state.notePages)..add(notePageToAdd),
+          ),
+        );
+      },
       (onError) => null,
     );
   }
@@ -75,5 +95,14 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
       ),
       (onError) => null,
     );
+  }
+
+  FutureOr<void> _onNotePageSelected(_NotePageSelected event, Emitter<MenuState> emit) {
+    emit(state.copyWith(notePageSelected: event.notePage));
+  }
+
+  FutureOr<void> _onCreateEmptyNotePage(_CreateEmptyNotePage event, Emitter<MenuState> emit) {
+    final int index = state.notePages.length;
+    add(MenuEvent.addPage(notePage: NotePageFactory.createDefault(index: index)));
   }
 }

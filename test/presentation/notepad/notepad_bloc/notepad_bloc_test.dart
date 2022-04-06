@@ -34,7 +34,6 @@ void main() {
 
     NotePadBloc _buildBloc() {
       return NotePadBloc(
-        exampleNotePage,
         addComponent: addComponent,
         updateComponent: updateComponent,
         removeComponent: removeComponent,
@@ -54,7 +53,7 @@ void main() {
     test('default state should have initial status and empty list of Component', () {
       expect(
         _buildBloc().state,
-        const NotePadState(notePage: exampleNotePage, status: NotePadStatus.initial()),
+        const NotePadState(notePage: NotePage.empty(), status: NotePadStatus.initial()),
       );
     });
 
@@ -66,7 +65,7 @@ void main() {
               .thenAnswer((_) async => Left([exampleComponent]));
         },
         build: () => _buildBloc(),
-        act: (bloc) => bloc.add(const NotePadEvent.fetchStarted()),
+        act: (bloc) => bloc.add(const NotePadEvent.fetchStarted(notePage: exampleNotePage)),
         expect: () => [
           const NotePadState(notePage: exampleNotePage, status: NotePadStatus.fetchInProgress()),
           NotePadState(
@@ -83,7 +82,7 @@ void main() {
               .thenAnswer((_) async => Right(AppError()));
         },
         build: () => _buildBloc(),
-        act: (bloc) => bloc.add(const NotePadEvent.fetchStarted()),
+        act: (bloc) => bloc.add(const NotePadEvent.fetchStarted(notePage: exampleNotePage)),
         expect: () => const [
           NotePadState(notePage: exampleNotePage, status: NotePadStatus.fetchInProgress()),
           NotePadState(notePage: exampleNotePage, status: NotePadStatus.error(), components: []),

@@ -18,12 +18,14 @@ void main() {
       when(() => sl.getIt<a_s.AppService>().getIsMacOS()).thenReturn(false);
       when(() => sl.getIt<a_s.AppService>().getIsLinux()).thenReturn(false);
       when(() => sl.getIt<a_s.AppService>().getIsWindows()).thenReturn(false);
+      when(() => sl.getIt<a_s.AppService>().getIsTestEnvironment()).thenReturn(false);
       expect(a_s.isIOS, false);
       expect(a_s.isMacOS, false);
       expect(a_s.isWindows, false);
       expect(a_s.isLinux, false);
       expect(a_s.isAndroid, false);
       expect(a_s.isWeb, false);
+      expect(a_s.isTestEnvironment, false);
     });
     test('should override platform values to true', () {
       when(() => sl.getIt<a_s.AppService>().getkIsWeb()).thenReturn(true);
@@ -32,12 +34,14 @@ void main() {
       when(() => sl.getIt<a_s.AppService>().getIsMacOS()).thenReturn(true);
       when(() => sl.getIt<a_s.AppService>().getIsLinux()).thenReturn(true);
       when(() => sl.getIt<a_s.AppService>().getIsWindows()).thenReturn(true);
+      when(() => sl.getIt<a_s.AppService>().getIsTestEnvironment()).thenReturn(true);
       expect(a_s.isIOS, true);
       expect(a_s.isMacOS, true);
       expect(a_s.isWindows, true);
       expect(a_s.isLinux, true);
       expect(a_s.isAndroid, true);
       expect(a_s.isWeb, true);
+      expect(a_s.isTestEnvironment, true);
     });
   });
 }
