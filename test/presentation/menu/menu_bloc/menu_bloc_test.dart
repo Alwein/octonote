@@ -9,6 +9,7 @@ import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/usecases/note_page/note_page_usecases.dart';
 import 'package:octonote/locator.dart' as sl;
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
+// ignore: depend_on_referenced_packages
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MockAppService extends Mock implements a_s.AppService {
