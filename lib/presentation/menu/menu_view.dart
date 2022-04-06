@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:octonote/application/constants/colors.dart';
@@ -160,7 +161,7 @@ class MenuErrorDisclaimer extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  "Une erreur est survenue pendant le chargement", //FIXME: trad
+                  tr("menu.an_error_occurred_while_loading"),
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
               ),
@@ -181,7 +182,7 @@ class MenuErrorDisclaimer extends StatelessWidget {
               color: Theme.of(context).textTheme.headline6!.color,
             ),
             label: Text(
-              "Retry", //FIXME: trad
+              tr("menu.retry"),
               style: Theme.of(context).textTheme.headline6,
             ),
           ),

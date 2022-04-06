@@ -40,9 +40,11 @@ class NotePageRepositoryHive implements NotePageRepository {
     try {
       await initializeOrNot();
       final List<NotePage> notePages = _notePagesBox.values
-          .map((doc) =>
-              NotePageEntity.fromDocument(Map<String, dynamic>.from(doc as Map<dynamic, dynamic>))
-                  .toNotePage())
+          .map(
+            (doc) =>
+                NotePageEntity.fromDocument(Map<String, dynamic>.from(doc as Map<dynamic, dynamic>))
+                    .toNotePage(),
+          )
           .toList();
       return Future.value(Left(notePages));
     } catch (e) {
