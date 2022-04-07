@@ -6,6 +6,7 @@ import 'package:octonote/application/constants/layout_values.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
+import 'package:octonote/presentation/widgets/error_widgets/fetch_error.dart';
 import 'package:octonote/presentation/widgets/loading.dart';
 import 'package:octonote/presentation/widgets/menu_app_bar.dart';
 
@@ -28,7 +29,9 @@ class Menu extends StatelessWidget {
             initial: (state) => Container(),
             fetchInProgress: (state) => const Center(child: Loading()),
             success: (state) => const NotePageListView(),
-            error: (state) => const MenuErrorDisclaimer(),
+            error: (state) => ErrorDisclaimer(
+              onRetry: () => context.read<MenuBloc>().add(const MenuEvent.fetchStarted()),
+            ),
           ),
         );
       },
@@ -95,7 +98,10 @@ class NotePageTile extends StatelessWidget {
             const SizedBox(
               width: 5,
             ),
-            Text(notePage.title, style: Theme.of(context).textTheme.headline6),
+            Text(
+              notePage.title != '' ? notePage.title : tr("note_page.untitled"),
+              style: Theme.of(context).textTheme.headline6,
+            ),
           ],
         ),
       ),
@@ -133,60 +139,9 @@ class CreateNotePage extends StatelessWidget {
             const SizedBox(
               width: 5,
             ),
-            Text("Ajouter une page", style: Theme.of(context).textTheme.headline6),
+            Text(tr("menu.add_page"), style: Theme.of(context).textTheme.headline6),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class MenuErrorDisclaimer extends StatelessWidget {
-  const MenuErrorDisclaimer({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            children: [
-              const Icon(Icons.error_outline),
-              const SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: Text(
-                  tr("menu.an_error_occurred_while_loading"),
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          TextButton.icon(
-            style: TextButton.styleFrom(
-              backgroundColor: Colors.grey.withOpacity(0.2),
-              padding: const EdgeInsets.all(8),
-            ),
-            onPressed: () => context.read<MenuBloc>().add(const MenuEvent.fetchStarted()),
-            icon: Icon(
-              Icons.autorenew_rounded,
-              size: 18,
-              color: Theme.of(context).textTheme.headline6!.color,
-            ),
-            label: Text(
-              tr("menu.retry"),
-              style: Theme.of(context).textTheme.headline6,
-            ),
-          ),
-        ],
       ),
     );
   }

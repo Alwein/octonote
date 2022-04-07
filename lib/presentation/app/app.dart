@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:octonote/application/constants/colors.dart';
 import 'package:octonote/presentation/home_page/home_page.dart';
@@ -10,6 +11,9 @@ class OctonoteApp extends StatelessWidget {
     return MaterialApp(
       title: 'Octonote 🐙',
       theme: appThemeLight,
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
       home: const HomePage(),
     );
   }
@@ -46,7 +50,7 @@ final ThemeData appThemeLight = ThemeData(
     ),
     headline5: TextStyle(
       color: OctonoteColors.textColor,
-      fontSize: 14,
+      fontSize: 18,
       fontFamily: "Inter",
       fontWeight: FontWeight.w600,
       letterSpacing: 0.07,
@@ -59,32 +63,39 @@ final ThemeData appThemeLight = ThemeData(
       letterSpacing: 0.07,
     ),
     subtitle1: TextStyle(
-      color: OctonoteColors.textColor,
+      color: Colors.grey,
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+      fontFamily: "Inter",
+      letterSpacing: 0.06,
+    ),
+    subtitle2: TextStyle(
+      color: Colors.grey,
+      fontWeight: FontWeight.w400,
       fontSize: 12,
       fontFamily: "Inter",
-      fontWeight: FontWeight.w600,
       letterSpacing: 0.06,
     ),
     bodyText1: TextStyle(
       color: OctonoteColors.textColor,
-      fontSize: 12,
+      fontSize: 14,
       fontFamily: "Inter",
-      fontWeight: FontWeight.w500,
       letterSpacing: 0.06,
     ),
     bodyText2: TextStyle(
       color: OctonoteColors.textColor,
       fontSize: 12,
+      fontFamily: "Inter",
       letterSpacing: 0.06,
     ),
     caption: TextStyle(
       color: OctonoteColors.textColor,
-      fontSize: 11,
+      fontSize: 12,
       letterSpacing: 0.06,
     ),
     button: TextStyle(
       color: OctonoteColors.textColor,
-      fontSize: 11,
+      fontSize: 12,
       fontFamily: "Inter",
       fontWeight: FontWeight.w500,
       letterSpacing: 0.06,

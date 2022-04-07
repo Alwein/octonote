@@ -2,11 +2,18 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:octonote/application/utils/app_service.dart' as a_s;
 import 'package:octonote/domain/models/app_error/app_error.dart';
 import 'package:octonote/domain/models/component/component.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/usecases/component/component_usecases.dart';
+import 'package:octonote/locator.dart' as sl;
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
+
+class MockAppService extends Mock implements a_s.AppService {
+  @override
+  bool getIsTestEnvironment() => true;
+}
 
 class MockAddComponent extends Mock implements AddComponent {}
 
@@ -23,7 +30,9 @@ void main() {
     late RemoveComponent removeComponent;
     late GetComponents getComponents;
 
-    setUp(() {
+    setUp(() async {
+      await sl.getIt.reset();
+      sl.getIt.registerLazySingleton<a_s.AppService>(() => MockAppService());
       addComponent = MockAddComponent();
       updateComponent = MockUpdateComponent();
       removeComponent = MockRemoveComponent();
@@ -211,6 +220,37 @@ void main() {
         ),
         act: (bloc) => bloc.add(NotePadEvent.removeComponent(component: exampleComponent)),
         expect: () => const [],
+      );
+    });
+
+    group('CreateEmptyComponent', () {
+      final testGeneratedComponent = Component(
+        id: 'test',
+        index: 0,
+        pageId: exampleNotePage.id,
+        content: const ComponentContent.text(text: ''),
+      );
+
+      blocTest<NotePadBloc, NotePadState>(
+        'should add an event to create a new default component and another to select it',
+        setUp: () {
+          when(() => addComponent(component: testGeneratedComponent))
+              .thenAnswer((_) async => const Left(unit));
+        },
+        build: () => _buildBloc(),
+        seed: () => const NotePadState(
+          notePage: exampleNotePage,
+          status: NotePadStatus.success(),
+          components: [],
+        ),
+        act: (bloc) => bloc.add(const NotePadEvent.createEmptyComponent()),
+        expect: () => [
+          NotePadState(
+            notePage: exampleNotePage,
+            status: const NotePadStatus.success(),
+            components: [testGeneratedComponent],
+          )
+        ],
       );
     });
   });

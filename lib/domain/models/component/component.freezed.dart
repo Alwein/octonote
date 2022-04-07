@@ -250,19 +250,19 @@ abstract class _Component implements Component {
 ComponentContent _$ComponentContentFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'text':
-      return Text.fromJson(json);
+      return TextComponent.fromJson(json);
     case 'title1':
-      return Title1.fromJson(json);
+      return Title1Component.fromJson(json);
     case 'title2':
-      return Title2.fromJson(json);
+      return Title2Component.fromJson(json);
     case 'title3':
-      return Title3.fromJson(json);
+      return Title3Component.fromJson(json);
     case 'bulletedList':
-      return BulletedList.fromJson(json);
+      return BulletedListComponent.fromJson(json);
     case 'citation':
-      return Citation.fromJson(json);
+      return CitationComponent.fromJson(json);
     case 'todo':
-      return Todo.fromJson(json);
+      return TodoComponent.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'ComponentContent',
@@ -274,44 +274,44 @@ ComponentContent _$ComponentContentFromJson(Map<String, dynamic> json) {
 class _$ComponentContentTearOff {
   const _$ComponentContentTearOff();
 
-  Text text({required String text}) {
-    return Text(
+  TextComponent text({required String text}) {
+    return TextComponent(
       text: text,
     );
   }
 
-  Title1 title1({required String text}) {
-    return Title1(
+  Title1Component title1({required String text}) {
+    return Title1Component(
       text: text,
     );
   }
 
-  Title2 title2({required String text}) {
-    return Title2(
+  Title2Component title2({required String text}) {
+    return Title2Component(
       text: text,
     );
   }
 
-  Title3 title3({required String text}) {
-    return Title3(
+  Title3Component title3({required String text}) {
+    return Title3Component(
       text: text,
     );
   }
 
-  BulletedList bulletedList({required String text}) {
-    return BulletedList(
+  BulletedListComponent bulletedList({required String text}) {
+    return BulletedListComponent(
       text: text,
     );
   }
 
-  Citation citation({required String text}) {
-    return Citation(
+  CitationComponent citation({required String text}) {
+    return CitationComponent(
       text: text,
     );
   }
 
-  Todo todo({required String text, bool value = false}) {
-    return Todo(
+  TodoComponent todo({required String text, bool value = false}) {
+    return TodoComponent(
       text: text,
       value: value,
     );
@@ -365,35 +365,35 @@ mixin _$ComponentContent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Text value) text,
-    required TResult Function(Title1 value) title1,
-    required TResult Function(Title2 value) title2,
-    required TResult Function(Title3 value) title3,
-    required TResult Function(BulletedList value) bulletedList,
-    required TResult Function(Citation value) citation,
-    required TResult Function(Todo value) todo,
+    required TResult Function(TextComponent value) text,
+    required TResult Function(Title1Component value) title1,
+    required TResult Function(Title2Component value) title2,
+    required TResult Function(Title3Component value) title3,
+    required TResult Function(BulletedListComponent value) bulletedList,
+    required TResult Function(CitationComponent value) citation,
+    required TResult Function(TodoComponent value) todo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -434,27 +434,31 @@ class _$ComponentContentCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $TextCopyWith<$Res> implements $ComponentContentCopyWith<$Res> {
-  factory $TextCopyWith(Text value, $Res Function(Text) then) =
-      _$TextCopyWithImpl<$Res>;
+abstract class $TextComponentCopyWith<$Res>
+    implements $ComponentContentCopyWith<$Res> {
+  factory $TextComponentCopyWith(
+          TextComponent value, $Res Function(TextComponent) then) =
+      _$TextComponentCopyWithImpl<$Res>;
   @override
   $Res call({String text});
 }
 
 /// @nodoc
-class _$TextCopyWithImpl<$Res> extends _$ComponentContentCopyWithImpl<$Res>
-    implements $TextCopyWith<$Res> {
-  _$TextCopyWithImpl(Text _value, $Res Function(Text) _then)
-      : super(_value, (v) => _then(v as Text));
+class _$TextComponentCopyWithImpl<$Res>
+    extends _$ComponentContentCopyWithImpl<$Res>
+    implements $TextComponentCopyWith<$Res> {
+  _$TextComponentCopyWithImpl(
+      TextComponent _value, $Res Function(TextComponent) _then)
+      : super(_value, (v) => _then(v as TextComponent));
 
   @override
-  Text get _value => super._value as Text;
+  TextComponent get _value => super._value as TextComponent;
 
   @override
   $Res call({
     Object? text = freezed,
   }) {
-    return _then(Text(
+    return _then(TextComponent(
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -465,10 +469,12 @@ class _$TextCopyWithImpl<$Res> extends _$ComponentContentCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$Text with DiagnosticableTreeMixin implements Text {
-  const _$Text({required this.text, String? $type}) : $type = $type ?? 'text';
+class _$TextComponent with DiagnosticableTreeMixin implements TextComponent {
+  const _$TextComponent({required this.text, String? $type})
+      : $type = $type ?? 'text';
 
-  factory _$Text.fromJson(Map<String, dynamic> json) => _$$TextFromJson(json);
+  factory _$TextComponent.fromJson(Map<String, dynamic> json) =>
+      _$$TextComponentFromJson(json);
 
   @override
   final String text;
@@ -493,7 +499,7 @@ class _$Text with DiagnosticableTreeMixin implements Text {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Text &&
+            other is TextComponent &&
             const DeepCollectionEquality().equals(other.text, text));
   }
 
@@ -503,8 +509,8 @@ class _$Text with DiagnosticableTreeMixin implements Text {
 
   @JsonKey(ignore: true)
   @override
-  $TextCopyWith<Text> get copyWith =>
-      _$TextCopyWithImpl<Text>(this, _$identity);
+  $TextComponentCopyWith<TextComponent> get copyWith =>
+      _$TextComponentCopyWithImpl<TextComponent>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -555,13 +561,13 @@ class _$Text with DiagnosticableTreeMixin implements Text {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Text value) text,
-    required TResult Function(Title1 value) title1,
-    required TResult Function(Title2 value) title2,
-    required TResult Function(Title3 value) title3,
-    required TResult Function(BulletedList value) bulletedList,
-    required TResult Function(Citation value) citation,
-    required TResult Function(Todo value) todo,
+    required TResult Function(TextComponent value) text,
+    required TResult Function(Title1Component value) title1,
+    required TResult Function(Title2Component value) title2,
+    required TResult Function(Title3Component value) title3,
+    required TResult Function(BulletedListComponent value) bulletedList,
+    required TResult Function(CitationComponent value) citation,
+    required TResult Function(TodoComponent value) todo,
   }) {
     return text(this);
   }
@@ -569,13 +575,13 @@ class _$Text with DiagnosticableTreeMixin implements Text {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
   }) {
     return text?.call(this);
   }
@@ -583,13 +589,13 @@ class _$Text with DiagnosticableTreeMixin implements Text {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
     required TResult orElse(),
   }) {
     if (text != null) {
@@ -600,45 +606,50 @@ class _$Text with DiagnosticableTreeMixin implements Text {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TextToJson(this);
+    return _$$TextComponentToJson(this);
   }
 }
 
-abstract class Text implements ComponentContent {
-  const factory Text({required String text}) = _$Text;
+abstract class TextComponent implements ComponentContent {
+  const factory TextComponent({required String text}) = _$TextComponent;
 
-  factory Text.fromJson(Map<String, dynamic> json) = _$Text.fromJson;
+  factory TextComponent.fromJson(Map<String, dynamic> json) =
+      _$TextComponent.fromJson;
 
   @override
   String get text;
   @override
   @JsonKey(ignore: true)
-  $TextCopyWith<Text> get copyWith => throw _privateConstructorUsedError;
+  $TextComponentCopyWith<TextComponent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $Title1CopyWith<$Res>
+abstract class $Title1ComponentCopyWith<$Res>
     implements $ComponentContentCopyWith<$Res> {
-  factory $Title1CopyWith(Title1 value, $Res Function(Title1) then) =
-      _$Title1CopyWithImpl<$Res>;
+  factory $Title1ComponentCopyWith(
+          Title1Component value, $Res Function(Title1Component) then) =
+      _$Title1ComponentCopyWithImpl<$Res>;
   @override
   $Res call({String text});
 }
 
 /// @nodoc
-class _$Title1CopyWithImpl<$Res> extends _$ComponentContentCopyWithImpl<$Res>
-    implements $Title1CopyWith<$Res> {
-  _$Title1CopyWithImpl(Title1 _value, $Res Function(Title1) _then)
-      : super(_value, (v) => _then(v as Title1));
+class _$Title1ComponentCopyWithImpl<$Res>
+    extends _$ComponentContentCopyWithImpl<$Res>
+    implements $Title1ComponentCopyWith<$Res> {
+  _$Title1ComponentCopyWithImpl(
+      Title1Component _value, $Res Function(Title1Component) _then)
+      : super(_value, (v) => _then(v as Title1Component));
 
   @override
-  Title1 get _value => super._value as Title1;
+  Title1Component get _value => super._value as Title1Component;
 
   @override
   $Res call({
     Object? text = freezed,
   }) {
-    return _then(Title1(
+    return _then(Title1Component(
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -649,12 +660,14 @@ class _$Title1CopyWithImpl<$Res> extends _$ComponentContentCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$Title1 with DiagnosticableTreeMixin implements Title1 {
-  const _$Title1({required this.text, String? $type})
+class _$Title1Component
+    with DiagnosticableTreeMixin
+    implements Title1Component {
+  const _$Title1Component({required this.text, String? $type})
       : $type = $type ?? 'title1';
 
-  factory _$Title1.fromJson(Map<String, dynamic> json) =>
-      _$$Title1FromJson(json);
+  factory _$Title1Component.fromJson(Map<String, dynamic> json) =>
+      _$$Title1ComponentFromJson(json);
 
   @override
   final String text;
@@ -679,7 +692,7 @@ class _$Title1 with DiagnosticableTreeMixin implements Title1 {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Title1 &&
+            other is Title1Component &&
             const DeepCollectionEquality().equals(other.text, text));
   }
 
@@ -689,8 +702,8 @@ class _$Title1 with DiagnosticableTreeMixin implements Title1 {
 
   @JsonKey(ignore: true)
   @override
-  $Title1CopyWith<Title1> get copyWith =>
-      _$Title1CopyWithImpl<Title1>(this, _$identity);
+  $Title1ComponentCopyWith<Title1Component> get copyWith =>
+      _$Title1ComponentCopyWithImpl<Title1Component>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -741,13 +754,13 @@ class _$Title1 with DiagnosticableTreeMixin implements Title1 {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Text value) text,
-    required TResult Function(Title1 value) title1,
-    required TResult Function(Title2 value) title2,
-    required TResult Function(Title3 value) title3,
-    required TResult Function(BulletedList value) bulletedList,
-    required TResult Function(Citation value) citation,
-    required TResult Function(Todo value) todo,
+    required TResult Function(TextComponent value) text,
+    required TResult Function(Title1Component value) title1,
+    required TResult Function(Title2Component value) title2,
+    required TResult Function(Title3Component value) title3,
+    required TResult Function(BulletedListComponent value) bulletedList,
+    required TResult Function(CitationComponent value) citation,
+    required TResult Function(TodoComponent value) todo,
   }) {
     return title1(this);
   }
@@ -755,13 +768,13 @@ class _$Title1 with DiagnosticableTreeMixin implements Title1 {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
   }) {
     return title1?.call(this);
   }
@@ -769,13 +782,13 @@ class _$Title1 with DiagnosticableTreeMixin implements Title1 {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
     required TResult orElse(),
   }) {
     if (title1 != null) {
@@ -786,45 +799,50 @@ class _$Title1 with DiagnosticableTreeMixin implements Title1 {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$Title1ToJson(this);
+    return _$$Title1ComponentToJson(this);
   }
 }
 
-abstract class Title1 implements ComponentContent {
-  const factory Title1({required String text}) = _$Title1;
+abstract class Title1Component implements ComponentContent {
+  const factory Title1Component({required String text}) = _$Title1Component;
 
-  factory Title1.fromJson(Map<String, dynamic> json) = _$Title1.fromJson;
+  factory Title1Component.fromJson(Map<String, dynamic> json) =
+      _$Title1Component.fromJson;
 
   @override
   String get text;
   @override
   @JsonKey(ignore: true)
-  $Title1CopyWith<Title1> get copyWith => throw _privateConstructorUsedError;
+  $Title1ComponentCopyWith<Title1Component> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $Title2CopyWith<$Res>
+abstract class $Title2ComponentCopyWith<$Res>
     implements $ComponentContentCopyWith<$Res> {
-  factory $Title2CopyWith(Title2 value, $Res Function(Title2) then) =
-      _$Title2CopyWithImpl<$Res>;
+  factory $Title2ComponentCopyWith(
+          Title2Component value, $Res Function(Title2Component) then) =
+      _$Title2ComponentCopyWithImpl<$Res>;
   @override
   $Res call({String text});
 }
 
 /// @nodoc
-class _$Title2CopyWithImpl<$Res> extends _$ComponentContentCopyWithImpl<$Res>
-    implements $Title2CopyWith<$Res> {
-  _$Title2CopyWithImpl(Title2 _value, $Res Function(Title2) _then)
-      : super(_value, (v) => _then(v as Title2));
+class _$Title2ComponentCopyWithImpl<$Res>
+    extends _$ComponentContentCopyWithImpl<$Res>
+    implements $Title2ComponentCopyWith<$Res> {
+  _$Title2ComponentCopyWithImpl(
+      Title2Component _value, $Res Function(Title2Component) _then)
+      : super(_value, (v) => _then(v as Title2Component));
 
   @override
-  Title2 get _value => super._value as Title2;
+  Title2Component get _value => super._value as Title2Component;
 
   @override
   $Res call({
     Object? text = freezed,
   }) {
-    return _then(Title2(
+    return _then(Title2Component(
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -835,12 +853,14 @@ class _$Title2CopyWithImpl<$Res> extends _$ComponentContentCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$Title2 with DiagnosticableTreeMixin implements Title2 {
-  const _$Title2({required this.text, String? $type})
+class _$Title2Component
+    with DiagnosticableTreeMixin
+    implements Title2Component {
+  const _$Title2Component({required this.text, String? $type})
       : $type = $type ?? 'title2';
 
-  factory _$Title2.fromJson(Map<String, dynamic> json) =>
-      _$$Title2FromJson(json);
+  factory _$Title2Component.fromJson(Map<String, dynamic> json) =>
+      _$$Title2ComponentFromJson(json);
 
   @override
   final String text;
@@ -865,7 +885,7 @@ class _$Title2 with DiagnosticableTreeMixin implements Title2 {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Title2 &&
+            other is Title2Component &&
             const DeepCollectionEquality().equals(other.text, text));
   }
 
@@ -875,8 +895,8 @@ class _$Title2 with DiagnosticableTreeMixin implements Title2 {
 
   @JsonKey(ignore: true)
   @override
-  $Title2CopyWith<Title2> get copyWith =>
-      _$Title2CopyWithImpl<Title2>(this, _$identity);
+  $Title2ComponentCopyWith<Title2Component> get copyWith =>
+      _$Title2ComponentCopyWithImpl<Title2Component>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -927,13 +947,13 @@ class _$Title2 with DiagnosticableTreeMixin implements Title2 {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Text value) text,
-    required TResult Function(Title1 value) title1,
-    required TResult Function(Title2 value) title2,
-    required TResult Function(Title3 value) title3,
-    required TResult Function(BulletedList value) bulletedList,
-    required TResult Function(Citation value) citation,
-    required TResult Function(Todo value) todo,
+    required TResult Function(TextComponent value) text,
+    required TResult Function(Title1Component value) title1,
+    required TResult Function(Title2Component value) title2,
+    required TResult Function(Title3Component value) title3,
+    required TResult Function(BulletedListComponent value) bulletedList,
+    required TResult Function(CitationComponent value) citation,
+    required TResult Function(TodoComponent value) todo,
   }) {
     return title2(this);
   }
@@ -941,13 +961,13 @@ class _$Title2 with DiagnosticableTreeMixin implements Title2 {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
   }) {
     return title2?.call(this);
   }
@@ -955,13 +975,13 @@ class _$Title2 with DiagnosticableTreeMixin implements Title2 {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
     required TResult orElse(),
   }) {
     if (title2 != null) {
@@ -972,45 +992,50 @@ class _$Title2 with DiagnosticableTreeMixin implements Title2 {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$Title2ToJson(this);
+    return _$$Title2ComponentToJson(this);
   }
 }
 
-abstract class Title2 implements ComponentContent {
-  const factory Title2({required String text}) = _$Title2;
+abstract class Title2Component implements ComponentContent {
+  const factory Title2Component({required String text}) = _$Title2Component;
 
-  factory Title2.fromJson(Map<String, dynamic> json) = _$Title2.fromJson;
+  factory Title2Component.fromJson(Map<String, dynamic> json) =
+      _$Title2Component.fromJson;
 
   @override
   String get text;
   @override
   @JsonKey(ignore: true)
-  $Title2CopyWith<Title2> get copyWith => throw _privateConstructorUsedError;
+  $Title2ComponentCopyWith<Title2Component> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $Title3CopyWith<$Res>
+abstract class $Title3ComponentCopyWith<$Res>
     implements $ComponentContentCopyWith<$Res> {
-  factory $Title3CopyWith(Title3 value, $Res Function(Title3) then) =
-      _$Title3CopyWithImpl<$Res>;
+  factory $Title3ComponentCopyWith(
+          Title3Component value, $Res Function(Title3Component) then) =
+      _$Title3ComponentCopyWithImpl<$Res>;
   @override
   $Res call({String text});
 }
 
 /// @nodoc
-class _$Title3CopyWithImpl<$Res> extends _$ComponentContentCopyWithImpl<$Res>
-    implements $Title3CopyWith<$Res> {
-  _$Title3CopyWithImpl(Title3 _value, $Res Function(Title3) _then)
-      : super(_value, (v) => _then(v as Title3));
+class _$Title3ComponentCopyWithImpl<$Res>
+    extends _$ComponentContentCopyWithImpl<$Res>
+    implements $Title3ComponentCopyWith<$Res> {
+  _$Title3ComponentCopyWithImpl(
+      Title3Component _value, $Res Function(Title3Component) _then)
+      : super(_value, (v) => _then(v as Title3Component));
 
   @override
-  Title3 get _value => super._value as Title3;
+  Title3Component get _value => super._value as Title3Component;
 
   @override
   $Res call({
     Object? text = freezed,
   }) {
-    return _then(Title3(
+    return _then(Title3Component(
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -1021,12 +1046,14 @@ class _$Title3CopyWithImpl<$Res> extends _$ComponentContentCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$Title3 with DiagnosticableTreeMixin implements Title3 {
-  const _$Title3({required this.text, String? $type})
+class _$Title3Component
+    with DiagnosticableTreeMixin
+    implements Title3Component {
+  const _$Title3Component({required this.text, String? $type})
       : $type = $type ?? 'title3';
 
-  factory _$Title3.fromJson(Map<String, dynamic> json) =>
-      _$$Title3FromJson(json);
+  factory _$Title3Component.fromJson(Map<String, dynamic> json) =>
+      _$$Title3ComponentFromJson(json);
 
   @override
   final String text;
@@ -1051,7 +1078,7 @@ class _$Title3 with DiagnosticableTreeMixin implements Title3 {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Title3 &&
+            other is Title3Component &&
             const DeepCollectionEquality().equals(other.text, text));
   }
 
@@ -1061,8 +1088,8 @@ class _$Title3 with DiagnosticableTreeMixin implements Title3 {
 
   @JsonKey(ignore: true)
   @override
-  $Title3CopyWith<Title3> get copyWith =>
-      _$Title3CopyWithImpl<Title3>(this, _$identity);
+  $Title3ComponentCopyWith<Title3Component> get copyWith =>
+      _$Title3ComponentCopyWithImpl<Title3Component>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1113,13 +1140,13 @@ class _$Title3 with DiagnosticableTreeMixin implements Title3 {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Text value) text,
-    required TResult Function(Title1 value) title1,
-    required TResult Function(Title2 value) title2,
-    required TResult Function(Title3 value) title3,
-    required TResult Function(BulletedList value) bulletedList,
-    required TResult Function(Citation value) citation,
-    required TResult Function(Todo value) todo,
+    required TResult Function(TextComponent value) text,
+    required TResult Function(Title1Component value) title1,
+    required TResult Function(Title2Component value) title2,
+    required TResult Function(Title3Component value) title3,
+    required TResult Function(BulletedListComponent value) bulletedList,
+    required TResult Function(CitationComponent value) citation,
+    required TResult Function(TodoComponent value) todo,
   }) {
     return title3(this);
   }
@@ -1127,13 +1154,13 @@ class _$Title3 with DiagnosticableTreeMixin implements Title3 {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
   }) {
     return title3?.call(this);
   }
@@ -1141,13 +1168,13 @@ class _$Title3 with DiagnosticableTreeMixin implements Title3 {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
     required TResult orElse(),
   }) {
     if (title3 != null) {
@@ -1158,48 +1185,50 @@ class _$Title3 with DiagnosticableTreeMixin implements Title3 {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$Title3ToJson(this);
+    return _$$Title3ComponentToJson(this);
   }
 }
 
-abstract class Title3 implements ComponentContent {
-  const factory Title3({required String text}) = _$Title3;
+abstract class Title3Component implements ComponentContent {
+  const factory Title3Component({required String text}) = _$Title3Component;
 
-  factory Title3.fromJson(Map<String, dynamic> json) = _$Title3.fromJson;
+  factory Title3Component.fromJson(Map<String, dynamic> json) =
+      _$Title3Component.fromJson;
 
   @override
   String get text;
   @override
   @JsonKey(ignore: true)
-  $Title3CopyWith<Title3> get copyWith => throw _privateConstructorUsedError;
+  $Title3ComponentCopyWith<Title3Component> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BulletedListCopyWith<$Res>
+abstract class $BulletedListComponentCopyWith<$Res>
     implements $ComponentContentCopyWith<$Res> {
-  factory $BulletedListCopyWith(
-          BulletedList value, $Res Function(BulletedList) then) =
-      _$BulletedListCopyWithImpl<$Res>;
+  factory $BulletedListComponentCopyWith(BulletedListComponent value,
+          $Res Function(BulletedListComponent) then) =
+      _$BulletedListComponentCopyWithImpl<$Res>;
   @override
   $Res call({String text});
 }
 
 /// @nodoc
-class _$BulletedListCopyWithImpl<$Res>
+class _$BulletedListComponentCopyWithImpl<$Res>
     extends _$ComponentContentCopyWithImpl<$Res>
-    implements $BulletedListCopyWith<$Res> {
-  _$BulletedListCopyWithImpl(
-      BulletedList _value, $Res Function(BulletedList) _then)
-      : super(_value, (v) => _then(v as BulletedList));
+    implements $BulletedListComponentCopyWith<$Res> {
+  _$BulletedListComponentCopyWithImpl(
+      BulletedListComponent _value, $Res Function(BulletedListComponent) _then)
+      : super(_value, (v) => _then(v as BulletedListComponent));
 
   @override
-  BulletedList get _value => super._value as BulletedList;
+  BulletedListComponent get _value => super._value as BulletedListComponent;
 
   @override
   $Res call({
     Object? text = freezed,
   }) {
-    return _then(BulletedList(
+    return _then(BulletedListComponent(
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -1210,12 +1239,14 @@ class _$BulletedListCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BulletedList with DiagnosticableTreeMixin implements BulletedList {
-  const _$BulletedList({required this.text, String? $type})
+class _$BulletedListComponent
+    with DiagnosticableTreeMixin
+    implements BulletedListComponent {
+  const _$BulletedListComponent({required this.text, String? $type})
       : $type = $type ?? 'bulletedList';
 
-  factory _$BulletedList.fromJson(Map<String, dynamic> json) =>
-      _$$BulletedListFromJson(json);
+  factory _$BulletedListComponent.fromJson(Map<String, dynamic> json) =>
+      _$$BulletedListComponentFromJson(json);
 
   @override
   final String text;
@@ -1240,7 +1271,7 @@ class _$BulletedList with DiagnosticableTreeMixin implements BulletedList {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is BulletedList &&
+            other is BulletedListComponent &&
             const DeepCollectionEquality().equals(other.text, text));
   }
 
@@ -1250,8 +1281,9 @@ class _$BulletedList with DiagnosticableTreeMixin implements BulletedList {
 
   @JsonKey(ignore: true)
   @override
-  $BulletedListCopyWith<BulletedList> get copyWith =>
-      _$BulletedListCopyWithImpl<BulletedList>(this, _$identity);
+  $BulletedListComponentCopyWith<BulletedListComponent> get copyWith =>
+      _$BulletedListComponentCopyWithImpl<BulletedListComponent>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1302,13 +1334,13 @@ class _$BulletedList with DiagnosticableTreeMixin implements BulletedList {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Text value) text,
-    required TResult Function(Title1 value) title1,
-    required TResult Function(Title2 value) title2,
-    required TResult Function(Title3 value) title3,
-    required TResult Function(BulletedList value) bulletedList,
-    required TResult Function(Citation value) citation,
-    required TResult Function(Todo value) todo,
+    required TResult Function(TextComponent value) text,
+    required TResult Function(Title1Component value) title1,
+    required TResult Function(Title2Component value) title2,
+    required TResult Function(Title3Component value) title3,
+    required TResult Function(BulletedListComponent value) bulletedList,
+    required TResult Function(CitationComponent value) citation,
+    required TResult Function(TodoComponent value) todo,
   }) {
     return bulletedList(this);
   }
@@ -1316,13 +1348,13 @@ class _$BulletedList with DiagnosticableTreeMixin implements BulletedList {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
   }) {
     return bulletedList?.call(this);
   }
@@ -1330,13 +1362,13 @@ class _$BulletedList with DiagnosticableTreeMixin implements BulletedList {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
     required TResult orElse(),
   }) {
     if (bulletedList != null) {
@@ -1347,47 +1379,51 @@ class _$BulletedList with DiagnosticableTreeMixin implements BulletedList {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BulletedListToJson(this);
+    return _$$BulletedListComponentToJson(this);
   }
 }
 
-abstract class BulletedList implements ComponentContent {
-  const factory BulletedList({required String text}) = _$BulletedList;
+abstract class BulletedListComponent implements ComponentContent {
+  const factory BulletedListComponent({required String text}) =
+      _$BulletedListComponent;
 
-  factory BulletedList.fromJson(Map<String, dynamic> json) =
-      _$BulletedList.fromJson;
+  factory BulletedListComponent.fromJson(Map<String, dynamic> json) =
+      _$BulletedListComponent.fromJson;
 
   @override
   String get text;
   @override
   @JsonKey(ignore: true)
-  $BulletedListCopyWith<BulletedList> get copyWith =>
+  $BulletedListComponentCopyWith<BulletedListComponent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CitationCopyWith<$Res>
+abstract class $CitationComponentCopyWith<$Res>
     implements $ComponentContentCopyWith<$Res> {
-  factory $CitationCopyWith(Citation value, $Res Function(Citation) then) =
-      _$CitationCopyWithImpl<$Res>;
+  factory $CitationComponentCopyWith(
+          CitationComponent value, $Res Function(CitationComponent) then) =
+      _$CitationComponentCopyWithImpl<$Res>;
   @override
   $Res call({String text});
 }
 
 /// @nodoc
-class _$CitationCopyWithImpl<$Res> extends _$ComponentContentCopyWithImpl<$Res>
-    implements $CitationCopyWith<$Res> {
-  _$CitationCopyWithImpl(Citation _value, $Res Function(Citation) _then)
-      : super(_value, (v) => _then(v as Citation));
+class _$CitationComponentCopyWithImpl<$Res>
+    extends _$ComponentContentCopyWithImpl<$Res>
+    implements $CitationComponentCopyWith<$Res> {
+  _$CitationComponentCopyWithImpl(
+      CitationComponent _value, $Res Function(CitationComponent) _then)
+      : super(_value, (v) => _then(v as CitationComponent));
 
   @override
-  Citation get _value => super._value as Citation;
+  CitationComponent get _value => super._value as CitationComponent;
 
   @override
   $Res call({
     Object? text = freezed,
   }) {
-    return _then(Citation(
+    return _then(CitationComponent(
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -1398,12 +1434,14 @@ class _$CitationCopyWithImpl<$Res> extends _$ComponentContentCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$Citation with DiagnosticableTreeMixin implements Citation {
-  const _$Citation({required this.text, String? $type})
+class _$CitationComponent
+    with DiagnosticableTreeMixin
+    implements CitationComponent {
+  const _$CitationComponent({required this.text, String? $type})
       : $type = $type ?? 'citation';
 
-  factory _$Citation.fromJson(Map<String, dynamic> json) =>
-      _$$CitationFromJson(json);
+  factory _$CitationComponent.fromJson(Map<String, dynamic> json) =>
+      _$$CitationComponentFromJson(json);
 
   @override
   final String text;
@@ -1428,7 +1466,7 @@ class _$Citation with DiagnosticableTreeMixin implements Citation {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Citation &&
+            other is CitationComponent &&
             const DeepCollectionEquality().equals(other.text, text));
   }
 
@@ -1438,8 +1476,8 @@ class _$Citation with DiagnosticableTreeMixin implements Citation {
 
   @JsonKey(ignore: true)
   @override
-  $CitationCopyWith<Citation> get copyWith =>
-      _$CitationCopyWithImpl<Citation>(this, _$identity);
+  $CitationComponentCopyWith<CitationComponent> get copyWith =>
+      _$CitationComponentCopyWithImpl<CitationComponent>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1490,13 +1528,13 @@ class _$Citation with DiagnosticableTreeMixin implements Citation {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Text value) text,
-    required TResult Function(Title1 value) title1,
-    required TResult Function(Title2 value) title2,
-    required TResult Function(Title3 value) title3,
-    required TResult Function(BulletedList value) bulletedList,
-    required TResult Function(Citation value) citation,
-    required TResult Function(Todo value) todo,
+    required TResult Function(TextComponent value) text,
+    required TResult Function(Title1Component value) title1,
+    required TResult Function(Title2Component value) title2,
+    required TResult Function(Title3Component value) title3,
+    required TResult Function(BulletedListComponent value) bulletedList,
+    required TResult Function(CitationComponent value) citation,
+    required TResult Function(TodoComponent value) todo,
   }) {
     return citation(this);
   }
@@ -1504,13 +1542,13 @@ class _$Citation with DiagnosticableTreeMixin implements Citation {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
   }) {
     return citation?.call(this);
   }
@@ -1518,13 +1556,13 @@ class _$Citation with DiagnosticableTreeMixin implements Citation {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
     required TResult orElse(),
   }) {
     if (citation != null) {
@@ -1535,46 +1573,51 @@ class _$Citation with DiagnosticableTreeMixin implements Citation {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CitationToJson(this);
+    return _$$CitationComponentToJson(this);
   }
 }
 
-abstract class Citation implements ComponentContent {
-  const factory Citation({required String text}) = _$Citation;
+abstract class CitationComponent implements ComponentContent {
+  const factory CitationComponent({required String text}) = _$CitationComponent;
 
-  factory Citation.fromJson(Map<String, dynamic> json) = _$Citation.fromJson;
+  factory CitationComponent.fromJson(Map<String, dynamic> json) =
+      _$CitationComponent.fromJson;
 
   @override
   String get text;
   @override
   @JsonKey(ignore: true)
-  $CitationCopyWith<Citation> get copyWith =>
+  $CitationComponentCopyWith<CitationComponent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TodoCopyWith<$Res> implements $ComponentContentCopyWith<$Res> {
-  factory $TodoCopyWith(Todo value, $Res Function(Todo) then) =
-      _$TodoCopyWithImpl<$Res>;
+abstract class $TodoComponentCopyWith<$Res>
+    implements $ComponentContentCopyWith<$Res> {
+  factory $TodoComponentCopyWith(
+          TodoComponent value, $Res Function(TodoComponent) then) =
+      _$TodoComponentCopyWithImpl<$Res>;
   @override
   $Res call({String text, bool value});
 }
 
 /// @nodoc
-class _$TodoCopyWithImpl<$Res> extends _$ComponentContentCopyWithImpl<$Res>
-    implements $TodoCopyWith<$Res> {
-  _$TodoCopyWithImpl(Todo _value, $Res Function(Todo) _then)
-      : super(_value, (v) => _then(v as Todo));
+class _$TodoComponentCopyWithImpl<$Res>
+    extends _$ComponentContentCopyWithImpl<$Res>
+    implements $TodoComponentCopyWith<$Res> {
+  _$TodoComponentCopyWithImpl(
+      TodoComponent _value, $Res Function(TodoComponent) _then)
+      : super(_value, (v) => _then(v as TodoComponent));
 
   @override
-  Todo get _value => super._value as Todo;
+  TodoComponent get _value => super._value as TodoComponent;
 
   @override
   $Res call({
     Object? text = freezed,
     Object? value = freezed,
   }) {
-    return _then(Todo(
+    return _then(TodoComponent(
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -1589,11 +1632,12 @@ class _$TodoCopyWithImpl<$Res> extends _$ComponentContentCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$Todo with DiagnosticableTreeMixin implements Todo {
-  const _$Todo({required this.text, this.value = false, String? $type})
+class _$TodoComponent with DiagnosticableTreeMixin implements TodoComponent {
+  const _$TodoComponent({required this.text, this.value = false, String? $type})
       : $type = $type ?? 'todo';
 
-  factory _$Todo.fromJson(Map<String, dynamic> json) => _$$TodoFromJson(json);
+  factory _$TodoComponent.fromJson(Map<String, dynamic> json) =>
+      _$$TodoComponentFromJson(json);
 
   @override
   final String text;
@@ -1622,7 +1666,7 @@ class _$Todo with DiagnosticableTreeMixin implements Todo {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Todo &&
+            other is TodoComponent &&
             const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality().equals(other.value, value));
   }
@@ -1635,8 +1679,8 @@ class _$Todo with DiagnosticableTreeMixin implements Todo {
 
   @JsonKey(ignore: true)
   @override
-  $TodoCopyWith<Todo> get copyWith =>
-      _$TodoCopyWithImpl<Todo>(this, _$identity);
+  $TodoComponentCopyWith<TodoComponent> get copyWith =>
+      _$TodoComponentCopyWithImpl<TodoComponent>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1687,13 +1731,13 @@ class _$Todo with DiagnosticableTreeMixin implements Todo {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Text value) text,
-    required TResult Function(Title1 value) title1,
-    required TResult Function(Title2 value) title2,
-    required TResult Function(Title3 value) title3,
-    required TResult Function(BulletedList value) bulletedList,
-    required TResult Function(Citation value) citation,
-    required TResult Function(Todo value) todo,
+    required TResult Function(TextComponent value) text,
+    required TResult Function(Title1Component value) title1,
+    required TResult Function(Title2Component value) title2,
+    required TResult Function(Title3Component value) title3,
+    required TResult Function(BulletedListComponent value) bulletedList,
+    required TResult Function(CitationComponent value) citation,
+    required TResult Function(TodoComponent value) todo,
   }) {
     return todo(this);
   }
@@ -1701,13 +1745,13 @@ class _$Todo with DiagnosticableTreeMixin implements Todo {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
   }) {
     return todo?.call(this);
   }
@@ -1715,13 +1759,13 @@ class _$Todo with DiagnosticableTreeMixin implements Todo {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Text value)? text,
-    TResult Function(Title1 value)? title1,
-    TResult Function(Title2 value)? title2,
-    TResult Function(Title3 value)? title3,
-    TResult Function(BulletedList value)? bulletedList,
-    TResult Function(Citation value)? citation,
-    TResult Function(Todo value)? todo,
+    TResult Function(TextComponent value)? text,
+    TResult Function(Title1Component value)? title1,
+    TResult Function(Title2Component value)? title2,
+    TResult Function(Title3Component value)? title3,
+    TResult Function(BulletedListComponent value)? bulletedList,
+    TResult Function(CitationComponent value)? citation,
+    TResult Function(TodoComponent value)? todo,
     required TResult orElse(),
   }) {
     if (todo != null) {
@@ -1732,19 +1776,22 @@ class _$Todo with DiagnosticableTreeMixin implements Todo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TodoToJson(this);
+    return _$$TodoComponentToJson(this);
   }
 }
 
-abstract class Todo implements ComponentContent {
-  const factory Todo({required String text, bool value}) = _$Todo;
+abstract class TodoComponent implements ComponentContent {
+  const factory TodoComponent({required String text, bool value}) =
+      _$TodoComponent;
 
-  factory Todo.fromJson(Map<String, dynamic> json) = _$Todo.fromJson;
+  factory TodoComponent.fromJson(Map<String, dynamic> json) =
+      _$TodoComponent.fromJson;
 
   @override
   String get text;
   bool get value;
   @override
   @JsonKey(ignore: true)
-  $TodoCopyWith<Todo> get copyWith => throw _privateConstructorUsedError;
+  $TodoComponentCopyWith<TodoComponent> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:octonote/application/factories/component_factory.dart';
 import 'package:octonote/domain/models/component/component.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/usecases/component/component_usecases.dart';
@@ -28,6 +29,7 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
         addComponent: (event) => _onAddComponent(event, emit),
         updateComponent: (event) => _onUpdateComponent(event, emit),
         removeComponent: (event) => _onRemoveComponent(event, emit),
+        createEmptyComponent: (event) => _onCreateEmptyComponent(event, emit),
       ),
     );
   }
@@ -77,6 +79,15 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
         state.copyWith(components: List<Component>.from(state.components)..remove(event.component)),
       ),
       (onError) => null,
+    );
+  }
+
+  FutureOr<void> _onCreateEmptyComponent(_CreateEmptyComponent event, Emitter<NotePadState> emit) {
+    final int index = state.components.length;
+    add(
+      NotePadEvent.addComponent(
+        component: ComponentFactory.createOne(index: index, page: state.notePage),
+      ),
     );
   }
 }

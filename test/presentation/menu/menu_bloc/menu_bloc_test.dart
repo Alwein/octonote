@@ -1,6 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:octonote/application/utils/app_service.dart' as a_s;
@@ -9,8 +8,6 @@ import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/usecases/note_page/note_page_usecases.dart';
 import 'package:octonote/locator.dart' as sl;
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
-// ignore: depend_on_referenced_packages
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MockAppService extends Mock implements a_s.AppService {
   @override
@@ -33,9 +30,6 @@ void main() {
     late GetNotePages getNotePages;
 
     setUp(() async {
-      SharedPreferences.setMockInitialValues({});
-      TestWidgetsFlutterBinding.ensureInitialized();
-      await EasyLocalization.ensureInitialized();
       await sl.getIt.reset();
       sl.getIt.registerLazySingleton<a_s.AppService>(() => MockAppService());
       addNotePage = MockAddNotePage();
@@ -54,7 +48,7 @@ void main() {
     }
 
     const exampleNotePage = NotePage(id: "id", index: 0, title: "title");
-    final testGeneratedNotePage = NotePage(id: 'test', index: 0, title: tr('note_page.untitled'));
+    const testGeneratedNotePage = NotePage(id: 'test', index: 0, title: '');
 
     test('default state should have initial status and empty list of NotePage', () {
       expect(
@@ -98,9 +92,9 @@ void main() {
         expect: () => [
           const MenuState(notePageSelected: NotePage.empty(), status: MenuStatus.fetchInProgress()),
           const MenuState(notePageSelected: NotePage.empty(), status: MenuStatus.success()),
-          MenuState(
+          const MenuState(
             notePageSelected: testGeneratedNotePage,
-            status: const MenuStatus.success(),
+            status: MenuStatus.success(),
             notePages: [testGeneratedNotePage],
           ),
         ],
@@ -178,7 +172,7 @@ void main() {
         act: (bloc) => bloc.add(MenuEvent.updatePage(notePage: updatedNotePage)),
         expect: () => [
           MenuState(
-            notePageSelected: const NotePage.empty(),
+            notePageSelected: updatedNotePage,
             status: const MenuStatus.success(),
             notePages: [updatedNotePage],
           ),
@@ -279,10 +273,10 @@ void main() {
         ),
         act: (bloc) => bloc.add(const MenuEvent.createEmptyNotePage()),
         expect: () => [
-          MenuState(
+          const MenuState(
             notePageSelected: testGeneratedNotePage,
             notePages: [testGeneratedNotePage],
-            status: const MenuStatus.success(),
+            status: MenuStatus.success(),
           )
         ],
       );

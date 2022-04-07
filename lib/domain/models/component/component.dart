@@ -18,13 +18,14 @@ class Component with _$Component {
 
 @freezed
 class ComponentContent with _$ComponentContent {
-  const factory ComponentContent.text({required String text}) = Text;
-  const factory ComponentContent.title1({required String text}) = Title1;
-  const factory ComponentContent.title2({required String text}) = Title2;
-  const factory ComponentContent.title3({required String text}) = Title3;
-  const factory ComponentContent.bulletedList({required String text}) = BulletedList;
-  const factory ComponentContent.citation({required String text}) = Citation;
-  const factory ComponentContent.todo({required String text, @Default(false) bool value}) = Todo;
+  const factory ComponentContent.text({required String text}) = TextComponent;
+  const factory ComponentContent.title1({required String text}) = Title1Component;
+  const factory ComponentContent.title2({required String text}) = Title2Component;
+  const factory ComponentContent.title3({required String text}) = Title3Component;
+  const factory ComponentContent.bulletedList({required String text}) = BulletedListComponent;
+  const factory ComponentContent.citation({required String text}) = CitationComponent;
+  const factory ComponentContent.todo({required String text, @Default(false) bool value}) =
+      TodoComponent;
 
   factory ComponentContent.fromJson(Map<String, dynamic> json) => _$ComponentContentFromJson(json);
 }

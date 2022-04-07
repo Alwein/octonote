@@ -3,6 +3,16 @@
         "untitled": "Untitled"
     },
     "menu": {
+        "add_page": "Add Page"
+    },
+    "note_pad": {
+        "delete_note_page": "Delete note ?",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "delete_note_page_subtitle": "The deletion of this note will be irreversible",
+        "please_select_note": "Veuillez sélectionner une note"
+    },
+    "error_widget": {
         "an_error_occurred_while_loading": "An error occurred while loading",
         "retry": "Retry"
     }

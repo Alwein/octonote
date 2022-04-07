@@ -14,7 +14,15 @@ Future<void> main() async {
   BlocOverrides.runZoned(
     () {
       runApp(
-        const OctonoteApp(),
+        EasyLocalization(
+          supportedLocales: const [
+            Locale('en'),
+            Locale('fr'),
+          ],
+          path: 'assets/translations',
+          fallbackLocale: const Locale('en'),
+          child: const OctonoteApp(),
+        ),
       );
     },
     blocObserver: AppBlocObserver(),

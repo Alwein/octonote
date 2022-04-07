@@ -81,7 +81,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
       (onSuccess) {
         final newNotePagesList = List<NotePage>.from(state.notePages);
         newNotePagesList[event.notePage.index] = event.notePage;
-        emit(state.copyWith(notePages: newNotePagesList));
+        emit(state.copyWith(notePages: newNotePagesList, notePageSelected: event.notePage));
       },
       (onError) => null,
     );
@@ -91,7 +91,10 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     final removeResult = await _removeNotePage(notePage: event.notePage);
     removeResult.fold(
       (onSuccess) => emit(
-        state.copyWith(notePages: List<NotePage>.from(state.notePages)..remove(event.notePage)),
+        state.copyWith(
+          notePages: List<NotePage>.from(state.notePages)..remove(event.notePage),
+          notePageSelected: const NotePage.empty(),
+        ),
       ),
       (onError) => null,
     );

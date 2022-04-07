@@ -22,76 +22,89 @@ Map<String, dynamic> _$$_ComponentToJson(_$_Component instance) =>
       'content': instance.content,
     };
 
-_$Text _$$TextFromJson(Map<String, dynamic> json) => _$Text(
+_$TextComponent _$$TextComponentFromJson(Map<String, dynamic> json) =>
+    _$TextComponent(
       text: json['text'] as String,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$TextToJson(_$Text instance) => <String, dynamic>{
-      'text': instance.text,
-      'runtimeType': instance.$type,
-    };
-
-_$Title1 _$$Title1FromJson(Map<String, dynamic> json) => _$Title1(
-      text: json['text'] as String,
-      $type: json['runtimeType'] as String?,
-    );
-
-Map<String, dynamic> _$$Title1ToJson(_$Title1 instance) => <String, dynamic>{
-      'text': instance.text,
-      'runtimeType': instance.$type,
-    };
-
-_$Title2 _$$Title2FromJson(Map<String, dynamic> json) => _$Title2(
-      text: json['text'] as String,
-      $type: json['runtimeType'] as String?,
-    );
-
-Map<String, dynamic> _$$Title2ToJson(_$Title2 instance) => <String, dynamic>{
-      'text': instance.text,
-      'runtimeType': instance.$type,
-    };
-
-_$Title3 _$$Title3FromJson(Map<String, dynamic> json) => _$Title3(
-      text: json['text'] as String,
-      $type: json['runtimeType'] as String?,
-    );
-
-Map<String, dynamic> _$$Title3ToJson(_$Title3 instance) => <String, dynamic>{
-      'text': instance.text,
-      'runtimeType': instance.$type,
-    };
-
-_$BulletedList _$$BulletedListFromJson(Map<String, dynamic> json) =>
-    _$BulletedList(
-      text: json['text'] as String,
-      $type: json['runtimeType'] as String?,
-    );
-
-Map<String, dynamic> _$$BulletedListToJson(_$BulletedList instance) =>
+Map<String, dynamic> _$$TextComponentToJson(_$TextComponent instance) =>
     <String, dynamic>{
       'text': instance.text,
       'runtimeType': instance.$type,
     };
 
-_$Citation _$$CitationFromJson(Map<String, dynamic> json) => _$Citation(
+_$Title1Component _$$Title1ComponentFromJson(Map<String, dynamic> json) =>
+    _$Title1Component(
       text: json['text'] as String,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$CitationToJson(_$Citation instance) =>
+Map<String, dynamic> _$$Title1ComponentToJson(_$Title1Component instance) =>
     <String, dynamic>{
       'text': instance.text,
       'runtimeType': instance.$type,
     };
 
-_$Todo _$$TodoFromJson(Map<String, dynamic> json) => _$Todo(
+_$Title2Component _$$Title2ComponentFromJson(Map<String, dynamic> json) =>
+    _$Title2Component(
+      text: json['text'] as String,
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$Title2ComponentToJson(_$Title2Component instance) =>
+    <String, dynamic>{
+      'text': instance.text,
+      'runtimeType': instance.$type,
+    };
+
+_$Title3Component _$$Title3ComponentFromJson(Map<String, dynamic> json) =>
+    _$Title3Component(
+      text: json['text'] as String,
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$Title3ComponentToJson(_$Title3Component instance) =>
+    <String, dynamic>{
+      'text': instance.text,
+      'runtimeType': instance.$type,
+    };
+
+_$BulletedListComponent _$$BulletedListComponentFromJson(
+        Map<String, dynamic> json) =>
+    _$BulletedListComponent(
+      text: json['text'] as String,
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$BulletedListComponentToJson(
+        _$BulletedListComponent instance) =>
+    <String, dynamic>{
+      'text': instance.text,
+      'runtimeType': instance.$type,
+    };
+
+_$CitationComponent _$$CitationComponentFromJson(Map<String, dynamic> json) =>
+    _$CitationComponent(
+      text: json['text'] as String,
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$CitationComponentToJson(_$CitationComponent instance) =>
+    <String, dynamic>{
+      'text': instance.text,
+      'runtimeType': instance.$type,
+    };
+
+_$TodoComponent _$$TodoComponentFromJson(Map<String, dynamic> json) =>
+    _$TodoComponent(
       text: json['text'] as String,
       value: json['value'] as bool? ?? false,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$TodoToJson(_$Todo instance) => <String, dynamic>{
+Map<String, dynamic> _$$TodoComponentToJson(_$TodoComponent instance) =>
+    <String, dynamic>{
       'text': instance.text,
       'value': instance.value,
       'runtimeType': instance.$type,
