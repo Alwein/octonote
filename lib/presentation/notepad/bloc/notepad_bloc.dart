@@ -7,10 +7,9 @@ import 'package:octonote/domain/models/component/component.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/usecases/component/component_usecases.dart';
 
+part 'notepad_bloc.freezed.dart';
 part 'notepad_event.dart';
 part 'notepad_state.dart';
-
-part 'notepad_bloc.freezed.dart';
 
 class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
   NotePadBloc({
@@ -92,7 +91,8 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
       (onSuccess) => emit(
         state.copyWith(
           components: List<Component>.from(state.components)..remove(event.component),
-          componentSelected: null,
+          componentSelected:
+              event.component.index > 0 ? state.components[event.component.index - 1] : null,
         ),
       ),
       (onError) => null,

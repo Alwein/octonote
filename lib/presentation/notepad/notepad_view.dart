@@ -54,9 +54,6 @@ class _ContentViewState extends State<ContentView> {
   @override
   void initState() {
     super.initState();
-
-    // notePadFocusNode.addListener(() {notePadFocusNode.});
-
     notePadFocusNode = FocusNode();
   }
 
@@ -68,10 +65,10 @@ class _ContentViewState extends State<ContentView> {
       listener: (context, state) {
         if (!notePadFocusNode.hasFocus) {
           notePadFocusNode.unfocus();
-          WidgetsBinding.instance!.addPostFrameCallback((_) {
-            notePadFocusNode.requestFocus();
-          });
         }
+        WidgetsBinding.instance!.addPostFrameCallback((_) {
+          notePadFocusNode.requestFocus();
+        });
       },
       builder: (context, state) {
         if (state.notePage == const NotePage.empty()) {
@@ -170,6 +167,11 @@ class ComponentBuilder extends StatelessWidget {
         onChanged: (value) => context.read<NotePadBloc>().add(
               NotePadEvent.updateComponent(
                 component: component.copyWith(content: content.copyWith(text: value)),
+              ),
+            ),
+        onDeleteComponent: () => context.read<NotePadBloc>().add(
+              NotePadEvent.removeComponent(
+                component: component,
               ),
             ),
       ),

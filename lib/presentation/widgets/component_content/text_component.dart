@@ -8,18 +8,20 @@ class TextComponentView extends StatelessWidget {
     this.isSelected = false,
     this.focusNode,
     this.onChanged,
+    this.onDeleteComponent,
   }) : super(key: key);
   final TextComponent component;
   final bool isSelected;
   final FocusNode? focusNode;
   final void Function(String)? onChanged;
+  final void Function()? onDeleteComponent;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       maxLines: null,
       focusNode: focusNode,
-      initialValue: component.text,
+      initialValue: "\u200b${component.text}",
       decoration: const InputDecoration(
         isDense: true,
         contentPadding: EdgeInsets.symmetric(vertical: 8),
@@ -27,7 +29,12 @@ class TextComponentView extends StatelessWidget {
       ),
       style: Theme.of(context).textTheme.bodyText1,
       keyboardType: TextInputType.text,
-      onChanged: onChanged,
+      onChanged: (value) {
+        onChanged?.call(value.replaceAll("\u200b", ""));
+        if (value.isEmpty) {
+          onDeleteComponent?.call();
+        }
+      },
     );
   }
 }
