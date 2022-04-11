@@ -33,9 +33,13 @@ class TextComponentView extends StatelessWidget {
 }
 
 class NotePadSelectableArea extends StatelessWidget {
-  const NotePadSelectableArea(
-      {Key? key, this.onTap, this.readOnly = false, this.minLines, this.maxLines})
-      : super(key: key);
+  const NotePadSelectableArea({
+    Key? key,
+    this.onTap,
+    this.readOnly = false,
+    this.minLines,
+    this.maxLines,
+  }) : super(key: key);
 
   final void Function()? onTap;
   final bool readOnly;

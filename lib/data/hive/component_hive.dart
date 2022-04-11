@@ -43,8 +43,8 @@ class ComponentRepositoryHive implements ComponentRepository {
       final List<Component> components = _componentsBox.values
           .map(
             (doc) => ComponentEntity.fromDocument(
-                    Map<String, dynamic>.from(doc as Map<dynamic, dynamic>))
-                .toComponent(),
+              Map<String, dynamic>.from(doc as Map<dynamic, dynamic>),
+            ).toComponent(),
           )
           .toList();
       final selectedComponent =
