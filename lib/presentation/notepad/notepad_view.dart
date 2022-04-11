@@ -26,7 +26,9 @@ class Notepad extends StatelessWidget {
           body: state.status.map(
             initial: (_) => Container(),
             fetchInProgress: (_) => const Center(child: Loading()),
-            success: (_) => const ContentView(),
+            success: (_) => ContentView(
+              key: ValueKey(state.notePage.id),
+            ),
             error: (_) => ErrorDisclaimer(
               onRetry: () => context
                   .read<NotePadBloc>()
@@ -39,12 +41,38 @@ class Notepad extends StatelessWidget {
   }
 }
 
-class ContentView extends StatelessWidget {
+class ContentView extends StatefulWidget {
   const ContentView({Key? key}) : super(key: key);
 
   @override
+  State<ContentView> createState() => _ContentViewState();
+}
+
+class _ContentViewState extends State<ContentView> {
+  late final FocusNode notePadFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // notePadFocusNode.addListener(() {notePadFocusNode.});
+
+    notePadFocusNode = FocusNode();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NotePadBloc, NotePadState>(
+    return BlocConsumer<NotePadBloc, NotePadState>(
+      listenWhen: (previous, current) =>
+          previous.componentSelected?.id != current.componentSelected?.id,
+      listener: (context, state) {
+        if (!notePadFocusNode.hasFocus) {
+          notePadFocusNode.unfocus();
+          WidgetsBinding.instance!.addPostFrameCallback((_) {
+            notePadFocusNode.requestFocus();
+          });
+        }
+      },
       builder: (context, state) {
         if (state.notePage == const NotePage.empty()) {
           return Center(
@@ -55,26 +83,48 @@ class ContentView extends StatelessWidget {
           );
         }
 
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: LayoutValues.horizontalPadding),
-          child: Column(
-            children: [
-              const NoteTitle(),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: state.components.length,
-                  itemBuilder: (context, index) {
-                    return ComponentBuilder(
-                      component: state.components[index],
-                    );
-                  },
-                ),
+        return CustomScrollView(
+          slivers: [
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: LayoutValues.horizontalPadding),
+                    child: Column(
+                      children: [
+                        const NoteTitle(),
+                        ListView.builder(
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(),
+                          itemCount: state.components.length,
+                          itemBuilder: (context, index) {
+                            final Component currentComponent = state.components[index];
+                            final bool isSlected = currentComponent == state.componentSelected;
+                            return ComponentBuilder(
+                              key: ValueKey(currentComponent.id),
+                              component: state.components[index],
+                              focusNode: isSlected ? notePadFocusNode : null,
+                            );
+                          },
+                        ),
+                        const AddComponentBlankZone()
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    notePadFocusNode.dispose();
+    super.dispose();
   }
 }
 
@@ -87,7 +137,7 @@ class NoteTitle extends StatelessWidget {
       builder: (context, state) {
         final NotePage currentNotePage = state.notePageSelected;
         return TextFormField(
-          key: ValueKey(currentNotePage.id),
+          key: ValueKey("NoteTitle${currentNotePage.id}"),
           initialValue: currentNotePage.title,
           decoration: InputDecoration(
             hintText: tr("note_page.untitled"),
@@ -107,19 +157,46 @@ class NoteTitle extends StatelessWidget {
 }
 
 class ComponentBuilder extends StatelessWidget {
-  const ComponentBuilder({Key? key, required this.component}) : super(key: key);
+  const ComponentBuilder({Key? key, required this.component, this.focusNode}) : super(key: key);
   final Component component;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
     return component.content.map(
-      text: (content) => TextComponentView(component: content),
+      text: (content) => TextComponentView(
+        component: content,
+        focusNode: focusNode,
+        onChanged: (value) => context.read<NotePadBloc>().add(
+              NotePadEvent.updateComponent(
+                component: component.copyWith(content: content.copyWith(text: value)),
+              ),
+            ),
+      ),
       title1: (content) => const Text('Implements me'),
       title2: (content) => const Text('Implements me'),
       title3: (content) => const Text('Implements me'),
       bulletedList: (content) => const Text('Implements me'),
       citation: (content) => const Text('Implements me'),
       todo: (content) => const Text('Implements me'),
+    );
+  }
+}
+
+class AddComponentBlankZone extends StatelessWidget {
+  const AddComponentBlankZone({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return NotePadSelectableArea(
+      minLines: 10,
+      maxLines: 10,
+      readOnly: true,
+      onTap: () => context.read<NotePadBloc>().add(
+            NotePadEvent.createEmptyComponent(
+              index: context.read<NotePadBloc>().state.components.length,
+            ),
+          ),
     );
   }
 }

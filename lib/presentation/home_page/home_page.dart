@@ -35,7 +35,7 @@ class DesktopView extends StatelessWidget {
       body: Row(
         children: const [
           SizedBox(
-            width: 250,
+            width: 220,
             child: Menu(),
           ),
           Expanded(child: Notepad())

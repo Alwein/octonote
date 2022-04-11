@@ -29,6 +29,7 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
         addComponent: (event) => _onAddComponent(event, emit),
         updateComponent: (event) => _onUpdateComponent(event, emit),
         removeComponent: (event) => _onRemoveComponent(event, emit),
+        componentSelected: (event) => _onComponentSelected(event, emit),
         createEmptyComponent: (event) => _onCreateEmptyComponent(event, emit),
       ),
     );
@@ -42,10 +43,15 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
   FutureOr<void> _onFetchStarted(_FetchStarted event, Emitter<NotePadState> emit) async {
     emit(state.copyWith(notePage: event.notePage, status: const NotePadStatus.fetchInProgress()));
 
-    final componentsResult = await _getComponents(notePage: state.notePage);
+    final componentsResult = await _getComponents(notePage: event.notePage);
     componentsResult.fold(
-      (components) =>
-          emit(state.copyWith(components: components, status: const NotePadStatus.success())),
+      (components) => emit(
+        NotePadState(
+          components: components,
+          status: const NotePadStatus.success(),
+          notePage: event.notePage,
+        ),
+      ),
       (initError) => emit(state.copyWith(status: const NotePadStatus.error())),
     );
   }
@@ -54,7 +60,10 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
     final addResult = await _addComponent(component: event.component);
     addResult.fold(
       (onSuccess) => emit(
-        state.copyWith(components: List<Component>.from(state.components)..add(event.component)),
+        state.copyWith(
+          components: List<Component>.from(state.components)..add(event.component),
+          componentSelected: event.component,
+        ),
       ),
       (onError) => null,
     );
@@ -66,7 +75,12 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
       (onSuccess) {
         final newComponentsList = List<Component>.from(state.components);
         newComponentsList[event.component.index] = event.component;
-        emit(state.copyWith(components: newComponentsList));
+        emit(
+          state.copyWith(
+            components: newComponentsList,
+            componentSelected: event.component,
+          ),
+        );
       },
       (onError) => null,
     );
@@ -76,10 +90,17 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
     final removeResult = await _removeComponent(component: event.component);
     removeResult.fold(
       (onSuccess) => emit(
-        state.copyWith(components: List<Component>.from(state.components)..remove(event.component)),
+        state.copyWith(
+          components: List<Component>.from(state.components)..remove(event.component),
+          componentSelected: null,
+        ),
       ),
       (onError) => null,
     );
+  }
+
+  FutureOr<void> _onComponentSelected(_ComponentSelected event, Emitter<NotePadState> emit) {
+    emit(state.copyWith(componentSelected: event.component));
   }
 
   FutureOr<void> _onCreateEmptyComponent(_CreateEmptyComponent event, Emitter<NotePadState> emit) {

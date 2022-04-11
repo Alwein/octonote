@@ -4,6 +4,7 @@ part of 'notepad_bloc.dart';
 class NotePadState with _$NotePadState {
   const factory NotePadState({
     required NotePage notePage,
+    Component? componentSelected,
     @Default([]) List<Component> components,
     @Default(NotePadInitial()) NotePadStatus status,
   }) = _NotePadState;

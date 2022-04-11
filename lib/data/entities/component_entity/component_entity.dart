@@ -45,8 +45,9 @@ class ComponentEntity {
       id: doc["id"] as String,
       pageId: doc["pageId"] as String,
       index: doc["index"] as int,
-      componentEntity:
-          ComponentContentEntity.fromDocument(doc["componentEntity"] as Map<String, dynamic>),
+      componentEntity: ComponentContentEntity.fromDocument(
+        Map<String, dynamic>.from(doc["componentEntity"] as Map<dynamic, dynamic>),
+      ),
     );
   }
 }

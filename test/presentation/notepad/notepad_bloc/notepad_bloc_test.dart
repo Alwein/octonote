@@ -118,6 +118,7 @@ void main() {
             notePage: exampleNotePage,
             status: const NotePadStatus.success(),
             components: [exampleComponent],
+            componentSelected: exampleComponent,
           ),
         ],
       );
@@ -160,6 +161,7 @@ void main() {
             notePage: exampleNotePage,
             status: const NotePadStatus.success(),
             components: [updatedComponent],
+            componentSelected: updatedComponent,
           ),
         ],
       );
@@ -194,6 +196,7 @@ void main() {
           notePage: exampleNotePage,
           status: const NotePadStatus.success(),
           components: [exampleComponent],
+          componentSelected: exampleComponent,
         ),
         act: (bloc) => bloc.add(NotePadEvent.removeComponent(component: exampleComponent)),
         expect: () => const [
@@ -223,6 +226,27 @@ void main() {
       );
     });
 
+    group('notePageSelected', () {
+      blocTest<NotePadBloc, NotePadState>(
+        'should emit same state with new componentSelected',
+        build: () => _buildBloc(),
+        seed: () => NotePadState(
+          notePage: exampleNotePage,
+          status: const NotePadStatus.success(),
+          components: [exampleComponent],
+        ),
+        act: (bloc) => bloc.add(NotePadEvent.componentSelected(component: exampleComponent)),
+        expect: () => [
+          NotePadState(
+            notePage: exampleNotePage,
+            status: const NotePadStatus.success(),
+            components: [exampleComponent],
+            componentSelected: exampleComponent,
+          ),
+        ],
+      );
+    });
+
     group('CreateEmptyComponent', () {
       final testGeneratedComponent = Component(
         id: 'test',
@@ -249,6 +273,7 @@ void main() {
             notePage: exampleNotePage,
             status: const NotePadStatus.success(),
             components: [testGeneratedComponent],
+            componentSelected: testGeneratedComponent,
           )
         ],
       );
