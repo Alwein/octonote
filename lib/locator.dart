@@ -27,13 +27,21 @@ void init() {
   getIt.registerFactory<UpdateComponent>(() => UpdateComponent(getIt<ComponentRepository>()));
   getIt.registerFactory<RemoveComponent>(() => RemoveComponent(getIt<ComponentRepository>()));
 
+  getIt.registerFactory<RemoveNotePageAndComponents>(
+    () => RemoveNotePageAndComponents(
+      getComponents: getIt<GetComponents>(),
+      removeComponent: getIt<RemoveComponent>(),
+      removeNotePage: getIt<RemoveNotePage>(),
+    ),
+  );
+
   // blocs
   getIt.registerFactory<MenuBloc>(
     () => MenuBloc(
       getNotePages: getIt<GetNotePages>(),
       addNotePage: getIt<AddNotePage>(),
       updateNotePage: getIt<UpdateNotePage>(),
-      removeNotePage: getIt<RemoveNotePage>(),
+      removeNotePageAndComponents: getIt<RemoveNotePageAndComponents>(),
     ),
   );
   getIt.registerFactory<NotePadBloc>(

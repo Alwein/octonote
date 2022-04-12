@@ -18,7 +18,7 @@ class MockAddNotePage extends Mock implements AddNotePage {}
 
 class MockUpdateNotePage extends Mock implements UpdateNotePage {}
 
-class MockRemoveNotePage extends Mock implements RemoveNotePage {}
+class MockRemoveNotePageAndComponents extends Mock implements RemoveNotePageAndComponents {}
 
 class MockGetNotePages extends Mock implements GetNotePages {}
 
@@ -26,7 +26,7 @@ void main() {
   group('MenuBloc', () {
     late AddNotePage addNotePage;
     late UpdateNotePage updateNotePage;
-    late RemoveNotePage removeNotePage;
+    late RemoveNotePageAndComponents removeNotePageAndComponents;
     late GetNotePages getNotePages;
 
     setUp(() async {
@@ -34,7 +34,7 @@ void main() {
       sl.getIt.registerLazySingleton<a_s.AppService>(() => MockAppService());
       addNotePage = MockAddNotePage();
       updateNotePage = MockUpdateNotePage();
-      removeNotePage = MockRemoveNotePage();
+      removeNotePageAndComponents = MockRemoveNotePageAndComponents();
       getNotePages = MockGetNotePages();
     });
 
@@ -42,7 +42,7 @@ void main() {
       return MenuBloc(
         addNotePage: addNotePage,
         updateNotePage: updateNotePage,
-        removeNotePage: removeNotePage,
+        removeNotePageAndComponents: removeNotePageAndComponents,
         getNotePages: getNotePages,
       );
     }
@@ -200,7 +200,7 @@ void main() {
       blocTest<MenuBloc, MenuState>(
         'should emit same state with one page less',
         setUp: () {
-          when(() => removeNotePage(notePage: exampleNotePage)).thenAnswer(
+          when(() => removeNotePageAndComponents(notePage: exampleNotePage)).thenAnswer(
             (_) async => const Left(unit),
           );
         },
@@ -221,9 +221,9 @@ void main() {
       );
 
       blocTest<MenuBloc, MenuState>(
-        'should emit nothing when removeNotePage fails',
+        'should emit nothing when removeNotePageAndComponents fails',
         setUp: () {
-          when(() => removeNotePage(notePage: exampleNotePage)).thenAnswer(
+          when(() => removeNotePageAndComponents(notePage: exampleNotePage)).thenAnswer(
             (_) async => Right(AppError()),
           );
         },

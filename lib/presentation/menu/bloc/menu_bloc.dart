@@ -16,11 +16,11 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     required GetNotePages getNotePages,
     required AddNotePage addNotePage,
     required UpdateNotePage updateNotePage,
-    required RemoveNotePage removeNotePage,
+    required RemoveNotePageAndComponents removeNotePageAndComponents,
   })  : _getNotePages = getNotePages,
         _addNotePage = addNotePage,
         _updateNotePage = updateNotePage,
-        _removeNotePage = removeNotePage,
+        _removeNotePageAndComponents = removeNotePageAndComponents,
         super(const _MenuState(notePageSelected: NotePage.empty())) {
     on(
       (MenuEvent event, emit) => event.map(
@@ -36,7 +36,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
   final GetNotePages _getNotePages;
   final AddNotePage _addNotePage;
   final UpdateNotePage _updateNotePage;
-  final RemoveNotePage _removeNotePage;
+  final RemoveNotePageAndComponents _removeNotePageAndComponents;
 
   FutureOr<void> _onFetchStarted(_FetchStarted event, Emitter<MenuState> emit) async {
     emit(state.copyWith(status: const MenuStatus.fetchInProgress()));
@@ -87,7 +87,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
   }
 
   FutureOr<void> _onRemovePage(_RemovePage event, Emitter<MenuState> emit) async {
-    final removeResult = await _removeNotePage(notePage: event.notePage);
+    final removeResult = await _removeNotePageAndComponents(notePage: event.notePage);
     removeResult.fold(
       (onSuccess) => emit(
         state.copyWith(
