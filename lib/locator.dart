@@ -4,8 +4,7 @@ import 'package:octonote/data/hive/component_hive.dart';
 import 'package:octonote/data/hive/note_page_hive.dart';
 import 'package:octonote/domain/repositories/component/component_repository.dart';
 import 'package:octonote/domain/repositories/note_page/note_page_repository.dart';
-import 'package:octonote/domain/usecases/component/component_usecases.dart';
-import 'package:octonote/domain/usecases/note_page/note_page_usecases.dart';
+import 'package:octonote/domain/usecases/usecases.dart';
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
 

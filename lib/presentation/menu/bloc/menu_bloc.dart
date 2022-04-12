@@ -5,12 +5,11 @@ import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:octonote/application/factories/note_page_factory.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
-import 'package:octonote/domain/usecases/note_page/note_page_usecases.dart';
-
-part 'menu_state.dart';
-part 'menu_event.dart';
+import 'package:octonote/domain/usecases/usecases.dart';
 
 part 'menu_bloc.freezed.dart';
+part 'menu_event.dart';
+part 'menu_state.dart';
 
 class MenuBloc extends Bloc<MenuEvent, MenuState> {
   MenuBloc({

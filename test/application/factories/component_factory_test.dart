@@ -17,15 +17,15 @@ void main() {
   });
   group('ComponentFactory', () {
     test('should return a Component with unic auto generated id', () {
-      final notePageList = List.generate(
+      final componentList = List.generate(
         10,
         (i) => ComponentFactory.createOne(index: i, page: const NotePage.empty()),
       );
       expect(
-        List.from(notePageList)
+        List.from(componentList)
           ..toSet()
           ..toList(),
-        notePageList,
+        componentList,
       );
     });
   });

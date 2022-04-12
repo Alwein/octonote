@@ -6,7 +6,7 @@ import 'package:octonote/application/utils/app_service.dart' as a_s;
 import 'package:octonote/domain/models/app_error/app_error.dart';
 import 'package:octonote/domain/models/component/component.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
-import 'package:octonote/domain/usecases/component/component_usecases.dart';
+import 'package:octonote/domain/usecases/atomic/component/component_usecases.dart';
 import 'package:octonote/locator.dart' as sl;
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
 

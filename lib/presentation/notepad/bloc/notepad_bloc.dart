@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:octonote/application/factories/component_factory.dart';
 import 'package:octonote/domain/models/component/component.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
-import 'package:octonote/domain/usecases/component/component_usecases.dart';
+import 'package:octonote/domain/usecases/atomic/component/component_usecases.dart';
 
 part 'notepad_bloc.freezed.dart';
 part 'notepad_event.dart';

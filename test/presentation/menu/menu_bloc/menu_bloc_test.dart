@@ -5,7 +5,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:octonote/application/utils/app_service.dart' as a_s;
 import 'package:octonote/domain/models/app_error/app_error.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
-import 'package:octonote/domain/usecases/note_page/note_page_usecases.dart';
+import 'package:octonote/domain/usecases/usecases.dart';
 import 'package:octonote/locator.dart' as sl;
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 
