@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -183,11 +182,6 @@ void main() {
         expect(find.byKey(ValueKey(exampleComponent0.id)), findsOneWidget);
         expect(find.byKey(ValueKey(exampleComponent1.id)), findsOneWidget);
         expect(find.byKey(ValueKey(exampleComponent2.id)), findsOneWidget);
-      });
-
-      testWidgets('should send a note page event when CreateNotePage is pressed', (tester) async {
-        await tester.tap(find.text(tr("menu.add_page")));
-        verify(() => menuBloc.add(const MenuEvent.createEmptyNotePage())).called(1);
       });
     });
   });
