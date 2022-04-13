@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:octonote/application/constants/colors.dart';
-import 'package:octonote/presentation/home_page/home_page.dart';
+import 'package:octonote/presentation/home_page/view/home_page_view.dart';
 
 class OctonoteApp extends StatelessWidget {
   const OctonoteApp({Key? key}) : super(key: key);
