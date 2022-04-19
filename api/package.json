@@ -1,0 +1,26 @@
+{
+  "name": "ontonote-api",
+  "version": "1.0.0",
+  "description": "octonote backend project",
+  "main": "index.js",
+  "repository": "https://github.com/Alwein/octonote",
+  "author": "Alwein",
+  "license": "MIT",
+  "scripts": {
+    "dev:build": "webpack -w",
+    "dev": "cross-env NODE_ENV=development node dist/index.bundle.js"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-node-externals": "^3.0.0"
+  }
+}
