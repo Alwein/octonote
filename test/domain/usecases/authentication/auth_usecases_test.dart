@@ -3,9 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:octonote/domain/models/octo_user/octo_user.dart';
 import 'package:octonote/domain/repositories/authentication/authentication_repository.dart';
-import 'package:octonote/domain/usecases/authentication/get_current_user_usecase.dart';
-import 'package:octonote/domain/usecases/authentication/get_user_usecase.dart';
-import 'package:octonote/domain/usecases/authentication/login_with_email_and_password_usease.dart';
+import 'package:octonote/domain/usecases/authentication/auth_usecases.dart';
 
 class MockAuthenticationRepository with Mock implements AuthenticationRepository {}
 
