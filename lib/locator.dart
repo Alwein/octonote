@@ -6,6 +6,7 @@ import 'package:octonote/data/hive/note_page_hive.dart';
 import 'package:octonote/domain/repositories/authentication/authentication_repository.dart';
 import 'package:octonote/domain/repositories/component/component_repository.dart';
 import 'package:octonote/domain/repositories/note_page/note_page_repository.dart';
+import 'package:octonote/domain/usecases/authentication/auth_usecases.dart';
 import 'package:octonote/domain/usecases/usecases.dart';
 import 'package:octonote/presentation/app/bloc/app_bloc.dart';
 import 'package:octonote/presentation/auth/bloc/auth_bloc.dart';
@@ -26,6 +27,9 @@ void init() {
   // repositories
   getIt.registerLazySingleton<NotePageRepository>(() => NotePageRepositoryHive());
   getIt.registerLazySingleton<ComponentRepository>(() => ComponentRepositoryHive());
+  getIt.registerLazySingleton<AuthenticationRepository>(
+      () => FirebaseAuthenticationRepositoryImpl());
+
   // usecases
   getIt.registerFactory<GetNotePages>(() => GetNotePages(getIt<NotePageRepository>()));
   getIt.registerFactory<AddNotePage>(() => AddNotePage(getIt<NotePageRepository>()));
@@ -42,6 +46,36 @@ void init() {
       getComponents: getIt<GetComponents>(),
       removeComponent: getIt<RemoveComponent>(),
       removeNotePage: getIt<RemoveNotePage>(),
+    ),
+  );
+
+  getIt.registerFactory<GetUser>(() => GetUser(getIt<AuthenticationRepository>()));
+  getIt.registerFactory<GetCurrentUser>(() => GetCurrentUser(getIt<AuthenticationRepository>()));
+  getIt.registerFactory<LogInWithEmailAndPassword>(
+      () => LogInWithEmailAndPassword(getIt<AuthenticationRepository>()));
+  getIt.registerFactory<RegisterWithEmailAndPassword>(
+      () => RegisterWithEmailAndPassword(getIt<AuthenticationRepository>()));
+  getIt.registerFactory<SendVerificationEmail>(
+      () => SendVerificationEmail(getIt<AuthenticationRepository>()));
+  getIt.registerFactory<ChangePassword>(() => ChangePassword(getIt<AuthenticationRepository>()));
+  getIt.registerFactory<ResetPassword>(() => ResetPassword(getIt<AuthenticationRepository>()));
+  getIt
+      .registerFactory<SignInWithGoogle>(() => SignInWithGoogle(getIt<AuthenticationRepository>()));
+  getIt.registerFactory<SignInWithApple>(() => SignInWithApple(getIt<AuthenticationRepository>()));
+  getIt.registerFactory<LogOut>(() => LogOut(getIt<AuthenticationRepository>()));
+
+  getIt.registerFactory<AuthUseCases>(
+    () => AuthUseCases(
+      getUser: getIt<GetUser>(),
+      getCurrentUser: getIt<GetCurrentUser>(),
+      logInWithEmailAndPassword: getIt<LogInWithEmailAndPassword>(),
+      registerWithEmailAndPassword: getIt<RegisterWithEmailAndPassword>(),
+      sendVerificationEmail: getIt<SendVerificationEmail>(),
+      changePassword: getIt<ChangePassword>(),
+      resetPassword: getIt<ResetPassword>(),
+      signInWithGoogle: getIt<SignInWithGoogle>(),
+      signInWithApple: getIt<SignInWithApple>(),
+      logOut: getIt<LogOut>(),
     ),
   );
 
