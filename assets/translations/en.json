@@ -15,5 +15,6 @@
     "error_widget": {
         "an_error_occurred_while_loading": "An error occurred while loading",
         "retry": "Retry"
-    }
+    },
+    "welcome_page_message": "Welcome to"
 }

@@ -8,7 +8,7 @@ class Loading extends StatelessWidget {
   Widget build(BuildContext context) {
     return const CircularProgressIndicator(
       strokeWidth: 2,
-      color: OctonoteColors.textColor,
+      color: OctonoteColors.darkColor,
     );
   }
 }

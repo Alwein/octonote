@@ -15,5 +15,6 @@
     "error_widget": {
         "an_error_occurred_while_loading": "Une erreur est survenue pendant le chargement",
         "retry": "Retry"
-    }
+    },
+    "welcome_page_message": "Bienvenue sur"
 }

@@ -1,10 +1,14 @@
 import 'package:get_it/get_it.dart';
 import 'package:octonote/application/utils/app_service.dart';
+import 'package:octonote/data/firebase/auth/firebase_authentication_repository.dart';
 import 'package:octonote/data/hive/component_hive.dart';
 import 'package:octonote/data/hive/note_page_hive.dart';
+import 'package:octonote/domain/repositories/authentication/authentication_repository.dart';
 import 'package:octonote/domain/repositories/component/component_repository.dart';
 import 'package:octonote/domain/repositories/note_page/note_page_repository.dart';
 import 'package:octonote/domain/usecases/usecases.dart';
+import 'package:octonote/presentation/app/bloc/app_bloc.dart';
+import 'package:octonote/presentation/auth/bloc/auth_bloc.dart';
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
 
@@ -12,7 +16,13 @@ final getIt = GetIt.instance;
 
 void init() {
   // app
+  getIt.registerLazySingleton<AuthenticationRepository>(
+    () => FirebaseAuthenticationRepositoryImpl(),
+  );
   getIt.registerLazySingleton<AppService>(() => AppServiceImpl());
+  getIt.registerFactory<AppBloc>(
+    () => AppBloc(authenticationRepository: getIt<AuthenticationRepository>()),
+  );
   // repositories
   getIt.registerLazySingleton<NotePageRepository>(() => NotePageRepositoryHive());
   getIt.registerLazySingleton<ComponentRepository>(() => ComponentRepositoryHive());
@@ -52,4 +62,7 @@ void init() {
       removeComponent: getIt<RemoveComponent>(),
     ),
   );
+
+  // auth
+  getIt.registerFactory<AuthBloc>(() => AuthBloc());
 }
