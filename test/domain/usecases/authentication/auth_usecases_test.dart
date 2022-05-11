@@ -16,7 +16,6 @@ void main() {
 
   group('getUser', () {
     Stream<OctoUser> fakeStream() async* {}
-
     test('Should return a OctoUser stream', () {
       when(() => authenticationRepository.user).thenAnswer((_) => fakeStream());
       final GetUser usecase = GetUser(authenticationRepository);

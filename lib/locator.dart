@@ -28,7 +28,8 @@ void init() {
   getIt.registerLazySingleton<NotePageRepository>(() => NotePageRepositoryHive());
   getIt.registerLazySingleton<ComponentRepository>(() => ComponentRepositoryHive());
   getIt.registerLazySingleton<AuthenticationRepository>(
-      () => FirebaseAuthenticationRepositoryImpl());
+    () => FirebaseAuthenticationRepositoryImpl(),
+  );
 
   // usecases
   getIt.registerFactory<GetNotePages>(() => GetNotePages(getIt<NotePageRepository>()));
@@ -52,32 +53,20 @@ void init() {
   getIt.registerFactory<GetUser>(() => GetUser(getIt<AuthenticationRepository>()));
   getIt.registerFactory<GetCurrentUser>(() => GetCurrentUser(getIt<AuthenticationRepository>()));
   getIt.registerFactory<LogInWithEmailAndPassword>(
-      () => LogInWithEmailAndPassword(getIt<AuthenticationRepository>()));
+    () => LogInWithEmailAndPassword(getIt<AuthenticationRepository>()),
+  );
   getIt.registerFactory<RegisterWithEmailAndPassword>(
-      () => RegisterWithEmailAndPassword(getIt<AuthenticationRepository>()));
+    () => RegisterWithEmailAndPassword(getIt<AuthenticationRepository>()),
+  );
   getIt.registerFactory<SendVerificationEmail>(
-      () => SendVerificationEmail(getIt<AuthenticationRepository>()));
+    () => SendVerificationEmail(getIt<AuthenticationRepository>()),
+  );
   getIt.registerFactory<ChangePassword>(() => ChangePassword(getIt<AuthenticationRepository>()));
   getIt.registerFactory<ResetPassword>(() => ResetPassword(getIt<AuthenticationRepository>()));
   getIt
       .registerFactory<SignInWithGoogle>(() => SignInWithGoogle(getIt<AuthenticationRepository>()));
   getIt.registerFactory<SignInWithApple>(() => SignInWithApple(getIt<AuthenticationRepository>()));
   getIt.registerFactory<LogOut>(() => LogOut(getIt<AuthenticationRepository>()));
-
-  getIt.registerFactory<AuthUseCases>(
-    () => AuthUseCases(
-      getUser: getIt<GetUser>(),
-      getCurrentUser: getIt<GetCurrentUser>(),
-      logInWithEmailAndPassword: getIt<LogInWithEmailAndPassword>(),
-      registerWithEmailAndPassword: getIt<RegisterWithEmailAndPassword>(),
-      sendVerificationEmail: getIt<SendVerificationEmail>(),
-      changePassword: getIt<ChangePassword>(),
-      resetPassword: getIt<ResetPassword>(),
-      signInWithGoogle: getIt<SignInWithGoogle>(),
-      signInWithApple: getIt<SignInWithApple>(),
-      logOut: getIt<LogOut>(),
-    ),
-  );
 
   // blocs
   getIt.registerFactory<MenuBloc>(
@@ -98,5 +87,14 @@ void init() {
   );
 
   // auth
-  getIt.registerFactory<AuthBloc>(() => AuthBloc());
+  getIt.registerFactory<AuthBloc>(
+    () => AuthBloc(
+      logInWithEmailAndPassword: getIt<LogInWithEmailAndPassword>(),
+      registerWithEmailAndPassword: getIt<RegisterWithEmailAndPassword>(),
+      sendVerificationEmail: getIt<SendVerificationEmail>(),
+      resetPassword: getIt<ResetPassword>(),
+      signInWithGoogle: getIt<SignInWithGoogle>(),
+      signInWithApple: getIt<SignInWithApple>(),
+    ),
+  );
 }

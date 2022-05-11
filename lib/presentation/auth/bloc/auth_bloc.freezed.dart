@@ -1477,8 +1477,10 @@ class _$AuthStatusTearOff {
     return const _AuthSuccess();
   }
 
-  _AuthError error() {
-    return const _AuthError();
+  _AuthError error({required AuthFailure authFailure}) {
+    return _AuthError(
+      authFailure: authFailure,
+    );
   }
 }
 
@@ -1492,7 +1494,7 @@ mixin _$AuthStatus {
     required TResult Function() none,
     required TResult Function() loadingInProgress,
     required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(AuthFailure authFailure) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1500,7 +1502,7 @@ mixin _$AuthStatus {
     TResult Function()? none,
     TResult Function()? loadingInProgress,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(AuthFailure authFailure)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1508,7 +1510,7 @@ mixin _$AuthStatus {
     TResult Function()? none,
     TResult Function()? loadingInProgress,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(AuthFailure authFailure)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1596,7 +1598,7 @@ class _$_AuthNone implements _AuthNone {
     required TResult Function() none,
     required TResult Function() loadingInProgress,
     required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(AuthFailure authFailure) error,
   }) {
     return none();
   }
@@ -1607,7 +1609,7 @@ class _$_AuthNone implements _AuthNone {
     TResult Function()? none,
     TResult Function()? loadingInProgress,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(AuthFailure authFailure)? error,
   }) {
     return none?.call();
   }
@@ -1618,7 +1620,7 @@ class _$_AuthNone implements _AuthNone {
     TResult Function()? none,
     TResult Function()? loadingInProgress,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(AuthFailure authFailure)? error,
     required TResult orElse(),
   }) {
     if (none != null) {
@@ -1713,7 +1715,7 @@ class _$_AuthLoadInProgress implements _AuthLoadInProgress {
     required TResult Function() none,
     required TResult Function() loadingInProgress,
     required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(AuthFailure authFailure) error,
   }) {
     return loadingInProgress();
   }
@@ -1724,7 +1726,7 @@ class _$_AuthLoadInProgress implements _AuthLoadInProgress {
     TResult Function()? none,
     TResult Function()? loadingInProgress,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(AuthFailure authFailure)? error,
   }) {
     return loadingInProgress?.call();
   }
@@ -1735,7 +1737,7 @@ class _$_AuthLoadInProgress implements _AuthLoadInProgress {
     TResult Function()? none,
     TResult Function()? loadingInProgress,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(AuthFailure authFailure)? error,
     required TResult orElse(),
   }) {
     if (loadingInProgress != null) {
@@ -1829,7 +1831,7 @@ class _$_AuthSuccess implements _AuthSuccess {
     required TResult Function() none,
     required TResult Function() loadingInProgress,
     required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(AuthFailure authFailure) error,
   }) {
     return success();
   }
@@ -1840,7 +1842,7 @@ class _$_AuthSuccess implements _AuthSuccess {
     TResult Function()? none,
     TResult Function()? loadingInProgress,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(AuthFailure authFailure)? error,
   }) {
     return success?.call();
   }
@@ -1851,7 +1853,7 @@ class _$_AuthSuccess implements _AuthSuccess {
     TResult Function()? none,
     TResult Function()? loadingInProgress,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(AuthFailure authFailure)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1907,6 +1909,9 @@ abstract class _$AuthErrorCopyWith<$Res> {
   factory _$AuthErrorCopyWith(
           _AuthError value, $Res Function(_AuthError) then) =
       __$AuthErrorCopyWithImpl<$Res>;
+  $Res call({AuthFailure authFailure});
+
+  $AuthFailureCopyWith<$Res> get authFailure;
 }
 
 /// @nodoc
@@ -1917,26 +1922,57 @@ class __$AuthErrorCopyWithImpl<$Res> extends _$AuthStatusCopyWithImpl<$Res>
 
   @override
   _AuthError get _value => super._value as _AuthError;
+
+  @override
+  $Res call({
+    Object? authFailure = freezed,
+  }) {
+    return _then(_AuthError(
+      authFailure: authFailure == freezed
+          ? _value.authFailure
+          : authFailure // ignore: cast_nullable_to_non_nullable
+              as AuthFailure,
+    ));
+  }
+
+  @override
+  $AuthFailureCopyWith<$Res> get authFailure {
+    return $AuthFailureCopyWith<$Res>(_value.authFailure, (value) {
+      return _then(_value.copyWith(authFailure: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_AuthError implements _AuthError {
-  const _$_AuthError();
+  const _$_AuthError({required this.authFailure});
+
+  @override
+  final AuthFailure authFailure;
 
   @override
   String toString() {
-    return 'AuthStatus.error()';
+    return 'AuthStatus.error(authFailure: $authFailure)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _AuthError);
+        (other.runtimeType == runtimeType &&
+            other is _AuthError &&
+            const DeepCollectionEquality()
+                .equals(other.authFailure, authFailure));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(authFailure));
+
+  @JsonKey(ignore: true)
+  @override
+  _$AuthErrorCopyWith<_AuthError> get copyWith =>
+      __$AuthErrorCopyWithImpl<_AuthError>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1944,9 +1980,9 @@ class _$_AuthError implements _AuthError {
     required TResult Function() none,
     required TResult Function() loadingInProgress,
     required TResult Function() success,
-    required TResult Function() error,
+    required TResult Function(AuthFailure authFailure) error,
   }) {
-    return error();
+    return error(authFailure);
   }
 
   @override
@@ -1955,9 +1991,9 @@ class _$_AuthError implements _AuthError {
     TResult Function()? none,
     TResult Function()? loadingInProgress,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(AuthFailure authFailure)? error,
   }) {
-    return error?.call();
+    return error?.call(authFailure);
   }
 
   @override
@@ -1966,11 +2002,11 @@ class _$_AuthError implements _AuthError {
     TResult Function()? none,
     TResult Function()? loadingInProgress,
     TResult Function()? success,
-    TResult Function()? error,
+    TResult Function(AuthFailure authFailure)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(authFailure);
     }
     return orElse();
   }
@@ -2014,7 +2050,12 @@ class _$_AuthError implements _AuthError {
 }
 
 abstract class _AuthError implements AuthStatus {
-  const factory _AuthError() = _$_AuthError;
+  const factory _AuthError({required AuthFailure authFailure}) = _$_AuthError;
+
+  AuthFailure get authFailure;
+  @JsonKey(ignore: true)
+  _$AuthErrorCopyWith<_AuthError> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
