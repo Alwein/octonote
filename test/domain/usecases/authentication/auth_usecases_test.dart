@@ -8,7 +8,7 @@ import 'package:octonote/domain/usecases/authentication/auth_usecases.dart';
 class MockAuthenticationRepository with Mock implements AuthenticationRepository {}
 
 void main() {
-  late final AuthenticationRepository authenticationRepository;
+  late AuthenticationRepository authenticationRepository;
 
   setUp(() {
     authenticationRepository = MockAuthenticationRepository();
