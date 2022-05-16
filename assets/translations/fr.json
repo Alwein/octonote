@@ -16,5 +16,27 @@
         "an_error_occurred_while_loading": "Une erreur est survenue pendant le chargement",
         "retry": "Retry"
     },
-    "welcome_page_message": "Bienvenue sur"
+    "welcome_page_message": "Bienvenue sur",
+    "auth_widgets": {
+        "email_label": "Email",
+        "email_hitn": "Adresse email...",
+        "password_label": "Mot de passe",
+        "password_hitn": "Mot de passe...",
+        "email_and_password_invalid_message": "Email et mot de passe invalide",
+        "email_invalid_message": "Email invalide",
+        "password_invalid_message": "Mot de passe invalide"
+    },
+    "sign_in_page": {
+        "sign_in_title": "Connexion",
+        "sign_in_button": "Se connecter",
+        "or_separator": "Ou",
+        "sign_up_button": "S'inscrire",
+        "sign_in_with_google_button": "Se connecter avec Google",
+        "sign_with_apple_button": "Se connecter avec Apple",
+        "forgot_password_button": "Mot de passe oublié"
+    },
+    "sign_up_page": {
+        "sign_up_title": "Inscription",
+        "sign_up_button": "S'inscrire"
+    }
 }

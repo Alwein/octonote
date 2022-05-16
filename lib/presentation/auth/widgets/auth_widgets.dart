@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:octonote/application/constants/colors.dart';
 import 'package:octonote/application/utils/generic_blocs/generic_registration_bloc/generic_registration_bloc.dart';
@@ -203,8 +204,8 @@ class EmailFormInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AuthTextInput(
-      label: "Email",
-      hintText: "Enter your email",
+      label: tr("auth_widgets.email_label"),
+      hintText: tr("auth_widgets.email_hitn"),
       textInputType: TextInputType.emailAddress,
       onChanged: onChanged,
     );
@@ -236,8 +237,8 @@ class _PasswordFormInputState extends State<PasswordFormInput> {
           isObscure = !isObscure;
         }),
       ),
-      label: "Password",
-      hintText: "Enter your password",
+      label: tr("auth_widgets.password_label"),
+      hintText: tr("auth_widgets.password_hitn"),
     );
   }
 }
@@ -267,11 +268,11 @@ class ErrorMessage extends StatelessWidget {
   String? getRegistrationFormsErrorMessage(GenericRegistrationState state) {
     String? text;
     if (state.email.isInvalid && state.password.isInvalid) {
-      text = "Email and password invalid";
+      text = tr("auth_widgets.email_and_password_invalid_message");
     } else if (state.email.isInvalid) {
-      text = "Email invalid";
+      text = tr("auth_widgets.email_invalid_message");
     } else if (state.password.isInvalid) {
-      text = "Password invalid";
+      text = tr("auth_widgets.password_invalid_message");
     }
     return text;
   }

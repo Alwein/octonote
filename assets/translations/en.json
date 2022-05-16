@@ -16,5 +16,27 @@
         "an_error_occurred_while_loading": "An error occurred while loading",
         "retry": "Retry"
     },
-    "welcome_page_message": "Welcome to"
+    "welcome_page_message": "Welcome to",
+    "auth_widgets": {
+        "email_label": "Email",
+        "email_hitn": "Enter your email adress...",
+        "password_label": "Password",
+        "password_hitn": "Enter your password...",
+        "email_and_password_invalid_message": "Email and password invalid",
+        "email_invalid_message": "Email invalid",
+        "password_invalid_message": "Password invalid"
+    },
+    "sign_in_page": {
+        "sign_in_title": "Sign in",
+        "sign_in_button": "Sign up",
+        "or_separator": "Or",
+        "sign_up_button": "Sign up",
+        "sign_in_with_google_button": "Sign in with Google",
+        "sign_with_apple_button": "Sign in with Apple",
+        "forgot_password_button": "Forgot password"
+    },
+    "sign_up_page": {
+        "sign_up_title": "Sign up",
+        "sign_up_button": "Sign up"
+    }
 }

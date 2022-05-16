@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:octonote/application/constants/colors.dart';
@@ -25,12 +26,12 @@ class SignUpView extends StatelessWidget {
                   padding: const EdgeInsets.all(LayoutValues.horizontalPadding),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      AuthTitle(title: "Inscription"),
-                      SignUpEmailFormInput(),
-                      SignUpPasswordFormInput(),
-                      SignUpErrorMessage(),
-                      SignUpButton(),
+                    children: [
+                      AuthTitle(title: tr("sign_up_page.sign_up_title")),
+                      const SignUpEmailFormInput(),
+                      const SignUpPasswordFormInput(),
+                      const SignUpErrorMessage(),
+                      const SignUpButton(),
                     ],
                   ),
                 ),
@@ -112,7 +113,7 @@ class SignUpButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: AuthButton(
-        label: "S'inscrire",
+        label: tr("sign_up_page.sign_up_button"),
         onPressed: () => context.read<SignUpBloc>().add(
               GenericRegistrationEvent.validate(
                 onValidateSuccess: (email, password) => context

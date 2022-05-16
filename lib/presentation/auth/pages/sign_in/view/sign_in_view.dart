@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,22 +26,22 @@ class SignInView extends StatelessWidget {
                   padding: const EdgeInsets.all(LayoutValues.horizontalPadding),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      AuthTitle(title: "Connexion"),
-                      SignInEmailFormInput(),
-                      SignInPasswordFormInput(),
-                      SignInErrorMessage(),
-                      SignInButton(),
-                      SizedBox(height: 15),
-                      ButtonSeparator(),
-                      SizedBox(height: 15),
-                      GoToSignUpButton(),
-                      SizedBox(height: 15),
-                      GoogleSignInButton(),
-                      SizedBox(height: 15),
-                      AppleSignInButton(),
-                      SizedBox(height: 15),
-                      ForgotPasswordButton()
+                    children: [
+                      AuthTitle(title: tr("sign_in_page.sign_in_title")),
+                      const SignInEmailFormInput(),
+                      const SignInPasswordFormInput(),
+                      const SignInErrorMessage(),
+                      const SignInButton(),
+                      const SizedBox(height: 15),
+                      const ButtonSeparator(),
+                      const SizedBox(height: 15),
+                      const GoToSignUpButton(),
+                      const SizedBox(height: 15),
+                      const GoogleSignInButton(),
+                      const SizedBox(height: 15),
+                      const AppleSignInButton(),
+                      const SizedBox(height: 15),
+                      const ForgotPasswordButton()
                     ],
                   ),
                 ),
@@ -85,7 +86,7 @@ class SignInButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: OutlinedAuthButton(
-        label: "Se connecter",
+        label: tr("sign_in_page.sign_in_button"),
         onPressed: () => context.read<SignInBloc>().add(
               GenericRegistrationEvent.validate(
                 onValidateSuccess: (email, password) => context
@@ -122,7 +123,7 @@ class ButtonSeparator extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: LayoutValues.horizontalPadding),
           child: Text(
-            "Or",
+            tr("sign_in_page.or_separator"),
             style: Theme.of(context).textTheme.bodyMedium,
           ),
         ),
@@ -140,7 +141,7 @@ class GoToSignUpButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: AuthButton(
-        label: "S'inscrire",
+        label: tr("sign_in_page.sign_up_button"),
         onPressed: () => context.read<AuthBloc>().add(const AuthEvent.signUpStarted()),
       ),
     );
@@ -153,7 +154,7 @@ class GoogleSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconAuthButton(
-      label: "Se connecter avec Google",
+      label: tr("sign_in_page.sign_in_with_google_button"),
       icon: SvgPicture.asset(
         "assets/svg/google.svg",
         color: OctonoteColors.darkColor,
@@ -169,7 +170,7 @@ class AppleSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconAuthButton(
-      label: "Se connecter avec Apple",
+      label: tr("sign_in_page.sign_with_apple_button"),
       icon: SvgPicture.asset(
         "assets/svg/apple.svg",
         color: OctonoteColors.darkColor,
@@ -186,7 +187,7 @@ class ForgotPasswordButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       child: Text(
-        "Mot de passe oublié",
+        tr("sign_in_page.forgot_password_button"),
         style: Theme.of(context).textTheme.button,
       ),
       onPressed: () => context.read<SignInBloc>().add(
