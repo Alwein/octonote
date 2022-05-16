@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:octonote/presentation/auth/bloc/auth_bloc.dart';
-import 'package:octonote/presentation/auth/widgets/sign_in_view.dart';
-import 'package:octonote/presentation/auth/widgets/sign_up_view.dart';
+import 'package:octonote/presentation/auth/pages/sign_in/view/sign_in_view.dart';
+import 'package:octonote/presentation/auth/pages/sign_up/view/sign_up_view.dart';
 
 List<Page> onGenerateAuthViewPages(AuthState state) {
   final pageStack = [

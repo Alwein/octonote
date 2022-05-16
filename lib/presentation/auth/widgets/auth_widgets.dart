@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:octonote/application/constants/colors.dart';
+import 'package:octonote/application/utils/generic_blocs/generic_registration_bloc/generic_registration_bloc.dart';
 
 class AuthTitle extends StatelessWidget {
   const AuthTitle({Key? key, required this.title}) : super(key: key);
@@ -16,6 +17,7 @@ class AuthTitle extends StatelessWidget {
   }
 }
 
+// TODO: Faire la prise en charge des messages d'erreur
 class AuthTextInput extends StatelessWidget {
   const AuthTextInput({
     Key? key,
@@ -24,12 +26,14 @@ class AuthTextInput extends StatelessWidget {
     this.textInputType,
     this.obscureText = false,
     this.suffixIcon,
+    this.onChanged,
   }) : super(key: key);
   final String label;
   final String? hintText;
   final TextInputType? textInputType;
   final bool obscureText;
   final Widget? suffixIcon;
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +42,7 @@ class AuthTextInput extends StatelessWidget {
       children: [
         FormTitle(label: label),
         TextFormField(
+          onChanged: onChanged,
           keyboardType: textInputType,
           obscureText: obscureText,
           decoration: InputDecoration(
@@ -191,32 +196,36 @@ class MaxWidthBuilder extends StatelessWidget {
   }
 }
 
-class EmailInput extends StatelessWidget {
-  const EmailInput({Key? key}) : super(key: key);
+class EmailFormInput extends StatelessWidget {
+  const EmailFormInput({Key? key, required this.onChanged}) : super(key: key);
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
-    return const AuthTextInput(
+    return AuthTextInput(
       label: "Email",
       hintText: "Enter your email",
       textInputType: TextInputType.emailAddress,
+      onChanged: onChanged,
     );
   }
 }
 
-class PasswordInput extends StatefulWidget {
-  const PasswordInput({Key? key}) : super(key: key);
+class PasswordFormInput extends StatefulWidget {
+  const PasswordFormInput({Key? key, required this.onChanged}) : super(key: key);
+  final void Function(String)? onChanged;
 
   @override
-  State<PasswordInput> createState() => _PasswordInputState();
+  State<PasswordFormInput> createState() => _PasswordFormInputState();
 }
 
-class _PasswordInputState extends State<PasswordInput> {
+class _PasswordFormInputState extends State<PasswordFormInput> {
   bool isObscure = true;
 
   @override
   Widget build(BuildContext context) {
     return AuthTextInput(
+      onChanged: widget.onChanged,
       obscureText: isObscure,
       suffixIcon: TextButton(
         child: Icon(
@@ -230,5 +239,40 @@ class _PasswordInputState extends State<PasswordInput> {
       label: "Password",
       hintText: "Enter your password",
     );
+  }
+}
+
+class ErrorMessage extends StatelessWidget {
+  const ErrorMessage({Key? key, required this.state}) : super(key: key);
+  final GenericRegistrationState state;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = getRegistrationFormsErrorMessage(state);
+    return text != null
+        ? Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Text(
+                text,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.red),
+              ),
+            ),
+          )
+        : Container(
+            height: 30,
+          );
+  }
+
+  String? getRegistrationFormsErrorMessage(GenericRegistrationState state) {
+    String? text;
+    if (state.email.isInvalid && state.password.isInvalid) {
+      text = "Email and password invalid";
+    } else if (state.email.isInvalid) {
+      text = "Email invalid";
+    } else if (state.password.isInvalid) {
+      text = "Password invalid";
+    }
+    return text;
   }
 }

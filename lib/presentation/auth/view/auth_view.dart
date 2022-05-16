@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:octonote/application/utils/breakpoints.dart';
 import 'package:octonote/locator.dart' as sl;
 import 'package:octonote/presentation/auth/bloc/auth_bloc.dart';
+import 'package:octonote/presentation/auth/pages/welcome/welcome_view.dart';
 import 'package:octonote/presentation/auth/router/auth_router.dart';
-import 'package:octonote/presentation/auth/widgets/welcome_view.dart';
 
 class AuthView extends StatelessWidget {
   const AuthView({Key? key}) : super(key: key);

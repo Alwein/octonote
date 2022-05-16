@@ -288,8 +288,6 @@ void main() {
       });
     });
 
-    // TODO: test loginWithApple
-
     group('sign in with apple', () {
       tearDown(() {
         apple.SignInWithApple.channel.setMockMethodCallHandler(null);

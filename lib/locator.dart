@@ -17,9 +17,6 @@ final getIt = GetIt.instance;
 
 void init() {
   // app
-  getIt.registerLazySingleton<AuthenticationRepository>(
-    () => FirebaseAuthenticationRepositoryImpl(),
-  );
   getIt.registerLazySingleton<AppService>(() => AppServiceImpl());
   getIt.registerFactory<AppBloc>(
     () => AppBloc(authenticationRepository: getIt<AuthenticationRepository>()),
