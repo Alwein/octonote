@@ -41,4 +41,21 @@ void main() {
       )
     ],
   );
+  blocTest<RegistrationTestBloc, GenericRegistrationState>(
+    'emits same state with only email invalid when validate with includePassword to false',
+    seed: () => const GenericRegistrationState(
+      password: PasswordInput.dirty(password: "test"),
+      email: EmailInput.dirty(email: "test"),
+    ),
+    build: () => RegistrationTestBloc(),
+    act: (bloc) => bloc.add(
+      GenericRegistrationEvent.validate(onValidateSuccess: (e, p) {}, includePassword: false),
+    ),
+    expect: () => const <GenericRegistrationState>[
+      GenericRegistrationState(
+        email: EmailInput.invalid(email: "test"),
+        password: PasswordInput.dirty(password: "test"),
+      )
+    ],
+  );
 }
