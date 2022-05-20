@@ -11,6 +11,8 @@ import 'package:octonote/presentation/widgets/octo_snackbar.dart';
 class AuthView extends StatelessWidget {
   const AuthView({Key? key}) : super(key: key);
 
+  static Page page() => const MaterialPage<void>(child: AuthView());
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

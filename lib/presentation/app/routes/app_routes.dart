@@ -4,12 +4,16 @@ import 'package:octonote/presentation/app/bloc/app_bloc.dart';
 import 'package:octonote/presentation/auth/view/auth_view.dart';
 import 'package:octonote/presentation/home_page/view/home_page_view.dart';
 
+List<Page> onGenerateAppViewPages(AppState state) {
+  return state.map(
+    authenticated: (_) => [HomePage.page()],
+    unauthenticated: (_) => [AuthView.page()],
+  );
+}
+
 class AppRouterDelegate extends RouterDelegate
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
   AppRouterDelegate() : navigatorKey = GlobalKey<NavigatorState>();
-
-  final GlobalKey _homeKey = GlobalKey();
-  final GlobalKey _loginKey = GlobalKey();
 
   @override
   final GlobalKey<NavigatorState> navigatorKey;
@@ -20,16 +24,7 @@ class AppRouterDelegate extends RouterDelegate
       builder: (context, state) {
         return Navigator(
           key: navigatorKey,
-          onGenerateRoute: (routeSettings) {
-            // FIXME: Pages, do not use onGenerate route
-            return MaterialPageRoute(
-              builder: (context) => state.map(
-                unauthenticated: (_) => AuthView(key: _loginKey),
-                authenticated: (_) => HomePage(key: _homeKey),
-              ),
-            );
-          },
-          //pages: onGenerateAppViewPages(state),
+          pages: onGenerateAppViewPages(state),
           onPopPage: (route, result) {
             if (!route.didPop(result)) return false;
             return true;
