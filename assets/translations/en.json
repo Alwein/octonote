@@ -38,5 +38,26 @@
     "sign_up_page": {
         "sign_up_title": "Sign up",
         "sign_up_button": "Sign up"
+    },
+    "auth_error": {
+        "cancelledByUser": "",
+        "serverError": "An error has occurred",
+        "emailAlreadyInUse": "This email address is already associated with another account",
+        "invalidEmail": "Email address is not valid",
+        "operationNotAllowed": "Operation not allowed",
+        "userDisabled": "This user account has been deactivated",
+        "weakPassword": "The password used is too weak",
+        "wrongIosVersion": "The version of IOS used is not compatible",
+        "logoutFailure": "",
+        "invalidPasswordAndEmailCombination": "Invalid password and email combination",
+        "userMismatch": "User mismatch",
+        "userNotFound": "User not found",
+        "invalidCredential": "Invalid credentials",
+        "wrongPassword": "wrong password",
+        "credentialAlreadyInUse": "This account is already in use by another user",
+        "providerAlreadyLinked": "This account has already been linked"
+    },
+    "auth_success": {
+        "send_email_verification_snackbar_text": "An email has been sent to you to retrieve your password"
     }
 }

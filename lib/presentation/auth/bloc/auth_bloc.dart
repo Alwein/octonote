@@ -149,6 +149,11 @@ class AuthStatus with _$AuthStatus {
   const factory AuthStatus.error({required AuthFailure authFailure}) = _AuthError;
 }
 
+extension AuthStatusEx on AuthStatus {
+  bool get isError => this is _AuthError;
+  bool get isLoading => this is _AuthLoadInProgress;
+}
+
 @freezed
 class AuthView with _$AuthView {
   const factory AuthView.signIn() = SignIn;

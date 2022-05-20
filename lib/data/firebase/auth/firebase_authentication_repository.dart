@@ -49,6 +49,8 @@ class FirebaseAuthenticationRepositoryImpl implements AuthenticationRepository {
       return const Left(unit);
     } on Exception catch (_) {
       return const Right(AuthFailure.serverError());
+    } catch (e) {
+      return const Right(AuthFailure.serverError());
     }
   }
 
@@ -59,6 +61,8 @@ class FirebaseAuthenticationRepositoryImpl implements AuthenticationRepository {
       return const Left(unit);
     } on firebase_auth.FirebaseAuthException catch (e) {
       return Right(e.toAuthFailure);
+    } catch (e) {
+      return const Right(AuthFailure.serverError());
     }
   }
 
@@ -68,6 +72,8 @@ class FirebaseAuthenticationRepositoryImpl implements AuthenticationRepository {
       return const Left(unit);
     } on firebase_auth.FirebaseAuthException catch (e) {
       return Right(e.toAuthFailure);
+    } catch (e) {
+      return const Right(AuthFailure.serverError());
     }
   }
 
@@ -96,6 +102,8 @@ class FirebaseAuthenticationRepositoryImpl implements AuthenticationRepository {
       } else {
         return Right(e.toAuthFailure);
       }
+    } catch (e) {
+      return const Right(AuthFailure.serverError());
     }
   }
 
@@ -124,6 +132,8 @@ class FirebaseAuthenticationRepositoryImpl implements AuthenticationRepository {
       return const Left(unit);
     } on firebase_auth.FirebaseAuthException catch (e) {
       return Right(e.toAuthFailure);
+    } catch (e) {
+      return const Right(AuthFailure.serverError());
     }
   }
 
@@ -144,6 +154,8 @@ class FirebaseAuthenticationRepositoryImpl implements AuthenticationRepository {
       } else {
         return Right(e.toAuthFailure);
       }
+    } catch (e) {
+      return const Right(AuthFailure.serverError());
     }
   }
 
@@ -186,6 +198,8 @@ class FirebaseAuthenticationRepositoryImpl implements AuthenticationRepository {
       return const Left(unit);
     } on firebase_auth.FirebaseAuthException catch (e) {
       return Right(e.toAuthFailure);
+    } catch (e) {
+      return const Right(AuthFailure.serverError());
     }
   }
 
@@ -242,6 +256,8 @@ class FirebaseAuthenticationRepositoryImpl implements AuthenticationRepository {
         print("FIREBASE ERROR:" + "$e");
         return const Right(AuthFailure.serverError());
       }
+    } catch (e) {
+      return const Right(AuthFailure.serverError());
     }
   }
 

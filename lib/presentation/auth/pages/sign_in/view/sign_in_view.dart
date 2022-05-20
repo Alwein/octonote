@@ -8,6 +8,7 @@ import 'package:octonote/application/utils/generic_blocs/generic_registration_bl
 import 'package:octonote/presentation/auth/bloc/auth_bloc.dart';
 import 'package:octonote/presentation/auth/pages/sign_in/bloc/sign_in_bloc.dart';
 import 'package:octonote/presentation/auth/widgets/auth_widgets.dart';
+import 'package:octonote/presentation/widgets/octo_snackbar.dart';
 
 class SignInView extends StatelessWidget {
   const SignInView({Key? key}) : super(key: key);
@@ -193,8 +194,10 @@ class ForgotPasswordButton extends StatelessWidget {
       onPressed: () => context.read<SignInBloc>().add(
             GenericRegistrationEvent.validate(
               includePassword: false,
-              onValidateSuccess: (email, password) =>
-                  context.read<AuthBloc>().add(AuthEvent.resetPassword(email: email)),
+              onValidateSuccess: (email, password) {
+                context.read<AuthBloc>().add(AuthEvent.resetPassword(email: email));
+                showSnackbar(context, tr('auth_success.send_email_verification_snackbar_text'));
+              },
             ),
           ),
     );

@@ -19,7 +19,11 @@ void init() {
   // app
   getIt.registerLazySingleton<AppService>(() => AppServiceImpl());
   getIt.registerFactory<AppBloc>(
-    () => AppBloc(authenticationRepository: getIt<AuthenticationRepository>()),
+    () => AppBloc(
+      getUser: getIt<GetUser>(),
+      logOut: getIt<LogOut>(),
+      getCurrentUser: getIt<GetCurrentUser>(),
+    ),
   );
   // repositories
   getIt.registerLazySingleton<NotePageRepository>(() => NotePageRepositoryHive());
@@ -47,7 +51,7 @@ void init() {
     ),
   );
 
-  getIt.registerFactory<GetUser>(() => GetUser(getIt<AuthenticationRepository>()));
+  getIt.registerLazySingleton<GetUser>(() => GetUser(getIt<AuthenticationRepository>()));
   getIt.registerFactory<GetCurrentUser>(() => GetCurrentUser(getIt<AuthenticationRepository>()));
   getIt.registerFactory<LogInWithEmailAndPassword>(
     () => LogInWithEmailAndPassword(getIt<AuthenticationRepository>()),

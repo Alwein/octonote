@@ -21,6 +21,7 @@ class AppRouterDelegate extends RouterDelegate
         return Navigator(
           key: navigatorKey,
           onGenerateRoute: (routeSettings) {
+            // FIXME: Pages, do not use onGenerate route
             return MaterialPageRoute(
               builder: (context) => state.map(
                 unauthenticated: (_) => AuthView(key: _loginKey),

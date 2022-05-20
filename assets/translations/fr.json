@@ -38,5 +38,26 @@
     "sign_up_page": {
         "sign_up_title": "Inscription",
         "sign_up_button": "S'inscrire"
+    },
+    "auth_error": {
+        "cancelledByUser": "",
+        "serverError": "Une erreur est survenue",
+        "emailAlreadyInUse": "Cette adresse e-mail est déjà associée à un autre compte",
+        "invalidEmail": "L'adresse e-mail n'est pas valide",
+        "operationNotAllowed": "Opération non autorisée",
+        "userDisabled": "Ce compte utilisateur a été désactivé",
+        "weakPassword": "Le mot de passe utilisé est trop faible",
+        "wrongIosVersion": "La version d'IOS utiliséé n'est pas compatible",
+        "logoutFailure": "",
+        "invalidPasswordAndEmailCombination": "E-mail ou mot de passe invalide",
+        "userMismatch": "Non-concordance de l'utilisateur",
+        "userNotFound": "Utilisteur introuvable",
+        "invalidCredential": "Identifiants invalides",
+        "wrongPassword": "Mauvais mot de passe",
+        "credentialAlreadyInUse": "Ce compte est déjà utilisé par un autre utilisateur",
+        "providerAlreadyLinked": "Ce compte a déjà été associé"
+    },
+    "auth_success": {
+        "send_email_verification_snackbar_text": "Un email vous a été envoyé pour récupérer votre mot de passe"
     }
 }
