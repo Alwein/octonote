@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:octonote/application/constants/colors.dart';
 import 'package:octonote/application/constants/layout_values.dart';
 import 'package:octonote/application/utils/generic_blocs/generic_registration_bloc/generic_registration_bloc.dart';
+import 'package:octonote/locator.dart' as sl;
 import 'package:octonote/presentation/auth/bloc/auth_bloc.dart';
 import 'package:octonote/presentation/auth/pages/sign_in/bloc/sign_in_bloc.dart';
 import 'package:octonote/presentation/auth/widgets/auth_widgets.dart';
@@ -16,7 +17,7 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignInBloc(),
+      create: (context) => sl.getIt<SignInBloc>(),
       child: Scaffold(
         backgroundColor: OctonoteColors.primaryColor,
         body: SingleChildScrollView(

@@ -10,6 +10,8 @@ import 'package:octonote/domain/usecases/authentication/auth_usecases.dart';
 import 'package:octonote/domain/usecases/usecases.dart';
 import 'package:octonote/presentation/app/bloc/app_bloc.dart';
 import 'package:octonote/presentation/auth/bloc/auth_bloc.dart';
+import 'package:octonote/presentation/auth/pages/sign_in/bloc/sign_in_bloc.dart';
+import 'package:octonote/presentation/auth/pages/sign_up/bloc/sign_up_bloc.dart';
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
 
@@ -98,4 +100,7 @@ void init() {
       signInWithApple: getIt<SignInWithApple>(),
     ),
   );
+
+  getIt.registerFactory<SignInBloc>(() => SignInBloc());
+  getIt.registerFactory<SignUpBloc>(() => SignUpBloc());
 }

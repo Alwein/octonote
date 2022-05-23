@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:octonote/application/constants/colors.dart';
 import 'package:octonote/application/constants/layout_values.dart';
 import 'package:octonote/application/utils/generic_blocs/generic_registration_bloc/generic_registration_bloc.dart';
+import 'package:octonote/locator.dart' as sl;
 import 'package:octonote/presentation/auth/bloc/auth_bloc.dart';
 import 'package:octonote/presentation/auth/pages/sign_up/bloc/sign_up_bloc.dart';
 import 'package:octonote/presentation/auth/widgets/auth_widgets.dart';
@@ -14,7 +15,7 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignUpBloc(),
+      create: (context) => sl.getIt<SignUpBloc>(),
       child: Scaffold(
         appBar: const SignUpAppbar(),
         backgroundColor: OctonoteColors.primaryColor,
