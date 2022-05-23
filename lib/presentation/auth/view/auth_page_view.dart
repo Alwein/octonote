@@ -8,10 +8,10 @@ import 'package:octonote/presentation/auth/pages/welcome/welcome_view.dart';
 import 'package:octonote/presentation/auth/router/auth_router.dart';
 import 'package:octonote/presentation/widgets/octo_snackbar.dart';
 
-class AuthView extends StatelessWidget {
-  const AuthView({Key? key}) : super(key: key);
+class AuthPageView extends StatelessWidget {
+  const AuthPageView({Key? key}) : super(key: key);
 
-  static Page page() => const MaterialPage<void>(child: AuthView());
+  static Page page() => const MaterialPage<void>(child: AuthPageView());
 
   @override
   Widget build(BuildContext context) {
