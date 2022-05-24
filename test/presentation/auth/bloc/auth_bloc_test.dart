@@ -125,7 +125,7 @@ void main() {
       );
 
       blocTest<AuthBloc, AuthState>(
-        'should emit success on success',
+        'should emit failure on auth failure',
         setUp: () {
           when(
             () => registerWithEmailAndPassword(
