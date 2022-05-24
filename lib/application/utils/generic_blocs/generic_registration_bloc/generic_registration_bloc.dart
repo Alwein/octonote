@@ -20,7 +20,9 @@ abstract class GenericRegistrationBloc
   }
 
   FutureOr<void> _onPasswordChanged(
-      _PasswordChanged event, Emitter<GenericRegistrationState> emit) {
+    _PasswordChanged event,
+    Emitter<GenericRegistrationState> emit,
+  ) {
     emit(state.copyWith(password: PasswordInput.dirty(password: event.value)));
   }
 
