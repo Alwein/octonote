@@ -116,7 +116,7 @@ class MenuDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Divider(
       height: 0,
-      color: OctonoteColors.textColor.withAlpha(40),
+      color: OctonoteColors.darkColor.withAlpha(40),
     );
   }
 }
