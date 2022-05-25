@@ -5,7 +5,7 @@ import 'package:octonote/locator.dart' as sl;
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 import 'package:octonote/presentation/menu/view/menu_view.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
-import 'package:octonote/presentation/notepad/notepad_view.dart';
+import 'package:octonote/presentation/notepad/view/notepad_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

@@ -7,7 +7,7 @@ import 'package:octonote/domain/models/component/component.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
-import 'package:octonote/presentation/notepad/notepad_view.dart';
+import 'package:octonote/presentation/notepad/view/notepad_view.dart';
 import 'package:octonote/presentation/widgets/error_widgets/fetch_error.dart';
 import 'package:octonote/presentation/widgets/loading.dart';
 import 'package:octonote/presentation/widgets/notepad_app_bar.dart';
