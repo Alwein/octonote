@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'auth_failure.dart';
@@ -266,7 +267,7 @@ class _$_CancelledByUser
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthFailure.cancelledByUser'));
+    properties.add(DiagnosticsProperty('type', 'AuthFailure.cancelledByUser'));
   }
 
   @override
@@ -465,7 +466,7 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthFailure.serverError'));
+    properties.add(DiagnosticsProperty('type', 'AuthFailure.serverError'));
   }
 
   @override
@@ -668,7 +669,7 @@ class _$_EmailAlreadyInUse
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'AuthFailure.emailAlreadyInUse'));
+        .add(DiagnosticsProperty('type', 'AuthFailure.emailAlreadyInUse'));
   }
 
   @override
@@ -867,7 +868,7 @@ class _$_InvalidEmail with DiagnosticableTreeMixin implements _InvalidEmail {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthFailure.invalidEmail'));
+    properties.add(DiagnosticsProperty('type', 'AuthFailure.invalidEmail'));
   }
 
   @override
@@ -1070,7 +1071,7 @@ class _$_OperationNotAllowed
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'AuthFailure.operationNotAllowed'));
+        .add(DiagnosticsProperty('type', 'AuthFailure.operationNotAllowed'));
   }
 
   @override
@@ -1269,7 +1270,7 @@ class _$_UserDisabled with DiagnosticableTreeMixin implements _UserDisabled {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthFailure.userDisabled'));
+    properties.add(DiagnosticsProperty('type', 'AuthFailure.userDisabled'));
   }
 
   @override
@@ -1468,7 +1469,7 @@ class _$_WeakPassword with DiagnosticableTreeMixin implements _WeakPassword {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthFailure.weakPassword'));
+    properties.add(DiagnosticsProperty('type', 'AuthFailure.weakPassword'));
   }
 
   @override
@@ -1670,7 +1671,7 @@ class _$_WrongIosVersion
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthFailure.wrongIosVersion'));
+    properties.add(DiagnosticsProperty('type', 'AuthFailure.wrongIosVersion'));
   }
 
   @override
@@ -1869,7 +1870,7 @@ class _$_LogoutFailure with DiagnosticableTreeMixin implements _LogoutFailure {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthFailure.logoutFailure'));
+    properties.add(DiagnosticsProperty('type', 'AuthFailure.logoutFailure'));
   }
 
   @override
@@ -2074,9 +2075,8 @@ class _$_InvalidPasswordAndEmailCombination
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty(
-          'type', 'AuthFailure.invalidPasswordAndEmailCombination'));
+    properties.add(DiagnosticsProperty(
+        'type', 'AuthFailure.invalidPasswordAndEmailCombination'));
   }
 
   @override
@@ -2277,7 +2277,7 @@ class _$_UserMismatch with DiagnosticableTreeMixin implements _UserMismatch {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthFailure.userMismatch'));
+    properties.add(DiagnosticsProperty('type', 'AuthFailure.userMismatch'));
   }
 
   @override
@@ -2476,7 +2476,7 @@ class _$_UserNotFound with DiagnosticableTreeMixin implements _UserNotFound {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthFailure.userNotFound'));
+    properties.add(DiagnosticsProperty('type', 'AuthFailure.userNotFound'));
   }
 
   @override
@@ -2679,7 +2679,7 @@ class _$_InvalidCredential
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'AuthFailure.invalidCredential'));
+        .add(DiagnosticsProperty('type', 'AuthFailure.invalidCredential'));
   }
 
   @override
@@ -2878,7 +2878,7 @@ class _$_WrongPassword with DiagnosticableTreeMixin implements _WrongPassword {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthFailure.wrongPassword'));
+    properties.add(DiagnosticsProperty('type', 'AuthFailure.wrongPassword'));
   }
 
   @override
@@ -3081,7 +3081,7 @@ class _$_ProviderAlreadyLinked
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'AuthFailure.providerAlreadyLinked'));
+        .add(DiagnosticsProperty('type', 'AuthFailure.providerAlreadyLinked'));
   }
 
   @override
@@ -3284,7 +3284,7 @@ class _$_CredentialAlreadyInUse
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'AuthFailure.credentialAlreadyInUse'));
+        .add(DiagnosticsProperty('type', 'AuthFailure.credentialAlreadyInUse'));
   }
 
   @override

@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.16.1 <3.0.0"
+  sdk: ">=2.15.1 <3.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -47,8 +47,15 @@ dependencies:
   google_sign_in: ^5.3.0
   hive: ^2.1.0
   hive_flutter: ^1.1.0
+  logger: ^1.1.0
   shared_preferences: ^2.0.13
   sign_in_with_apple: ^3.3.0
+  
+  super_editor:
+    git:
+      url: https://github.com/superlistapp/super_editor.git
+      path: super_editor
+  super_text_layout: ^0.1.0
   uuid: ^3.0.6
 
 dev_dependencies:
