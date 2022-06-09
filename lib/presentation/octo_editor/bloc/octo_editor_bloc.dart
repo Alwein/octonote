@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:octonote/presentation/notepad/view/initial_document.dart';
 import 'package:super_editor/super_editor.dart';
 
 part 'octo_editor_bloc.freezed.dart';
@@ -11,47 +12,60 @@ part 'octo_editor_event.dart';
 part 'octo_editor_state.dart';
 
 class OctoEditorBloc extends Bloc<OctoEditorEvent, OctoEditorState> {
-  OctoEditorBloc() : super(const _Initial()) {
-    on<OctoEditorEvent>(_onHideOrShowToolbar);
-    on<OctoEditorEvent>(_onShowEditorToolbar);
-    on<OctoEditorEvent>(_onHideEditorToolbar);
-    on<OctoEditorEvent>(_onCut);
-    on<OctoEditorEvent>(_onCopy);
-    on<OctoEditorEvent>(_onPaste);
-    on<OctoEditorEvent>(_onSelectAll);
-    on<OctoEditorEvent>(_onShowImageToolbar);
-    on<OctoEditorEvent>(_onHideImageToolbar);
+  OctoEditorBloc() : super(const _OctoEditorState()) {
+    initState(createInitialDocument());
+    on<_HideOrShowToolbar>(_onHideOrShowToolbar);
+    on<_ShowEditorToolbar>(_onShowEditorToolbar);
+    on<_HideEditorToolbar>(_onHideEditorToolbar);
+    on<_Cut>(_onCut);
+    on<_Copy>(_onCopy);
+    on<_Paste>(_onPaste);
+    on<_SelectAll>(_onSelectAll);
+    on<_ShowImageToolbar>(_onShowImageToolbar);
+    on<_HideImageToolbar>(_onHideImageToolbar);
   }
-  final GlobalKey _docLayoutKey = GlobalKey();
+  final GlobalKey docLayoutKey = GlobalKey();
 
-  late Document _doc;
-  late DocumentEditor _docEditor;
-  late DocumentComposer _composer;
-  late CommonEditorOperations _docOps;
+  late Document doc;
+  late DocumentEditor docEditor;
+  late DocumentComposer composer;
+  late CommonEditorOperations docOps;
 
-  late FocusNode _editorFocusNode;
+  late FocusNode editorFocusNode;
 
-  late ScrollController _scrollController;
+  late ScrollController scrollController;
 
-  OverlayEntry? _textFormatBarOverlayEntry;
-  final _textSelectionAnchor = ValueNotifier<Offset?>(null);
+  OverlayEntry? textFormatBarOverlayEntry;
+  final textSelectionAnchor = ValueNotifier<Offset?>(null);
 
-  OverlayEntry? _imageFormatBarOverlayEntry;
-  final _imageSelectionAnchor = ValueNotifier<Offset?>(null);
+  OverlayEntry? imageFormatBarOverlayEntry;
+  final imageSelectionAnchor = ValueNotifier<Offset?>(null);
 
   void initState(Document document) {
-    _doc = document..addListener(() => add(const OctoEditorEvent.hideOrShowToolbar()));
-    _docEditor = DocumentEditor(document: _doc as MutableDocument);
-    _composer = DocumentComposer()
+    doc = document..addListener(() => add(const OctoEditorEvent.hideOrShowToolbar()));
+    docEditor = DocumentEditor(document: doc as MutableDocument);
+    composer = DocumentComposer()
       ..addListener(() => add(const OctoEditorEvent.hideOrShowToolbar()));
-    _docOps = CommonEditorOperations(
-      editor: _docEditor,
-      composer: _composer,
-      documentLayoutResolver: () => _docLayoutKey.currentState as DocumentLayout,
+    docOps = CommonEditorOperations(
+      editor: docEditor,
+      composer: composer,
+      documentLayoutResolver: () => docLayoutKey.currentState as DocumentLayout,
     );
-    _editorFocusNode = FocusNode();
-    _scrollController = ScrollController()
+    editorFocusNode = FocusNode();
+    scrollController = ScrollController()
       ..addListener(() => add(const OctoEditorEvent.hideOrShowToolbar()));
+  }
+
+  @override
+  Future<void> close() {
+    if (textFormatBarOverlayEntry != null) {
+      textFormatBarOverlayEntry!.remove();
+    }
+
+    scrollController.dispose();
+    editorFocusNode.dispose();
+    composer.dispose();
+    return super.close();
   }
 
   void _onHideOrShowToolbar(OctoEditorEvent event, Emitter<OctoEditorState> emit) {
@@ -61,7 +75,7 @@ class OctoEditorBloc extends Bloc<OctoEditorEvent, OctoEditorState> {
       return;
     }
 
-    final selection = _composer.selection;
+    final selection = composer.selection;
     if (selection == null) {
       // Nothing is selected. We don't want to show a toolbar
       // in this case.
@@ -83,7 +97,7 @@ class OctoEditorBloc extends Bloc<OctoEditorEvent, OctoEditorState> {
       return;
     }
 
-    final selectedNode = _doc.getNodeById(selection.extent.nodeId);
+    final selectedNode = doc.getNodeById(selection.extent.nodeId);
 
     if (selectedNode is ImageNode) {
       // Show the editor's toolbar for image sizing.
@@ -109,55 +123,24 @@ class OctoEditorBloc extends Bloc<OctoEditorEvent, OctoEditorState> {
   }
 
   void _onShowEditorToolbar(OctoEditorEvent event, Emitter<OctoEditorState> emit) {
-    // TODO: implements me and add bool in state
+    emit(state.copyWith(showEditorToolBar: true));
   }
 
   void _onHideEditorToolbar(OctoEditorEvent event, Emitter<OctoEditorState> emit) {
-    // Null out the selection anchor so that when it re-appears,
-    // the bar doesn't momentarily "flash" at its old anchor position.
-    _textSelectionAnchor.value = null;
-
-    if (_textFormatBarOverlayEntry != null) {
-      // Remove the toolbar overlay and null-out the entry.
-      // We null out the entry because we can't query whether
-      // or not the entry exists in the overlay, so in our
-      // case, null implies the entry is not in the overlay,
-      // and non-null implies the entry is in the overlay.
-      _textFormatBarOverlayEntry!.remove();
-      _textFormatBarOverlayEntry = null;
-    }
-
-    // Ensure that focus returns to the editor.
-    //
-    // I tried explicitly unfocus()'ing the URL textfield
-    // in the toolbar but it didn't return focus to the
-    // editor. I'm not sure why.
-    _editorFocusNode.requestFocus();
+    emit(state.copyWith(showEditorToolBar: false));
   }
 
-  void _onCut(OctoEditorEvent event, Emitter<OctoEditorState> emit) => _docOps.cut();
-  void _onCopy(OctoEditorEvent event, Emitter<OctoEditorState> emit) => _docOps.copy();
-  void _onPaste(OctoEditorEvent event, Emitter<OctoEditorState> emit) => _docOps.paste();
-  void _onSelectAll(OctoEditorEvent event, Emitter<OctoEditorState> emit) => _docOps.selectAll();
-  FutureOr<void> _onShowImageToolbar(OctoEditorEvent event, Emitter<OctoEditorState> emit) {}
+  void _onCut(OctoEditorEvent event, Emitter<OctoEditorState> emit) => docOps.cut();
+  void _onCopy(OctoEditorEvent event, Emitter<OctoEditorState> emit) => docOps.copy();
+  void _onPaste(OctoEditorEvent event, Emitter<OctoEditorState> emit) => docOps.paste();
+  void _onSelectAll(OctoEditorEvent event, Emitter<OctoEditorState> emit) => docOps.selectAll();
+
+  FutureOr<void> _onShowImageToolbar(OctoEditorEvent event, Emitter<OctoEditorState> emit) {
+    emit(state.copyWith(showImageToolBar: true));
+  }
 
   FutureOr<void> _onHideImageToolbar(OctoEditorEvent event, Emitter<OctoEditorState> emit) {
-    // Null out the selection anchor so that when the bar re-appears,
-    // it doesn't momentarily "flash" at its old anchor position.
-    _imageSelectionAnchor.value = null;
-
-    if (_imageFormatBarOverlayEntry != null) {
-      // Remove the image toolbar overlay and null-out the entry.
-      // We null out the entry because we can't query whether
-      // or not the entry exists in the overlay, so in our
-      // case, null implies the entry is not in the overlay,
-      // and non-null implies the entry is in the overlay.
-      _imageFormatBarOverlayEntry!.remove();
-      _imageFormatBarOverlayEntry = null;
-    }
-
-    // Ensure that focus returns to the editor.
-    _editorFocusNode.requestFocus();
+    emit(state.copyWith(showImageToolBar: false));
   }
 }
 

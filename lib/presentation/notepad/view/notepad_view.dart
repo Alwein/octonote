@@ -6,7 +6,7 @@ import 'package:octonote/domain/models/component/component.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
-import 'package:octonote/presentation/notepad/view/example_editor.dart';
+import 'package:octonote/presentation/octo_editor/view/octo_editor_view.dart';
 import 'package:octonote/presentation/widgets/component_content/text_component.dart';
 import 'package:octonote/presentation/widgets/notepad_app_bar.dart';
 
@@ -22,7 +22,7 @@ class Notepad extends StatelessWidget {
           drawer: drawer,
           backgroundColor: Theme.of(context).backgroundColor,
           appBar: NotepadAppBar(),
-          body: OctonoteEditor(),
+          body: OctoEditor(),
           // body: state.status.map(
           //   initial: (_) => Container(),
           //   fetchInProgress: (_) => const Center(child: Loading()),

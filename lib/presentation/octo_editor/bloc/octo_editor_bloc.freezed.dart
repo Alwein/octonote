@@ -180,12 +180,21 @@ class __$HideOrShowToolbarCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HideOrShowToolbar implements _HideOrShowToolbar {
+class _$_HideOrShowToolbar
+    with DiagnosticableTreeMixin
+    implements _HideOrShowToolbar {
   const _$_HideOrShowToolbar();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'OctoEditorEvent.hideOrShowToolbar()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'OctoEditorEvent.hideOrShowToolbar'));
   }
 
   @override
@@ -327,12 +336,21 @@ class __$ShowEditorToolbarCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ShowEditorToolbar implements _ShowEditorToolbar {
+class _$_ShowEditorToolbar
+    with DiagnosticableTreeMixin
+    implements _ShowEditorToolbar {
   const _$_ShowEditorToolbar();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'OctoEditorEvent.showEditorToolbar()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'OctoEditorEvent.showEditorToolbar'));
   }
 
   @override
@@ -474,12 +492,21 @@ class __$HideEditorToolbarCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HideEditorToolbar implements _HideEditorToolbar {
+class _$_HideEditorToolbar
+    with DiagnosticableTreeMixin
+    implements _HideEditorToolbar {
   const _$_HideEditorToolbar();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'OctoEditorEvent.hideEditorToolbar()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'OctoEditorEvent.hideEditorToolbar'));
   }
 
   @override
@@ -618,12 +645,18 @@ class __$CutCopyWithImpl<$Res> extends _$OctoEditorEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Cut implements _Cut {
+class _$_Cut with DiagnosticableTreeMixin implements _Cut {
   const _$_Cut();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'OctoEditorEvent.cut()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'OctoEditorEvent.cut'));
   }
 
   @override
@@ -762,12 +795,18 @@ class __$CopyCopyWithImpl<$Res> extends _$OctoEditorEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Copy implements _Copy {
+class _$_Copy with DiagnosticableTreeMixin implements _Copy {
   const _$_Copy();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'OctoEditorEvent.copy()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'OctoEditorEvent.copy'));
   }
 
   @override
@@ -906,12 +945,18 @@ class __$PasteCopyWithImpl<$Res> extends _$OctoEditorEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Paste implements _Paste {
+class _$_Paste with DiagnosticableTreeMixin implements _Paste {
   const _$_Paste();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'OctoEditorEvent.paste()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'OctoEditorEvent.paste'));
   }
 
   @override
@@ -1051,12 +1096,18 @@ class __$SelectAllCopyWithImpl<$Res> extends _$OctoEditorEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SelectAll implements _SelectAll {
+class _$_SelectAll with DiagnosticableTreeMixin implements _SelectAll {
   const _$_SelectAll();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'OctoEditorEvent.selectAll()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'OctoEditorEvent.selectAll'));
   }
 
   @override
@@ -1198,12 +1249,21 @@ class __$ShowImageToolbarCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ShowImageToolbar implements _ShowImageToolbar {
+class _$_ShowImageToolbar
+    with DiagnosticableTreeMixin
+    implements _ShowImageToolbar {
   const _$_ShowImageToolbar();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'OctoEditorEvent.showImageToolbar()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'OctoEditorEvent.showImageToolbar'));
   }
 
   @override
@@ -1345,12 +1405,21 @@ class __$HideImageToolbarCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HideImageToolbar implements _HideImageToolbar {
+class _$_HideImageToolbar
+    with DiagnosticableTreeMixin
+    implements _HideImageToolbar {
   const _$_HideImageToolbar();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'OctoEditorEvent.hideImageToolbar()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'OctoEditorEvent.hideImageToolbar'));
   }
 
   @override
@@ -1475,8 +1544,12 @@ abstract class _HideImageToolbar implements OctoEditorEvent {
 class _$OctoEditorStateTearOff {
   const _$OctoEditorStateTearOff();
 
-  _Initial initial() {
-    return const _Initial();
+  _OctoEditorState call(
+      {bool showEditorToolBar = false, bool showImageToolBar = false}) {
+    return _OctoEditorState(
+      showEditorToolBar: showEditorToolBar,
+      showImageToolBar: showImageToolBar,
+    );
   }
 }
 
@@ -1485,37 +1558,11 @@ const $OctoEditorState = _$OctoEditorStateTearOff();
 
 /// @nodoc
 mixin _$OctoEditorState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  bool get showEditorToolBar => throw _privateConstructorUsedError;
+  bool get showImageToolBar => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $OctoEditorStateCopyWith<OctoEditorState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1524,6 +1571,7 @@ abstract class $OctoEditorStateCopyWith<$Res> {
   factory $OctoEditorStateCopyWith(
           OctoEditorState value, $Res Function(OctoEditorState) then) =
       _$OctoEditorStateCopyWithImpl<$Res>;
+  $Res call({bool showEditorToolBar, bool showImageToolBar});
 }
 
 /// @nodoc
@@ -1534,100 +1582,126 @@ class _$OctoEditorStateCopyWithImpl<$Res>
   final OctoEditorState _value;
   // ignore: unused_field
   final $Res Function(OctoEditorState) _then;
-}
-
-/// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$OctoEditorStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  $Res call({
+    Object? showEditorToolBar = freezed,
+    Object? showImageToolBar = freezed,
+  }) {
+    return _then(_value.copyWith(
+      showEditorToolBar: showEditorToolBar == freezed
+          ? _value.showEditorToolBar
+          : showEditorToolBar // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showImageToolBar: showImageToolBar == freezed
+          ? _value.showImageToolBar
+          : showImageToolBar // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$OctoEditorStateCopyWith<$Res>
+    implements $OctoEditorStateCopyWith<$Res> {
+  factory _$OctoEditorStateCopyWith(
+          _OctoEditorState value, $Res Function(_OctoEditorState) then) =
+      __$OctoEditorStateCopyWithImpl<$Res>;
+  @override
+  $Res call({bool showEditorToolBar, bool showImageToolBar});
+}
+
+/// @nodoc
+class __$OctoEditorStateCopyWithImpl<$Res>
+    extends _$OctoEditorStateCopyWithImpl<$Res>
+    implements _$OctoEditorStateCopyWith<$Res> {
+  __$OctoEditorStateCopyWithImpl(
+      _OctoEditorState _value, $Res Function(_OctoEditorState) _then)
+      : super(_value, (v) => _then(v as _OctoEditorState));
+
+  @override
+  _OctoEditorState get _value => super._value as _OctoEditorState;
+
+  @override
+  $Res call({
+    Object? showEditorToolBar = freezed,
+    Object? showImageToolBar = freezed,
+  }) {
+    return _then(_OctoEditorState(
+      showEditorToolBar: showEditorToolBar == freezed
+          ? _value.showEditorToolBar
+          : showEditorToolBar // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showImageToolBar: showImageToolBar == freezed
+          ? _value.showImageToolBar
+          : showImageToolBar // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$_OctoEditorState
+    with DiagnosticableTreeMixin
+    implements _OctoEditorState {
+  const _$_OctoEditorState(
+      {this.showEditorToolBar = false, this.showImageToolBar = false});
+
+  @JsonKey()
+  @override
+  final bool showEditorToolBar;
+  @JsonKey()
+  @override
+  final bool showImageToolBar;
 
   @override
-  String toString() {
-    return 'OctoEditorState.initial()';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'OctoEditorState(showEditorToolBar: $showEditorToolBar, showImageToolBar: $showImageToolBar)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'OctoEditorState'))
+      ..add(DiagnosticsProperty('showEditorToolBar', showEditorToolBar))
+      ..add(DiagnosticsProperty('showImageToolBar', showImageToolBar));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
+        (other.runtimeType == runtimeType &&
+            other is _OctoEditorState &&
+            const DeepCollectionEquality()
+                .equals(other.showEditorToolBar, showEditorToolBar) &&
+            const DeepCollectionEquality()
+                .equals(other.showImageToolBar, showImageToolBar));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(showEditorToolBar),
+      const DeepCollectionEquality().hash(showImageToolBar));
 
+  @JsonKey(ignore: true)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+  _$OctoEditorStateCopyWith<_OctoEditorState> get copyWith =>
+      __$OctoEditorStateCopyWithImpl<_OctoEditorState>(this, _$identity);
 }
 
-abstract class _Initial implements OctoEditorState {
-  const factory _Initial() = _$_Initial;
+abstract class _OctoEditorState implements OctoEditorState {
+  const factory _OctoEditorState(
+      {bool showEditorToolBar, bool showImageToolBar}) = _$_OctoEditorState;
+
+  @override
+  bool get showEditorToolBar;
+  @override
+  bool get showImageToolBar;
+  @override
+  @JsonKey(ignore: true)
+  _$OctoEditorStateCopyWith<_OctoEditorState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

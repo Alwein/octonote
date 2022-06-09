@@ -12,14 +12,3 @@ class OctoEditorEvent with _$OctoEditorEvent {
   const factory OctoEditorEvent.showImageToolbar() = _ShowImageToolbar;
   const factory OctoEditorEvent.hideImageToolbar() = _HideImageToolbar;
 }
-
-// -- Mehods --
-// hideOrShowToolbar
-// showEditorToolbar
-// hideEditorToolbar
-// cut
-// copy
-// paste
-// selectAll
-// showImageToolbar
-// hideImageToolbar
