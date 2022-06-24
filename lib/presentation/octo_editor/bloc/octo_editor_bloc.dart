@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:octonote/presentation/notepad/view/initial_document.dart';
+import 'package:octonote/application/utils/debouncer.dart';
 import 'package:super_editor/super_editor.dart';
 
 part 'octo_editor_bloc.freezed.dart';
@@ -12,8 +12,9 @@ part 'octo_editor_event.dart';
 part 'octo_editor_state.dart';
 
 class OctoEditorBloc extends Bloc<OctoEditorEvent, OctoEditorState> {
-  OctoEditorBloc() : super(const _OctoEditorState()) {
-    initState(createInitialDocument());
+  OctoEditorBloc({required this.onSaveDocument, required Document initialDocument})
+      : super(const _OctoEditorState()) {
+    initState(initialDocument);
     on<_HideOrShowToolbar>(_onHideOrShowToolbar);
     on<_ShowEditorToolbar>(_onShowEditorToolbar);
     on<_HideEditorToolbar>(_onHideEditorToolbar);
@@ -41,8 +42,12 @@ class OctoEditorBloc extends Bloc<OctoEditorEvent, OctoEditorState> {
   OverlayEntry? imageFormatBarOverlayEntry;
   final imageSelectionAnchor = ValueNotifier<Offset?>(null);
 
+  late Debouncer _saveDebouncer;
+
+  final void Function(Document) onSaveDocument;
+
   void initState(Document document) {
-    doc = document..addListener(() => add(const OctoEditorEvent.hideOrShowToolbar()));
+    doc = document..addListener(_onDocumentChangeUdpate);
     docEditor = DocumentEditor(document: doc as MutableDocument);
     composer = DocumentComposer()
       ..addListener(() => add(const OctoEditorEvent.hideOrShowToolbar()));
@@ -54,6 +59,14 @@ class OctoEditorBloc extends Bloc<OctoEditorEvent, OctoEditorState> {
     editorFocusNode = FocusNode();
     scrollController = ScrollController()
       ..addListener(() => add(const OctoEditorEvent.hideOrShowToolbar()));
+    _saveDebouncer = Debouncer(milliseconds: 1000);
+  }
+
+  void _onDocumentChangeUdpate() {
+    add(const OctoEditorEvent.hideOrShowToolbar());
+    _saveDebouncer.run(() {
+      onSaveDocument(doc);
+    });
   }
 
   @override

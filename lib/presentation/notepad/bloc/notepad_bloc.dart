@@ -30,6 +30,7 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
         removeComponent: (event) => _onRemoveComponent(event, emit),
         componentSelected: (event) => _onComponentSelected(event, emit),
         createEmptyComponent: (event) => _onCreateEmptyComponent(event, emit),
+        saveAll: (event) => _onSaveAll(event, emit),
       ),
     );
   }
@@ -110,5 +111,14 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
         component: ComponentFactory.createOne(index: index, page: state.notePage),
       ),
     );
+  }
+
+  FutureOr<void> _onSaveAll(_SaveAllComponents event, Emitter<NotePadState> emit) async {
+    for (final component in state.components) {
+      add(NotePadEvent.removeComponent(component: component));
+    }
+    for (final component in event.components) {
+      add(NotePadEvent.addComponent(component: component));
+    }
   }
 }

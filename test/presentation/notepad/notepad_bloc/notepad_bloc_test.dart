@@ -50,7 +50,7 @@ void main() {
       );
     }
 
-    const componentContent = ComponentContent.text(text: "text");
+    const componentContent = ComponentContent.text(content: "text");
 
     final exampleComponent = Component(
       id: "id",
@@ -141,7 +141,7 @@ void main() {
     });
     group("updateComponent", () {
       final Component updatedComponent =
-          exampleComponent.copyWith(content: const ComponentContent.title1(text: 'text'));
+          exampleComponent.copyWith(content: const ComponentContent.title1(content: 'text'));
       blocTest<NotePadBloc, NotePadState>(
         'should emit same state with an updated list of components',
         setUp: () {
@@ -252,7 +252,7 @@ void main() {
         id: 'test',
         index: 0,
         pageId: exampleNotePage.id,
-        content: const ComponentContent.text(text: ''),
+        content: const ComponentContent.text(content: ''),
       );
 
       blocTest<NotePadBloc, NotePadState>(

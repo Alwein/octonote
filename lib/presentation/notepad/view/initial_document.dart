@@ -1,5 +1,5 @@
 import 'package:flutter/rendering.dart';
-import 'package:octonote/presentation/notepad/view/tasks.dart';
+import 'package:octonote/presentation/octo_editor/widgets/tasks.dart';
 import 'package:super_editor/super_editor.dart';
 
 Document createInitialDocument() {
@@ -97,24 +97,6 @@ Document createInitialDocument() {
         metadata: {
           'blockType': header2Attribution,
         },
-      ),
-      ListItemNode.unordered(
-        id: DocumentEditor.createNodeId(),
-        text: AttributedText(
-          text: "Acceuillir Pierre mercredi",
-        ),
-      ),
-      ListItemNode.unordered(
-        id: DocumentEditor.createNodeId(),
-        text: AttributedText(
-          text: "Terminer la task n°2",
-        ),
-      ),
-      ListItemNode.unordered(
-        id: DocumentEditor.createNodeId(),
-        text: AttributedText(
-          text: "Publier octonote sur le web ?",
-        ),
       ),
     ],
   );

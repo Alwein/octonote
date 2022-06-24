@@ -7,7 +7,7 @@ class ComponentFactory {
   static Component createOne({
     required int index,
     required NotePage page,
-    ComponentContent content = const ComponentContent.text(text: ""),
+    ComponentContent content = const ComponentContent.text(content: ""),
   }) {
     return Component(
       id: generateRandomId(),

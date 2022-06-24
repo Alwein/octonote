@@ -53,6 +53,12 @@ class _$NotePadEventTearOff {
       index: index,
     );
   }
+
+  _SaveAllComponents saveAll({required List<Component> components}) {
+    return _SaveAllComponents(
+      components: components,
+    );
+  }
 }
 
 /// @nodoc
@@ -68,6 +74,7 @@ mixin _$NotePadEvent {
     required TResult Function(Component component) removeComponent,
     required TResult Function(Component component) componentSelected,
     required TResult Function(int? index) createEmptyComponent,
+    required TResult Function(List<Component> components) saveAll,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,6 +85,7 @@ mixin _$NotePadEvent {
     TResult Function(Component component)? removeComponent,
     TResult Function(Component component)? componentSelected,
     TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -88,6 +96,7 @@ mixin _$NotePadEvent {
     TResult Function(Component component)? removeComponent,
     TResult Function(Component component)? componentSelected,
     TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -99,6 +108,7 @@ mixin _$NotePadEvent {
     required TResult Function(_RemoveComponent value) removeComponent,
     required TResult Function(_ComponentSelected value) componentSelected,
     required TResult Function(_CreateEmptyComponent value) createEmptyComponent,
+    required TResult Function(_SaveAllComponents value) saveAll,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -109,6 +119,7 @@ mixin _$NotePadEvent {
     TResult Function(_RemoveComponent value)? removeComponent,
     TResult Function(_ComponentSelected value)? componentSelected,
     TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -119,6 +130,7 @@ mixin _$NotePadEvent {
     TResult Function(_RemoveComponent value)? removeComponent,
     TResult Function(_ComponentSelected value)? componentSelected,
     TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -219,6 +231,7 @@ class _$_FetchStarted implements _FetchStarted {
     required TResult Function(Component component) removeComponent,
     required TResult Function(Component component) componentSelected,
     required TResult Function(int? index) createEmptyComponent,
+    required TResult Function(List<Component> components) saveAll,
   }) {
     return fetchStarted(notePage);
   }
@@ -232,6 +245,7 @@ class _$_FetchStarted implements _FetchStarted {
     TResult Function(Component component)? removeComponent,
     TResult Function(Component component)? componentSelected,
     TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
   }) {
     return fetchStarted?.call(notePage);
   }
@@ -245,6 +259,7 @@ class _$_FetchStarted implements _FetchStarted {
     TResult Function(Component component)? removeComponent,
     TResult Function(Component component)? componentSelected,
     TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
     required TResult orElse(),
   }) {
     if (fetchStarted != null) {
@@ -262,6 +277,7 @@ class _$_FetchStarted implements _FetchStarted {
     required TResult Function(_RemoveComponent value) removeComponent,
     required TResult Function(_ComponentSelected value) componentSelected,
     required TResult Function(_CreateEmptyComponent value) createEmptyComponent,
+    required TResult Function(_SaveAllComponents value) saveAll,
   }) {
     return fetchStarted(this);
   }
@@ -275,6 +291,7 @@ class _$_FetchStarted implements _FetchStarted {
     TResult Function(_RemoveComponent value)? removeComponent,
     TResult Function(_ComponentSelected value)? componentSelected,
     TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
   }) {
     return fetchStarted?.call(this);
   }
@@ -288,6 +305,7 @@ class _$_FetchStarted implements _FetchStarted {
     TResult Function(_RemoveComponent value)? removeComponent,
     TResult Function(_ComponentSelected value)? componentSelected,
     TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
     required TResult orElse(),
   }) {
     if (fetchStarted != null) {
@@ -385,6 +403,7 @@ class _$_AddComponent implements _AddComponent {
     required TResult Function(Component component) removeComponent,
     required TResult Function(Component component) componentSelected,
     required TResult Function(int? index) createEmptyComponent,
+    required TResult Function(List<Component> components) saveAll,
   }) {
     return addComponent(component);
   }
@@ -398,6 +417,7 @@ class _$_AddComponent implements _AddComponent {
     TResult Function(Component component)? removeComponent,
     TResult Function(Component component)? componentSelected,
     TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
   }) {
     return addComponent?.call(component);
   }
@@ -411,6 +431,7 @@ class _$_AddComponent implements _AddComponent {
     TResult Function(Component component)? removeComponent,
     TResult Function(Component component)? componentSelected,
     TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
     required TResult orElse(),
   }) {
     if (addComponent != null) {
@@ -428,6 +449,7 @@ class _$_AddComponent implements _AddComponent {
     required TResult Function(_RemoveComponent value) removeComponent,
     required TResult Function(_ComponentSelected value) componentSelected,
     required TResult Function(_CreateEmptyComponent value) createEmptyComponent,
+    required TResult Function(_SaveAllComponents value) saveAll,
   }) {
     return addComponent(this);
   }
@@ -441,6 +463,7 @@ class _$_AddComponent implements _AddComponent {
     TResult Function(_RemoveComponent value)? removeComponent,
     TResult Function(_ComponentSelected value)? componentSelected,
     TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
   }) {
     return addComponent?.call(this);
   }
@@ -454,6 +477,7 @@ class _$_AddComponent implements _AddComponent {
     TResult Function(_RemoveComponent value)? removeComponent,
     TResult Function(_ComponentSelected value)? componentSelected,
     TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
     required TResult orElse(),
   }) {
     if (addComponent != null) {
@@ -552,6 +576,7 @@ class _$_UpdateComponent implements _UpdateComponent {
     required TResult Function(Component component) removeComponent,
     required TResult Function(Component component) componentSelected,
     required TResult Function(int? index) createEmptyComponent,
+    required TResult Function(List<Component> components) saveAll,
   }) {
     return updateComponent(component);
   }
@@ -565,6 +590,7 @@ class _$_UpdateComponent implements _UpdateComponent {
     TResult Function(Component component)? removeComponent,
     TResult Function(Component component)? componentSelected,
     TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
   }) {
     return updateComponent?.call(component);
   }
@@ -578,6 +604,7 @@ class _$_UpdateComponent implements _UpdateComponent {
     TResult Function(Component component)? removeComponent,
     TResult Function(Component component)? componentSelected,
     TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
     required TResult orElse(),
   }) {
     if (updateComponent != null) {
@@ -595,6 +622,7 @@ class _$_UpdateComponent implements _UpdateComponent {
     required TResult Function(_RemoveComponent value) removeComponent,
     required TResult Function(_ComponentSelected value) componentSelected,
     required TResult Function(_CreateEmptyComponent value) createEmptyComponent,
+    required TResult Function(_SaveAllComponents value) saveAll,
   }) {
     return updateComponent(this);
   }
@@ -608,6 +636,7 @@ class _$_UpdateComponent implements _UpdateComponent {
     TResult Function(_RemoveComponent value)? removeComponent,
     TResult Function(_ComponentSelected value)? componentSelected,
     TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
   }) {
     return updateComponent?.call(this);
   }
@@ -621,6 +650,7 @@ class _$_UpdateComponent implements _UpdateComponent {
     TResult Function(_RemoveComponent value)? removeComponent,
     TResult Function(_ComponentSelected value)? componentSelected,
     TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
     required TResult orElse(),
   }) {
     if (updateComponent != null) {
@@ -720,6 +750,7 @@ class _$_RemoveComponent implements _RemoveComponent {
     required TResult Function(Component component) removeComponent,
     required TResult Function(Component component) componentSelected,
     required TResult Function(int? index) createEmptyComponent,
+    required TResult Function(List<Component> components) saveAll,
   }) {
     return removeComponent(component);
   }
@@ -733,6 +764,7 @@ class _$_RemoveComponent implements _RemoveComponent {
     TResult Function(Component component)? removeComponent,
     TResult Function(Component component)? componentSelected,
     TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
   }) {
     return removeComponent?.call(component);
   }
@@ -746,6 +778,7 @@ class _$_RemoveComponent implements _RemoveComponent {
     TResult Function(Component component)? removeComponent,
     TResult Function(Component component)? componentSelected,
     TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
     required TResult orElse(),
   }) {
     if (removeComponent != null) {
@@ -763,6 +796,7 @@ class _$_RemoveComponent implements _RemoveComponent {
     required TResult Function(_RemoveComponent value) removeComponent,
     required TResult Function(_ComponentSelected value) componentSelected,
     required TResult Function(_CreateEmptyComponent value) createEmptyComponent,
+    required TResult Function(_SaveAllComponents value) saveAll,
   }) {
     return removeComponent(this);
   }
@@ -776,6 +810,7 @@ class _$_RemoveComponent implements _RemoveComponent {
     TResult Function(_RemoveComponent value)? removeComponent,
     TResult Function(_ComponentSelected value)? componentSelected,
     TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
   }) {
     return removeComponent?.call(this);
   }
@@ -789,6 +824,7 @@ class _$_RemoveComponent implements _RemoveComponent {
     TResult Function(_RemoveComponent value)? removeComponent,
     TResult Function(_ComponentSelected value)? componentSelected,
     TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
     required TResult orElse(),
   }) {
     if (removeComponent != null) {
@@ -888,6 +924,7 @@ class _$_ComponentSelected implements _ComponentSelected {
     required TResult Function(Component component) removeComponent,
     required TResult Function(Component component) componentSelected,
     required TResult Function(int? index) createEmptyComponent,
+    required TResult Function(List<Component> components) saveAll,
   }) {
     return componentSelected(component);
   }
@@ -901,6 +938,7 @@ class _$_ComponentSelected implements _ComponentSelected {
     TResult Function(Component component)? removeComponent,
     TResult Function(Component component)? componentSelected,
     TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
   }) {
     return componentSelected?.call(component);
   }
@@ -914,6 +952,7 @@ class _$_ComponentSelected implements _ComponentSelected {
     TResult Function(Component component)? removeComponent,
     TResult Function(Component component)? componentSelected,
     TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
     required TResult orElse(),
   }) {
     if (componentSelected != null) {
@@ -931,6 +970,7 @@ class _$_ComponentSelected implements _ComponentSelected {
     required TResult Function(_RemoveComponent value) removeComponent,
     required TResult Function(_ComponentSelected value) componentSelected,
     required TResult Function(_CreateEmptyComponent value) createEmptyComponent,
+    required TResult Function(_SaveAllComponents value) saveAll,
   }) {
     return componentSelected(this);
   }
@@ -944,6 +984,7 @@ class _$_ComponentSelected implements _ComponentSelected {
     TResult Function(_RemoveComponent value)? removeComponent,
     TResult Function(_ComponentSelected value)? componentSelected,
     TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
   }) {
     return componentSelected?.call(this);
   }
@@ -957,6 +998,7 @@ class _$_ComponentSelected implements _ComponentSelected {
     TResult Function(_RemoveComponent value)? removeComponent,
     TResult Function(_ComponentSelected value)? componentSelected,
     TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
     required TResult orElse(),
   }) {
     if (componentSelected != null) {
@@ -1048,6 +1090,7 @@ class _$_CreateEmptyComponent implements _CreateEmptyComponent {
     required TResult Function(Component component) removeComponent,
     required TResult Function(Component component) componentSelected,
     required TResult Function(int? index) createEmptyComponent,
+    required TResult Function(List<Component> components) saveAll,
   }) {
     return createEmptyComponent(index);
   }
@@ -1061,6 +1104,7 @@ class _$_CreateEmptyComponent implements _CreateEmptyComponent {
     TResult Function(Component component)? removeComponent,
     TResult Function(Component component)? componentSelected,
     TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
   }) {
     return createEmptyComponent?.call(index);
   }
@@ -1074,6 +1118,7 @@ class _$_CreateEmptyComponent implements _CreateEmptyComponent {
     TResult Function(Component component)? removeComponent,
     TResult Function(Component component)? componentSelected,
     TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
     required TResult orElse(),
   }) {
     if (createEmptyComponent != null) {
@@ -1091,6 +1136,7 @@ class _$_CreateEmptyComponent implements _CreateEmptyComponent {
     required TResult Function(_RemoveComponent value) removeComponent,
     required TResult Function(_ComponentSelected value) componentSelected,
     required TResult Function(_CreateEmptyComponent value) createEmptyComponent,
+    required TResult Function(_SaveAllComponents value) saveAll,
   }) {
     return createEmptyComponent(this);
   }
@@ -1104,6 +1150,7 @@ class _$_CreateEmptyComponent implements _CreateEmptyComponent {
     TResult Function(_RemoveComponent value)? removeComponent,
     TResult Function(_ComponentSelected value)? componentSelected,
     TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
   }) {
     return createEmptyComponent?.call(this);
   }
@@ -1117,6 +1164,7 @@ class _$_CreateEmptyComponent implements _CreateEmptyComponent {
     TResult Function(_RemoveComponent value)? removeComponent,
     TResult Function(_ComponentSelected value)? componentSelected,
     TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
     required TResult orElse(),
   }) {
     if (createEmptyComponent != null) {
@@ -1132,6 +1180,172 @@ abstract class _CreateEmptyComponent implements NotePadEvent {
   int? get index;
   @JsonKey(ignore: true)
   _$CreateEmptyComponentCopyWith<_CreateEmptyComponent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$SaveAllComponentsCopyWith<$Res> {
+  factory _$SaveAllComponentsCopyWith(
+          _SaveAllComponents value, $Res Function(_SaveAllComponents) then) =
+      __$SaveAllComponentsCopyWithImpl<$Res>;
+  $Res call({List<Component> components});
+}
+
+/// @nodoc
+class __$SaveAllComponentsCopyWithImpl<$Res>
+    extends _$NotePadEventCopyWithImpl<$Res>
+    implements _$SaveAllComponentsCopyWith<$Res> {
+  __$SaveAllComponentsCopyWithImpl(
+      _SaveAllComponents _value, $Res Function(_SaveAllComponents) _then)
+      : super(_value, (v) => _then(v as _SaveAllComponents));
+
+  @override
+  _SaveAllComponents get _value => super._value as _SaveAllComponents;
+
+  @override
+  $Res call({
+    Object? components = freezed,
+  }) {
+    return _then(_SaveAllComponents(
+      components: components == freezed
+          ? _value.components
+          : components // ignore: cast_nullable_to_non_nullable
+              as List<Component>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SaveAllComponents implements _SaveAllComponents {
+  const _$_SaveAllComponents({required this.components});
+
+  @override
+  final List<Component> components;
+
+  @override
+  String toString() {
+    return 'NotePadEvent.saveAll(components: $components)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SaveAllComponents &&
+            const DeepCollectionEquality()
+                .equals(other.components, components));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(components));
+
+  @JsonKey(ignore: true)
+  @override
+  _$SaveAllComponentsCopyWith<_SaveAllComponents> get copyWith =>
+      __$SaveAllComponentsCopyWithImpl<_SaveAllComponents>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(NotePage notePage) fetchStarted,
+    required TResult Function(Component component) addComponent,
+    required TResult Function(Component component) updateComponent,
+    required TResult Function(Component component) removeComponent,
+    required TResult Function(Component component) componentSelected,
+    required TResult Function(int? index) createEmptyComponent,
+    required TResult Function(List<Component> components) saveAll,
+  }) {
+    return saveAll(components);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(NotePage notePage)? fetchStarted,
+    TResult Function(Component component)? addComponent,
+    TResult Function(Component component)? updateComponent,
+    TResult Function(Component component)? removeComponent,
+    TResult Function(Component component)? componentSelected,
+    TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
+  }) {
+    return saveAll?.call(components);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(NotePage notePage)? fetchStarted,
+    TResult Function(Component component)? addComponent,
+    TResult Function(Component component)? updateComponent,
+    TResult Function(Component component)? removeComponent,
+    TResult Function(Component component)? componentSelected,
+    TResult Function(int? index)? createEmptyComponent,
+    TResult Function(List<Component> components)? saveAll,
+    required TResult orElse(),
+  }) {
+    if (saveAll != null) {
+      return saveAll(components);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchStarted value) fetchStarted,
+    required TResult Function(_AddComponent value) addComponent,
+    required TResult Function(_UpdateComponent value) updateComponent,
+    required TResult Function(_RemoveComponent value) removeComponent,
+    required TResult Function(_ComponentSelected value) componentSelected,
+    required TResult Function(_CreateEmptyComponent value) createEmptyComponent,
+    required TResult Function(_SaveAllComponents value) saveAll,
+  }) {
+    return saveAll(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_FetchStarted value)? fetchStarted,
+    TResult Function(_AddComponent value)? addComponent,
+    TResult Function(_UpdateComponent value)? updateComponent,
+    TResult Function(_RemoveComponent value)? removeComponent,
+    TResult Function(_ComponentSelected value)? componentSelected,
+    TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
+  }) {
+    return saveAll?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchStarted value)? fetchStarted,
+    TResult Function(_AddComponent value)? addComponent,
+    TResult Function(_UpdateComponent value)? updateComponent,
+    TResult Function(_RemoveComponent value)? removeComponent,
+    TResult Function(_ComponentSelected value)? componentSelected,
+    TResult Function(_CreateEmptyComponent value)? createEmptyComponent,
+    TResult Function(_SaveAllComponents value)? saveAll,
+    required TResult orElse(),
+  }) {
+    if (saveAll != null) {
+      return saveAll(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SaveAllComponents implements NotePadEvent {
+  const factory _SaveAllComponents({required List<Component> components}) =
+      _$_SaveAllComponents;
+
+  List<Component> get components;
+  @JsonKey(ignore: true)
+  _$SaveAllComponentsCopyWith<_SaveAllComponents> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

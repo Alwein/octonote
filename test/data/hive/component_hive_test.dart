@@ -26,7 +26,7 @@ void main() {
   });
   const notePage = NotePage(id: "id", index: 0, title: "title");
 
-  const componentContent = ComponentContent.text(text: "text");
+  const componentContent = ComponentContent.text(content: "text");
 
   final component = Component(
     id: "id",

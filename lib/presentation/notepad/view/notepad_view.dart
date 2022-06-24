@@ -8,6 +8,8 @@ import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
 import 'package:octonote/presentation/octo_editor/view/octo_editor_view.dart';
 import 'package:octonote/presentation/widgets/component_content/text_component.dart';
+import 'package:octonote/presentation/widgets/error_widgets/fetch_error.dart';
+import 'package:octonote/presentation/widgets/loading.dart';
 import 'package:octonote/presentation/widgets/notepad_app_bar.dart';
 
 class Notepad extends StatelessWidget {
@@ -22,19 +24,21 @@ class Notepad extends StatelessWidget {
           drawer: drawer,
           backgroundColor: Theme.of(context).backgroundColor,
           appBar: NotepadAppBar(),
-          body: OctoEditor(),
-          // body: state.status.map(
-          //   initial: (_) => Container(),
-          //   fetchInProgress: (_) => const Center(child: Loading()),
-          //   success: (_) => ContentView(
-          //     key: ValueKey(state.notePage.id),
-          //   ),
-          //   error: (_) => ErrorDisclaimer(
-          //     onRetry: () => context
-          //         .read<NotePadBloc>()
-          //         .add(NotePadEvent.fetchStarted(notePage: state.notePage)),
-          //   ),
-          // ),
+          body: state.status.map(
+            initial: (_) => Container(),
+            fetchInProgress: (_) => const Center(child: Loading()),
+            success: (_) => OctoEditor(
+              key: ValueKey(state.notePage.id),
+            ),
+            // success: (_) => ContentView(
+            //   key: ValueKey(state.notePage.id),
+            // ),
+            error: (_) => ErrorDisclaimer(
+              onRetry: () => context
+                  .read<NotePadBloc>()
+                  .add(NotePadEvent.fetchStarted(notePage: state.notePage)),
+            ),
+          ),
         );
       },
     );
@@ -166,7 +170,7 @@ class ComponentBuilder extends StatelessWidget {
         focusNode: focusNode,
         onChanged: (value) => context.read<NotePadBloc>().add(
               NotePadEvent.updateComponent(
-                component: component.copyWith(content: content.copyWith(text: value)),
+                component: component.copyWith(content: content.copyWith(content: value)),
               ),
             ),
         onDeleteComponent: () => context.read<NotePadBloc>().add(
@@ -181,6 +185,8 @@ class ComponentBuilder extends StatelessWidget {
       bulletedList: (content) => const Text('Implements me'),
       citation: (content) => const Text('Implements me'),
       todo: (content) => const Text('Implements me'),
+      image: (content) => const Text('Implements me'),
+      numberedList: (content) => const Text('Implements me'),
     );
   }
 }

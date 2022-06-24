@@ -4,7 +4,7 @@ import 'package:octonote/domain/models/component/component.dart';
 void main() {
   group("Component", () {
     test("should support value comparison", () {
-      const componentContent = ComponentContent.text(text: "text");
+      const componentContent = ComponentContent.text(content: "text");
 
       const component = Component(
         id: "id",
@@ -16,7 +16,7 @@ void main() {
     });
 
     test("copyWith should returns the same object when no propreties are passed", () {
-      const componentContent = ComponentContent.text(text: "text");
+      const componentContent = ComponentContent.text(content: "text");
 
       const component = Component(
         id: "id",
@@ -30,13 +30,13 @@ void main() {
 
   group("ComponentContent", () {
     test("should support value comparison", () {
-      const componentContent = ComponentContent.text(text: "text");
+      const componentContent = ComponentContent.text(content: "text");
       expect(componentContent, componentContent);
     });
 
     test("copyWith should returns the same object when no propreties are passed", () {
-      const componentContent = ComponentContent.text(text: "text");
-      expect(componentContent.copyWith(text: componentContent.text), componentContent);
+      const componentContent = ComponentContent.text(content: "text");
+      expect(componentContent.copyWith(content: componentContent.content), componentContent);
     });
   });
 }

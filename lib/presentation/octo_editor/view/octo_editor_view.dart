@@ -1,12 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:octonote/presentation/notepad/view/tasks.dart';
-import 'package:octonote/presentation/notepad/view/toolbar.dart';
+import 'package:octonote/application/utils/serialize_nodes_to_components.dart';
+import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
 import 'package:octonote/presentation/octo_editor/bloc/octo_editor_bloc.dart';
+import 'package:octonote/presentation/octo_editor/widgets/tasks.dart';
+import 'package:octonote/presentation/octo_editor/widgets/toolbar.dart';
 import 'package:super_editor/super_editor.dart';
 
 class OctoEditor extends StatefulWidget {
+  const OctoEditor({Key? key}) : super(key: key);
+
   @override
   _OctoEditorState createState() => _OctoEditorState();
 }
@@ -182,7 +186,18 @@ class _OctoEditorState extends State<OctoEditor> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => OctoEditorBloc(),
+      create: (context) => OctoEditorBloc(
+        initialDocument:
+            deserializeComponentsToDocuments(context.read<NotePadBloc>().state.components),
+        onSaveDocument: (doc) {
+          final NotePadBloc notePadBloc = context.read<NotePadBloc>();
+          notePadBloc.add(
+            NotePadEvent.saveAll(
+              components: serializeDocumentToComponents(doc, notePadBloc.state.notePage),
+            ),
+          );
+        },
+      ),
       child: MultiBlocListener(
         listeners: [
           BlocListener<OctoEditorBloc, OctoEditorState>(
@@ -225,7 +240,7 @@ class _OctoEditorState extends State<OctoEditor> {
       builder: (context) {
         final OctoEditorBloc bloc = context.read<OctoEditorBloc>();
         return SuperEditor(
-          editor: context.read<OctoEditorBloc>().docEditor,
+          editor: bloc.docEditor,
           composer: bloc.composer,
           focusNode: bloc.editorFocusNode,
           scrollController: bloc.scrollController,
