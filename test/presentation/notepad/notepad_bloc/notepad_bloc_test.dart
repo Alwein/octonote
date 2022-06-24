@@ -39,6 +39,17 @@ void main() {
       getComponents = MockGetComponents();
     });
 
+    setUpAll(() {
+      registerFallbackValue(
+        const Component(
+          id: "id",
+          pageId: "pageId",
+          index: 0,
+          content: ComponentContent.text(content: "content"),
+        ),
+      );
+    });
+
     const exampleNotePage = NotePage(id: "id", index: 0, title: "title");
 
     NotePadBloc _buildBloc() {
@@ -275,6 +286,46 @@ void main() {
             components: [testGeneratedComponent],
             componentSelected: testGeneratedComponent,
           )
+        ],
+      );
+    });
+    group('onSaveAll', () {
+      final testComponent = Component(
+        id: 'test',
+        index: 0,
+        pageId: exampleNotePage.id,
+        content: const ComponentContent.text(content: ''),
+      );
+      final secondTestComponent = testComponent.copyWith(id: "secondTest");
+
+      blocTest<NotePadBloc, NotePadState>(
+        'should delete all components and save new ones',
+        setUp: () {
+          when(() => addComponent(component: any(named: "component")))
+              .thenAnswer((_) async => const Left(unit));
+          when(() => removeComponent(component: any(named: "component"))).thenAnswer(
+            (_) async => const Left(unit),
+          );
+        },
+        seed: () => NotePadState(
+          notePage: exampleNotePage,
+          status: const NotePadStatus.success(),
+          components: [testComponent],
+        ),
+        build: () => _buildBloc(),
+        act: (bloc) => bloc.add(NotePadEvent.saveAll(components: [secondTestComponent])),
+        expect: () => <NotePadState>[
+          const NotePadState(
+            notePage: exampleNotePage,
+            status: NotePadStatus.success(),
+            components: [],
+          ),
+          NotePadState(
+            notePage: exampleNotePage,
+            status: const NotePadStatus.success(),
+            componentSelected: secondTestComponent,
+            components: [secondTestComponent],
+          ),
         ],
       );
     });
