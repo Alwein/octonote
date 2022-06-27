@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:octonote/application/utils/serialize_nodes_to_components.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
 import 'package:octonote/presentation/octo_editor/bloc/octo_editor_bloc.dart';
+import 'package:octonote/presentation/octo_editor/view/widgets/add_component_button.dart';
 import 'package:octonote/presentation/octo_editor/widgets/tasks.dart';
 import 'package:octonote/presentation/octo_editor/widgets/toolbar.dart';
 import 'package:super_editor/super_editor.dart';
@@ -227,6 +228,11 @@ class _OctoEditorState extends State<OctoEditor> {
           children: [
             Expanded(
               child: _buildEditor(),
+            ),
+            const AddComponentButton(),
+            const SizedBox(
+              width: 20,
+              height: 20,
             ),
             if (_isMobile) _buildMountedToolbar(),
           ],

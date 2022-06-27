@@ -40,7 +40,9 @@ class DesktopView extends StatelessWidget {
             width: 220,
             child: Menu(),
           ),
-          Expanded(child: Notepad())
+          Expanded(
+            child: Notepad(),
+          )
         ],
       ),
     );
