@@ -294,12 +294,13 @@ void main() {
         id: 'test',
         index: 0,
         pageId: exampleNotePage.id,
-        content: const ComponentContent.text(content: ''),
+        content: const ComponentContent.text(content: 'first'),
       );
-      final secondTestComponent = testComponent.copyWith(id: "secondTest");
+      final secondTestComponent =
+          testComponent.copyWith(content: const ComponentContent.text(content: 'second'));
 
       blocTest<NotePadBloc, NotePadState>(
-        'should delete all components and save new ones',
+        'should delete only modified or deleted components and save new ones',
         setUp: () {
           when(() => addComponent(component: any(named: "component")))
               .thenAnswer((_) async => const Left(unit));
@@ -315,15 +316,15 @@ void main() {
         build: () => _buildBloc(),
         act: (bloc) => bloc.add(NotePadEvent.saveAll(components: [secondTestComponent])),
         expect: () => <NotePadState>[
-          const NotePadState(
-            notePage: exampleNotePage,
-            status: NotePadStatus.success(),
-            components: [],
-          ),
           NotePadState(
             notePage: exampleNotePage,
             status: const NotePadStatus.success(),
             componentSelected: secondTestComponent,
+            components: [testComponent, secondTestComponent],
+          ),
+          NotePadState(
+            notePage: exampleNotePage,
+            status: const NotePadStatus.success(),
             components: [secondTestComponent],
           ),
         ],

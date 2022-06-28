@@ -114,11 +114,43 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
   }
 
   FutureOr<void> _onSaveAll(_SaveAllComponents event, Emitter<NotePadState> emit) async {
-    for (final component in state.components) {
-      add(NotePadEvent.removeComponent(component: component));
-    }
+    final List<Component> oldComponents = List.from(state.components);
+
     for (final component in event.components) {
-      add(NotePadEvent.addComponent(component: component));
+      final Component? equivalentComponent = containsEquivalentComponent(oldComponents, component);
+      if (equivalentComponent != null) {
+        oldComponents.remove(equivalentComponent);
+      } else {
+        add(NotePadEvent.addComponent(component: component));
+      }
+    }
+    for (final remainingComponent in oldComponents) {
+      add(NotePadEvent.removeComponent(component: remainingComponent));
+    }
+
+    // for (final component in state.components) {
+    //   add(NotePadEvent.removeComponent(component: component));
+    // }
+    // for (final component in event.components) {
+    //   add(NotePadEvent.addComponent(component: component));
+    // }
+  }
+}
+
+Component? containsEquivalentComponent(List<Component> componentList, Component component) {
+  for (final comp in componentList) {
+    if (isEquivalentComponent(comp, component)) {
+      return comp;
     }
   }
+  return null;
+}
+
+bool isEquivalentComponent(Component first, Component second) {
+  if (first.pageId == second.pageId &&
+      first.index == second.index &&
+      first.content == second.content) {
+    return true;
+  }
+  return false;
 }

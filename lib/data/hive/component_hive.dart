@@ -49,6 +49,7 @@ class ComponentRepositoryHive implements ComponentRepository {
           .toList();
       final selectedComponent =
           components.where((component) => component.pageId == notePage.id).toList();
+      selectedComponent.sort((a, b) => a.index.compareTo(b.index));
       return Future.value(Left(selectedComponent));
     } catch (e) {
       return Right(AppError(message: e.toString()));
