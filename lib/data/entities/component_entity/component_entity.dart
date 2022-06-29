@@ -7,20 +7,20 @@ class ComponentEntity {
     required this.id,
     required this.pageId,
     required this.index,
-    required this.componentEntity,
+    required this.componentContentEntity,
   });
 
   final String id;
   final String pageId;
   final int index;
-  final ComponentContentEntity componentEntity;
+  final ComponentContentEntity componentContentEntity;
 
   Component toComponent() {
     return Component(
       id: id,
       pageId: pageId,
       index: index,
-      content: componentEntity.toComponentContent(),
+      content: componentContentEntity.toComponentContent(),
     );
   }
 
@@ -29,7 +29,7 @@ class ComponentEntity {
       "id": id,
       "pageId": pageId,
       "index": index,
-      "componentEntity": componentEntity.toDocument(),
+      "componentEntity": componentContentEntity.toDocument(),
     };
   }
 
@@ -38,7 +38,7 @@ class ComponentEntity {
       id: component.id,
       pageId: component.pageId,
       index: component.index,
-      componentEntity: ComponentContentEntity.toEntity(component.content),
+      componentContentEntity: ComponentContentEntity.toEntity(component.content),
     );
   }
 
@@ -47,7 +47,7 @@ class ComponentEntity {
       id: doc["id"] as String,
       pageId: doc["pageId"] as String,
       index: doc["index"] as int,
-      componentEntity: ComponentContentEntity.fromDocument(
+      componentContentEntity: ComponentContentEntity.fromDocument(
         Map<String, dynamic>.from(doc["componentEntity"] as Map<dynamic, dynamic>),
       ),
     );
