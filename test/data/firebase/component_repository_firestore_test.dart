@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:octonote/application/factories/component_factory.dart';
 import 'package:octonote/application/utils/app_service.dart' as a_s;
-import 'package:octonote/data/firebase/component_repository_firestore.dart';
+import 'package:octonote/data/firebase/firestore/component_repository_firestore.dart';
 import 'package:octonote/domain/models/component/component.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/models/octo_user/octo_user.dart';

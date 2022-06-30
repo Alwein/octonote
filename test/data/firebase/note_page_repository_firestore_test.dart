@@ -3,7 +3,7 @@ import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:octonote/application/utils/app_service.dart' as a_s;
-import 'package:octonote/data/firebase/auth/note_page_repository_firestore.dart';
+import 'package:octonote/data/firebase/firestore/note_page_repository_firestore.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/models/octo_user/octo_user.dart';
 import 'package:octonote/locator.dart' as sl;
