@@ -10,8 +10,6 @@ import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/models/octo_user/octo_user.dart';
 import 'package:octonote/locator.dart' as sl;
 
-import '../../test_helpers/test_helpers.dart';
-
 class MockAppService extends Mock implements a_s.AppService {
   @override
   bool getIsTestEnvironment() => true;
@@ -19,16 +17,15 @@ class MockAppService extends Mock implements a_s.AppService {
 
 void main() {
   late FakeFirebaseFirestore instance;
-  late ComponentRepositoryFirestore componentRepository;
+  late ComponentRepositoryFirestoreImpl componentRepository;
 
   const OctoUser testUser = OctoUser(uid: "uid");
 
   setUp(() async {
     await sl.getIt.reset();
     sl.getIt.registerLazySingleton<a_s.AppService>(() => MockAppService());
-    initServices();
     instance = FakeFirebaseFirestore();
-    componentRepository = ComponentRepositoryFirestore(db: instance, user: testUser);
+    componentRepository = ComponentRepositoryFirestoreImpl(db: instance, user: testUser);
   });
   const NotePage pageTest = NotePage(id: "testId", index: 0, title: "testNotePage");
 
