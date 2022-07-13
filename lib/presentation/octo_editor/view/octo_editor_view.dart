@@ -245,8 +245,11 @@ class _OctoEditorState extends State<OctoEditor> {
           focusNode: bloc.editorFocusNode,
           scrollController: bloc.scrollController,
           documentLayoutKey: bloc.docLayoutKey,
-          stylesheet: defaultStylesheet,
+          stylesheet: defaultStylesheet.copyWith(
+            inlineTextStyler: (attributions, style) => style.merge(_textStyleBuilder(attributions)),
+          ),
           componentBuilders: [
+            HeaderWithHintComponentBuilder(bloc.doc),
             ...defaultComponentBuilders,
             TaskComponentBuilder(bloc.docEditor),
           ],
@@ -304,5 +307,98 @@ class _OctoEditorState extends State<OctoEditor> {
     }
 
     super.dispose();
+  }
+}
+
+/// Styles to apply to all the text in the editor.
+TextStyle _textStyleBuilder(Set<Attribution> attributions) {
+  // We only care about altering a few styles. Start by getting
+  // the standard styles for these attributions.
+  var newStyle = defaultStyleBuilder(attributions);
+
+  // Style headers
+  for (final attribution in attributions) {
+    if (attribution == header1Attribution) {
+      newStyle = newStyle.copyWith(
+        color: const Color(0xFF444444),
+        fontSize: 48,
+        fontWeight: FontWeight.bold,
+      );
+    } else if (attribution == header2Attribution) {
+      newStyle = newStyle.copyWith(
+        color: const Color(0xFF444444),
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+      );
+    } else if (attribution == header3Attribution) {
+      newStyle = newStyle.copyWith(
+        color: const Color(0xFF444444),
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      );
+    }
+  }
+
+  return newStyle;
+}
+
+class HeaderWithHintComponentBuilder implements ComponentBuilder {
+  const HeaderWithHintComponentBuilder(this.doc);
+
+  final Document doc;
+
+  @override
+  SingleColumnLayoutComponentViewModel? createViewModel(Document document, DocumentNode node) {
+    // This component builder can work with the standard paragraph view model.
+    // We'll defer to the standard paragraph component builder to create it.
+    return null;
+  }
+
+  @override
+  Widget? createComponent(
+    SingleColumnDocumentComponentContext componentContext,
+    SingleColumnLayoutComponentViewModel componentViewModel,
+  ) {
+    if (componentViewModel is! ParagraphComponentViewModel) {
+      return null;
+    }
+
+    final blockAttribution = componentViewModel.blockType;
+    if (blockAttribution != header1Attribution) {
+      return null;
+    }
+    // if (!(const [header1Attribution, header2Attribution, header3Attribution])
+    //     .contains(blockAttribution)) {
+    //   return null;
+    // }
+    final nodeIndex = doc.getNodeIndexById(componentViewModel.nodeId);
+    if (nodeIndex > 0) {
+      // This isn't the first node, we don't ever want to show hint text.
+      return null;
+    }
+
+    final textSelection = componentViewModel.selection;
+
+    return TextWithHintComponent(
+      key: componentContext.componentKey,
+      text: componentViewModel.text,
+      textStyleBuilder: _textStyleBuilder,
+      metadata: componentViewModel.blockType != null
+          ? {
+              'blockType': componentViewModel.blockType,
+            }
+          : {},
+      // This is the text displayed as a hint.
+      hintText: AttributedText(
+        text: 'Sans titre', // FIXME: Trad
+      ),
+      // This is the function that selects styles for the hint text.
+      hintStyleBuilder: (Set<Attribution> attributions) => _textStyleBuilder(attributions).copyWith(
+        color: const Color(0xFFDDDDDD),
+      ),
+      textSelection: textSelection,
+      selectionColor: componentViewModel.selectionColor,
+      showCaret: componentViewModel.caret != null,
+    );
   }
 }

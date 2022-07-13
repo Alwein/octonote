@@ -8,6 +8,7 @@ import 'package:octonote/domain/models/component/component.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/usecases/atomic/component/component_usecases.dart';
 import 'package:octonote/locator.dart' as sl;
+import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
 
 class MockAppService extends Mock implements a_s.AppService {
@@ -48,6 +49,7 @@ void main() {
           content: ComponentContent.text(content: "content"),
         ),
       );
+      registerFallbackValue(const MenuEvent.fetchStarted());
     });
 
     const exampleNotePage = NotePage(id: "id", index: 0, title: "title");
@@ -58,6 +60,7 @@ void main() {
         updateComponent: updateComponent,
         removeComponent: removeComponent,
         getComponents: getComponents,
+        menuBloc: null,
       );
     }
 
