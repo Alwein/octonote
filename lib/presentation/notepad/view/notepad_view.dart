@@ -30,9 +30,6 @@ class Notepad extends StatelessWidget {
             success: (_) => OctoEditor(
               key: ValueKey(state.notePage.id),
             ),
-            // success: (_) => ContentView(
-            //   key: ValueKey(state.notePage.id),
-            // ),
             error: (_) => ErrorDisclaimer(
               onRetry: () => context
                   .read<NotePadBloc>()
