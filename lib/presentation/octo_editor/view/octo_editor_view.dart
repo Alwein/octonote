@@ -229,7 +229,9 @@ class _OctoEditorState extends State<OctoEditor> {
             Expanded(
               child: _buildEditor(),
             ),
-            const AddComponentButton(),
+            AddComponentButton(
+              onComponentSelected: (ComponentContent) {},
+            ),
             const SizedBox(
               width: 20,
               height: 20,
