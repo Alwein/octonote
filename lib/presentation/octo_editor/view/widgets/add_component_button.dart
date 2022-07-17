@@ -114,6 +114,7 @@ class ComponentSelector extends StatelessWidget {
   }
 
   Future<ComponentContent> _onComponentSelected(BuildContext context, ComponentContent type) async {
+    Navigator.of(context).pop();
     return type.map(
       text: (comp) => comp,
       title1: (comp) => comp,

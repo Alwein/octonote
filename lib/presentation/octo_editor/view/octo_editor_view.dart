@@ -7,6 +7,7 @@ import 'package:octonote/presentation/octo_editor/bloc/octo_editor_bloc.dart';
 import 'package:octonote/presentation/octo_editor/view/widgets/add_component_button.dart';
 import 'package:octonote/presentation/octo_editor/widgets/tasks.dart';
 import 'package:octonote/presentation/octo_editor/widgets/toolbar.dart';
+import 'package:octonote/presentation/view_models/component_content_view_model.dart';
 import 'package:super_editor/super_editor.dart';
 
 class OctoEditor extends StatefulWidget {
@@ -224,20 +225,35 @@ class _OctoEditorState extends State<OctoEditor> {
             },
           ),
         ],
-        child: Column(
-          children: [
-            Expanded(
-              child: _buildEditor(),
-            ),
-            AddComponentButton(
-              onComponentSelected: (ComponentContent) {},
-            ),
-            const SizedBox(
-              width: 20,
-              height: 20,
-            ),
-            if (_isMobile) _buildMountedToolbar(),
-          ],
+        child: Builder(
+          builder: (context) {
+            return Column(
+              children: [
+                Expanded(
+                  child: _buildEditor(),
+                ),
+                AddComponentButton(
+                  onComponentSelected: (componentContent) {
+                    context.read<OctoEditorBloc>().docEditor.executeCommand(
+                      EditorCommandFunction((document, transaction) {
+                        final node = context.read<OctoEditorBloc>().doc.nodes.last;
+
+                        transaction.insertNodeAfter(
+                          existingNode: node,
+                          newNode: componentContent.toDocumentNode,
+                        );
+                      }),
+                    );
+                  },
+                ),
+                const SizedBox(
+                  width: 20,
+                  height: 20,
+                ),
+                if (_isMobile) _buildMountedToolbar(),
+              ],
+            );
+          },
         ),
       ),
     );
