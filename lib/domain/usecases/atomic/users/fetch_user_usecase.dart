@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dartz/dartz.dart';
+import 'package:octonote/application/constants/values.dart';
 import 'package:octonote/domain/models/app_error/app_error.dart';
 import 'package:octonote/domain/models/octo_user/octo_user.dart';
 import 'package:octonote/domain/repositories/user/users_repository.dart';
@@ -11,7 +12,8 @@ class FetchUser {
   final UsersRepository usersRepository;
 
   Future<Either<AppError, OctoUser>> call(FetchUserParams params) async {
-    const durationBetweenAttempts = Duration(seconds: 5);
+    final durationBetweenAttempts =
+        Duration(seconds: ConstantValues.millisecondsBetweenSearchRequests);
 
     int attempts = 0;
     while (attempts < 5) {

@@ -8,4 +8,12 @@ extension OctoUserEntity on OctoUser {
       photoURL: doc["profilePhoto"] as String?,
     );
   }
+
+  Map<String, dynamic> get toDocument {
+    return {
+      "userId": uid,
+      "name": userName,
+      "profilePhoto": photoURL,
+    };
+  }
 }
