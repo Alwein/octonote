@@ -5,7 +5,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:octonote/application/factories/component_factory.dart';
 import 'package:octonote/domain/models/component/component.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
-import 'package:octonote/domain/usecases/atomic/component/component_usecases.dart';
+import 'package:octonote/domain/usecases/usecases.dart';
+import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 
 part 'notepad_bloc.freezed.dart';
 part 'notepad_event.dart';
@@ -13,6 +14,7 @@ part 'notepad_state.dart';
 
 class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
   NotePadBloc({
+    required this.menuBloc,
     required GetComponents getComponents,
     required AddComponent addComponent,
     required UpdateComponent updateComponent,
@@ -30,6 +32,7 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
         removeComponent: (event) => _onRemoveComponent(event, emit),
         componentSelected: (event) => _onComponentSelected(event, emit),
         createEmptyComponent: (event) => _onCreateEmptyComponent(event, emit),
+        saveAll: (event) => _onSaveAll(event, emit),
       ),
     );
   }
@@ -38,6 +41,7 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
   final AddComponent _addComponent;
   final UpdateComponent _updateComponent;
   final RemoveComponent _removeComponent;
+  final MenuBloc? menuBloc;
 
   FutureOr<void> _onFetchStarted(_FetchStarted event, Emitter<NotePadState> emit) async {
     emit(state.copyWith(notePage: event.notePage, status: const NotePadStatus.fetchInProgress()));
@@ -111,4 +115,45 @@ class NotePadBloc extends Bloc<NotePadEvent, NotePadState> {
       ),
     );
   }
+
+  FutureOr<void> _onSaveAll(_SaveAllComponents event, Emitter<NotePadState> emit) async {
+    final List<Component> oldComponents = List.from(state.components);
+
+    for (final component in event.components) {
+      final Component? equivalentComponent = containsEquivalentComponent(oldComponents, component);
+      if (equivalentComponent != null) {
+        oldComponents.remove(equivalentComponent);
+      } else {
+        add(NotePadEvent.addComponent(component: component));
+        if (component.index == 0) {
+          menuBloc?.add(
+            MenuEvent.updatePage(
+              notePage: state.notePage.copyWith(title: component.content.content),
+            ),
+          );
+        }
+      }
+    }
+    for (final remainingComponent in oldComponents) {
+      add(NotePadEvent.removeComponent(component: remainingComponent));
+    }
+  }
+}
+
+Component? containsEquivalentComponent(List<Component> componentList, Component component) {
+  for (final comp in componentList) {
+    if (isEquivalentComponent(comp, component)) {
+      return comp;
+    }
+  }
+  return null;
+}
+
+bool isEquivalentComponent(Component first, Component second) {
+  if (first.pageId == second.pageId &&
+      first.index == second.index &&
+      first.content == second.content) {
+    return true;
+  }
+  return false;
 }

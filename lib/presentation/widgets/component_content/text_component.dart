@@ -21,7 +21,7 @@ class TextComponentView extends StatelessWidget {
     return TextFormField(
       maxLines: null,
       focusNode: focusNode,
-      initialValue: "\u200b${component.text}",
+      initialValue: "\u200b${component.content}",
       decoration: const InputDecoration(
         isDense: true,
         contentPadding: EdgeInsets.symmetric(vertical: 8),

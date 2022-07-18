@@ -15,7 +15,7 @@ void main() {
     componentRepository = MockComponentRepository();
   });
 
-  const componentContent = ComponentContent.text(text: "text");
+  const componentContent = ComponentContent.text(content: "text");
 
   const component = Component(
     id: "id",

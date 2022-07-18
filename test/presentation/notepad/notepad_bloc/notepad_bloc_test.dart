@@ -8,6 +8,7 @@ import 'package:octonote/domain/models/component/component.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/domain/usecases/atomic/component/component_usecases.dart';
 import 'package:octonote/locator.dart' as sl;
+import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
 
 class MockAppService extends Mock implements a_s.AppService {
@@ -39,6 +40,18 @@ void main() {
       getComponents = MockGetComponents();
     });
 
+    setUpAll(() {
+      registerFallbackValue(
+        const Component(
+          id: "id",
+          pageId: "pageId",
+          index: 0,
+          content: ComponentContent.text(content: "content"),
+        ),
+      );
+      registerFallbackValue(const MenuEvent.fetchStarted());
+    });
+
     const exampleNotePage = NotePage(id: "id", index: 0, title: "title");
 
     NotePadBloc _buildBloc() {
@@ -47,10 +60,11 @@ void main() {
         updateComponent: updateComponent,
         removeComponent: removeComponent,
         getComponents: getComponents,
+        menuBloc: null,
       );
     }
 
-    const componentContent = ComponentContent.text(text: "text");
+    const componentContent = ComponentContent.text(content: "text");
 
     final exampleComponent = Component(
       id: "id",
@@ -141,7 +155,7 @@ void main() {
     });
     group("updateComponent", () {
       final Component updatedComponent =
-          exampleComponent.copyWith(content: const ComponentContent.title1(text: 'text'));
+          exampleComponent.copyWith(content: const ComponentContent.title1(content: 'text'));
       blocTest<NotePadBloc, NotePadState>(
         'should emit same state with an updated list of components',
         setUp: () {
@@ -252,7 +266,7 @@ void main() {
         id: 'test',
         index: 0,
         pageId: exampleNotePage.id,
-        content: const ComponentContent.text(text: ''),
+        content: const ComponentContent.text(content: ''),
       );
 
       blocTest<NotePadBloc, NotePadState>(
@@ -275,6 +289,47 @@ void main() {
             components: [testGeneratedComponent],
             componentSelected: testGeneratedComponent,
           )
+        ],
+      );
+    });
+    group('onSaveAll', () {
+      final testComponent = Component(
+        id: 'test',
+        index: 0,
+        pageId: exampleNotePage.id,
+        content: const ComponentContent.text(content: 'first'),
+      );
+      final secondTestComponent =
+          testComponent.copyWith(content: const ComponentContent.text(content: 'second'));
+
+      blocTest<NotePadBloc, NotePadState>(
+        'should delete only modified or deleted components and save new ones',
+        setUp: () {
+          when(() => addComponent(component: any(named: "component")))
+              .thenAnswer((_) async => const Left(unit));
+          when(() => removeComponent(component: any(named: "component"))).thenAnswer(
+            (_) async => const Left(unit),
+          );
+        },
+        seed: () => NotePadState(
+          notePage: exampleNotePage,
+          status: const NotePadStatus.success(),
+          components: [testComponent],
+        ),
+        build: () => _buildBloc(),
+        act: (bloc) => bloc.add(NotePadEvent.saveAll(components: [secondTestComponent])),
+        expect: () => <NotePadState>[
+          NotePadState(
+            notePage: exampleNotePage,
+            status: const NotePadStatus.success(),
+            componentSelected: secondTestComponent,
+            components: [testComponent, secondTestComponent],
+          ),
+          NotePadState(
+            notePage: exampleNotePage,
+            status: const NotePadStatus.success(),
+            components: [secondTestComponent],
+          ),
         ],
       );
     });

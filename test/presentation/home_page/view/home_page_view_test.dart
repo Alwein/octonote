@@ -8,7 +8,7 @@ import 'package:octonote/presentation/home_page/view/home_page_view.dart';
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 import 'package:octonote/presentation/menu/view/menu_view.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
-import 'package:octonote/presentation/notepad/notepad_view.dart';
+import 'package:octonote/presentation/notepad/view/notepad_view.dart';
 
 import '../../../test_helpers/test_helpers.dart';
 

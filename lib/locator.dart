@@ -80,12 +80,13 @@ void init() {
       removeNotePageAndComponents: getIt<RemoveNotePageAndComponents>(),
     ),
   );
-  getIt.registerFactory<NotePadBloc>(
-    () => NotePadBloc(
+  getIt.registerFactoryParam<NotePadBloc, MenuBloc, NoParams>(
+    (param1, param2) => NotePadBloc(
       getComponents: getIt<GetComponents>(),
       addComponent: getIt<AddComponent>(),
       updateComponent: getIt<UpdateComponent>(),
       removeComponent: getIt<RemoveComponent>(),
+      menuBloc: param1,
     ),
   );
 
@@ -104,3 +105,5 @@ void init() {
   getIt.registerFactory<SignInBloc>(() => SignInBloc());
   getIt.registerFactory<SignUpBloc>(() => SignUpBloc());
 }
+
+class NoParams {}

@@ -8,4 +8,5 @@ class NotePadEvent with _$NotePadEvent {
   const factory NotePadEvent.removeComponent({required Component component}) = _RemoveComponent;
   const factory NotePadEvent.componentSelected({required Component component}) = _ComponentSelected;
   const factory NotePadEvent.createEmptyComponent({int? index}) = _CreateEmptyComponent;
+  const factory NotePadEvent.saveAll({required List<Component> components}) = _SaveAllComponents;
 }

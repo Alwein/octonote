@@ -98,9 +98,13 @@ class NotePageTile extends StatelessWidget {
             const SizedBox(
               width: 5,
             ),
-            Text(
-              notePage.title != '' ? notePage.title : tr("note_page.untitled"),
-              style: Theme.of(context).textTheme.headline6,
+            Expanded(
+              child: Text(
+                notePage.title != '' ? notePage.title : tr("note_page.untitled"),
+                maxLines: 1,
+                style: Theme.of(context).textTheme.headline6,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
           ],
         ),

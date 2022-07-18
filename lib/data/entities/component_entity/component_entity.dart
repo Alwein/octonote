@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import "package:octonote/domain/models/component/component.dart";
 
 class ComponentEntity {
@@ -5,20 +7,20 @@ class ComponentEntity {
     required this.id,
     required this.pageId,
     required this.index,
-    required this.componentEntity,
+    required this.componentContentEntity,
   });
 
   final String id;
   final String pageId;
   final int index;
-  final ComponentContentEntity componentEntity;
+  final ComponentContentEntity componentContentEntity;
 
   Component toComponent() {
     return Component(
       id: id,
       pageId: pageId,
       index: index,
-      content: componentEntity.toComponentContent(),
+      content: componentContentEntity.toComponentContent(),
     );
   }
 
@@ -27,7 +29,7 @@ class ComponentEntity {
       "id": id,
       "pageId": pageId,
       "index": index,
-      "componentEntity": componentEntity.toDocument(),
+      "componentEntity": componentContentEntity.toDocument(),
     };
   }
 
@@ -36,7 +38,7 @@ class ComponentEntity {
       id: component.id,
       pageId: component.pageId,
       index: component.index,
-      componentEntity: ComponentContentEntity.toEntity(component.content),
+      componentContentEntity: ComponentContentEntity.toEntity(component.content),
     );
   }
 
@@ -45,7 +47,7 @@ class ComponentEntity {
       id: doc["id"] as String,
       pageId: doc["pageId"] as String,
       index: doc["index"] as int,
-      componentEntity: ComponentContentEntity.fromDocument(
+      componentContentEntity: ComponentContentEntity.fromDocument(
         Map<String, dynamic>.from(doc["componentEntity"] as Map<dynamic, dynamic>),
       ),
     );
@@ -53,36 +55,44 @@ class ComponentEntity {
 }
 
 class ComponentContentEntity {
-  ComponentContentEntity({required this.type, this.text, this.value});
+  ComponentContentEntity({required this.type, this.content, this.value});
 
   final ComponentType type;
-  final String? text;
+  final String? content;
   final bool? value;
+
+  static String KEY_TYPE = "type";
+  static String KEY_CONTENT = "content";
+  static String KEY_VALUE = "value";
 
   ComponentContent toComponentContent() {
     switch (type) {
       case ComponentType.text:
-        return ComponentContent.text(text: text!);
+        return ComponentContent.text(content: content!);
       case ComponentType.title1:
-        return ComponentContent.title1(text: text!);
+        return ComponentContent.title1(content: content!);
       case ComponentType.title2:
-        return ComponentContent.title2(text: text!);
+        return ComponentContent.title2(content: content!);
       case ComponentType.title3:
-        return ComponentContent.title3(text: text!);
+        return ComponentContent.title3(content: content!);
       case ComponentType.bulletedList:
-        return ComponentContent.bulletedList(text: text!);
+        return ComponentContent.bulletedList(content: content!);
       case ComponentType.citation:
-        return ComponentContent.citation(text: text!);
+        return ComponentContent.citation(content: content!);
       case ComponentType.todo:
-        return ComponentContent.todo(text: text!, value: value!);
+        return ComponentContent.todo(content: content!, value: value!);
+      case ComponentType.image:
+        return ComponentContent.image(content: content!);
+      case ComponentType.numberedList:
+        return ComponentContent.numberedList(content: content!);
     }
   }
 
   Map<String, dynamic> toDocument() {
     return {
-      "type": type.toString(),
-      "text": text,
-      "value": value,
+      KEY_TYPE: type.toString(),
+      KEY_CONTENT: content,
+      KEY_VALUE: value,
     };
   }
 
@@ -90,41 +100,49 @@ class ComponentContentEntity {
     return componentContent.map(
       text: (componentContent) => ComponentContentEntity(
         type: ComponentType.text,
-        text: componentContent.text,
+        content: componentContent.content,
       ),
       title1: (componentContent) => ComponentContentEntity(
         type: ComponentType.title1,
-        text: componentContent.text,
+        content: componentContent.content,
       ),
       title2: (componentContent) => ComponentContentEntity(
         type: ComponentType.title2,
-        text: componentContent.text,
+        content: componentContent.content,
       ),
       title3: (componentContent) => ComponentContentEntity(
         type: ComponentType.title3,
-        text: componentContent.text,
+        content: componentContent.content,
       ),
       bulletedList: (componentContent) => ComponentContentEntity(
         type: ComponentType.bulletedList,
-        text: componentContent.text,
+        content: componentContent.content,
       ),
       citation: (componentContent) => ComponentContentEntity(
         type: ComponentType.citation,
-        text: componentContent.text,
+        content: componentContent.content,
       ),
       todo: (componentContent) => ComponentContentEntity(
         type: ComponentType.todo,
-        text: componentContent.text,
+        content: componentContent.content,
         value: componentContent.value,
+      ),
+      image: (componentContent) => ComponentContentEntity(
+        type: ComponentType.image,
+        content: componentContent.content,
+      ),
+      numberedList: (componentContent) => ComponentContentEntity(
+        type: ComponentType.image,
+        content: componentContent.content,
       ),
     );
   }
 
   static ComponentContentEntity fromDocument(Map<String, dynamic> doc) {
     return ComponentContentEntity(
-      type: ComponentTypeExt.fromString(doc["type"] as String),
-      text: doc["text"] as String?,
-      value: doc["value"] as bool?,
+      type: ComponentTypeExt.fromString(doc[KEY_TYPE] as String),
+      content: doc[KEY_CONTENT] as String?,
+      value: doc[KEY_VALUE] as bool?,
     );
   }
 }
@@ -137,6 +155,8 @@ enum ComponentType {
   bulletedList,
   citation,
   todo,
+  image,
+  numberedList,
 }
 
 extension ComponentTypeExt on ComponentType {
@@ -169,6 +189,8 @@ extension ComponentTypeExt on ComponentType {
       bulletedList: (_) => ComponentType.bulletedList,
       citation: (_) => ComponentType.citation,
       todo: (_) => ComponentType.todo,
+      image: (_) => ComponentType.image,
+      numberedList: (_) => ComponentType.numberedList,
     );
   }
 }
