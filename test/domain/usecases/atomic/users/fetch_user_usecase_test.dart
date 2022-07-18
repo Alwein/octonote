@@ -1,17 +1,26 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:octonote/application/utils/app_service.dart' as a_s;
 import 'package:octonote/domain/models/app_error/app_error.dart';
 import 'package:octonote/domain/models/octo_user/octo_user.dart';
 import 'package:octonote/domain/repositories/user/users_repository.dart';
 import 'package:octonote/domain/usecases/atomic/users/fetch_user_usecase.dart';
+import 'package:octonote/locator.dart' as sl;
 
 class MockUsersRepository with Mock implements UsersRepository {}
+
+class MockAppService extends Mock implements a_s.AppService {
+  @override
+  bool getkIsWeb() => false;
+}
 
 void main() {
   late UsersRepository usersRepository;
 
-  setUp(() {
+  setUp(() async {
+    await sl.getIt.reset();
+    sl.getIt.registerLazySingleton<a_s.AppService>(() => MockAppService());
     usersRepository = MockUsersRepository();
   });
 
