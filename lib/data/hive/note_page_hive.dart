@@ -46,6 +46,7 @@ class NotePageRepositoryHive implements NotePageRepository {
                     .toNotePage(),
           )
           .toList();
+      notePages.sort((a, b) => a.index.compareTo(b.index));
       return Future.value(Left(notePages));
     } catch (e) {
       return Right(AppError(message: e.toString()));

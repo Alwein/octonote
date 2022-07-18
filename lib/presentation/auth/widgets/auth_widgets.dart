@@ -42,30 +42,57 @@ class AuthTextInput extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         FormTitle(label: label),
-        TextFormField(
+        OctoTextForm(
+          hintText: hintText,
+          textInputType: textInputType,
+          suffixIcon: suffixIcon,
           onChanged: onChanged,
-          keyboardType: textInputType,
           obscureText: obscureText,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            suffixIcon: suffixIcon,
-            hintText: hintText,
-            filled: true,
-            fillColor: OctonoteColors.secondaryColor,
-            border: InputBorder.none,
-            focusedBorder: UnderlineInputBorder(
-              borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            enabledBorder: UnderlineInputBorder(
-              borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            errorBorder: InputBorder.none,
-            disabledBorder: InputBorder.none,
-          ),
         ),
       ],
+    );
+  }
+}
+
+class OctoTextForm extends StatelessWidget {
+  const OctoTextForm({
+    Key? key,
+    this.hintText,
+    this.textInputType,
+    this.obscureText = false,
+    this.suffixIcon,
+    this.onChanged,
+  }) : super(key: key);
+  final String? hintText;
+  final TextInputType? textInputType;
+  final bool obscureText;
+  final Widget? suffixIcon;
+  final void Function(String)? onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      onChanged: onChanged,
+      keyboardType: textInputType,
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        suffixIcon: suffixIcon,
+        hintText: hintText,
+        filled: true,
+        fillColor: OctonoteColors.secondaryColor,
+        border: InputBorder.none,
+        focusedBorder: UnderlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        errorBorder: InputBorder.none,
+        disabledBorder: InputBorder.none,
+      ),
     );
   }
 }

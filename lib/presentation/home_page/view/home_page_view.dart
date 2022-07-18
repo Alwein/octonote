@@ -20,7 +20,8 @@ class HomePage extends StatelessWidget {
           create: (context) => sl.getIt<MenuBloc>()..add(const MenuEvent.fetchStarted()),
         ),
         BlocProvider(
-          create: (context) => sl.getIt<NotePadBloc>(),
+          create: (context) =>
+              sl.getIt<NotePadBloc>(param1: context.read<MenuBloc>(), param2: sl.NoParams()),
         ),
       ],
       child: getSize(context).isGreatherThanMobile ? const DesktopView() : const MobileView(),
@@ -40,7 +41,9 @@ class DesktopView extends StatelessWidget {
             width: 220,
             child: Menu(),
           ),
-          Expanded(child: Notepad())
+          Expanded(
+            child: Notepad(),
+          )
         ],
       ),
     );
