@@ -6,14 +6,14 @@ import 'package:octonote/domain/models/octo_user/octo_user.dart';
 import 'package:octonote/domain/usecases/authentication/auth_usecases.dart';
 import 'package:octonote/presentation/app/bloc/app_bloc.dart';
 
-class MockGetUser with Mock implements GetUser {}
+class MockGetUser with Mock implements GetCurrentUserId {}
 
 class MockLogOut with Mock implements LogOut {}
 
 class MockGetCurrentUser with Mock implements GetCurrentUser {}
 
 void main() {
-  late GetUser getUser;
+  late GetCurrentUserId getUser;
   late LogOut logOut;
   late GetCurrentUser getCurrentUser;
 

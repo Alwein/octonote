@@ -18,7 +18,7 @@ void main() {
     Stream<OctoUser> fakeStream() async* {}
     test('Should return a OctoUser stream', () {
       when(() => authenticationRepository.user).thenAnswer((_) => fakeStream());
-      final GetUser usecase = GetUser(authenticationRepository);
+      final GetCurrentUserId usecase = GetCurrentUserId(authenticationRepository);
       final result = usecase();
       expect(result, isA<Stream<OctoUser>>());
     });

@@ -1,17 +1,21 @@
 import 'package:get_it/get_it.dart';
 import 'package:octonote/application/utils/app_service.dart';
 import 'package:octonote/data/firebase/auth/firebase_authentication_repository.dart';
+import 'package:octonote/data/firebase/firestore/user_firestore_repository.dart';
 import 'package:octonote/data/hive/component_hive.dart';
 import 'package:octonote/data/hive/note_page_hive.dart';
 import 'package:octonote/domain/repositories/authentication/authentication_repository.dart';
 import 'package:octonote/domain/repositories/component/component_repository.dart';
 import 'package:octonote/domain/repositories/note_page/note_page_repository.dart';
+import 'package:octonote/domain/repositories/user/users_repository.dart';
+import 'package:octonote/domain/usecases/atomic/users/fetch_user_usecase.dart';
 import 'package:octonote/domain/usecases/authentication/auth_usecases.dart';
 import 'package:octonote/domain/usecases/usecases.dart';
 import 'package:octonote/presentation/app/bloc/app_bloc.dart';
 import 'package:octonote/presentation/auth/bloc/auth_bloc.dart';
 import 'package:octonote/presentation/auth/pages/sign_in/bloc/sign_in_bloc.dart';
 import 'package:octonote/presentation/auth/pages/sign_up/bloc/sign_up_bloc.dart';
+import 'package:octonote/presentation/bootstrapping/blocs/user_manager_bloc/user_manager_bloc.dart';
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
 
@@ -27,11 +31,23 @@ void init() {
       getCurrentUser: getIt<GetCurrentUser>(),
     ),
   );
+
+  // Bootstrapping
+  getIt.registerLazySingleton<UserManagerBloc>(
+    () => UserManagerBloc(
+      fetchUser: getIt<FetchUser>(),
+      getCurrentUser: getIt<GetCurrentUser>(),
+    ),
+  );
+
   // repositories
   getIt.registerLazySingleton<NotePageRepository>(() => NotePageRepositoryHive());
   getIt.registerLazySingleton<ComponentRepository>(() => ComponentRepositoryHive());
   getIt.registerLazySingleton<AuthenticationRepository>(
     () => FirebaseAuthenticationRepositoryImpl(),
+  );
+  getIt.registerLazySingleton<UsersRepository>(
+    () => UsersRepositoryFirestoreImpl(),
   );
 
   // usecases
@@ -53,7 +69,9 @@ void init() {
     ),
   );
 
-  getIt.registerLazySingleton<GetUser>(() => GetUser(getIt<AuthenticationRepository>()));
+  getIt.registerLazySingleton<GetUser>(
+    () => GetUser(getIt<AuthenticationRepository>()),
+  );
   getIt.registerFactory<GetCurrentUser>(() => GetCurrentUser(getIt<AuthenticationRepository>()));
   getIt.registerFactory<LogInWithEmailAndPassword>(
     () => LogInWithEmailAndPassword(getIt<AuthenticationRepository>()),
@@ -70,6 +88,7 @@ void init() {
       .registerFactory<SignInWithGoogle>(() => SignInWithGoogle(getIt<AuthenticationRepository>()));
   getIt.registerFactory<SignInWithApple>(() => SignInWithApple(getIt<AuthenticationRepository>()));
   getIt.registerFactory<LogOut>(() => LogOut(getIt<AuthenticationRepository>()));
+  getIt.registerFactory<FetchUser>(() => FetchUser(getIt<UsersRepository>()));
 
   // blocs
   getIt.registerFactory<MenuBloc>(
