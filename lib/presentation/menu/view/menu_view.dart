@@ -4,6 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:octonote/application/constants/colors.dart';
 import 'package:octonote/application/constants/layout_values.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
+import 'package:octonote/domain/models/octo_user/octo_user.dart';
+import 'package:octonote/presentation/app/bloc/app_bloc.dart';
+import 'package:octonote/presentation/bootstrapping/bootstrapping.dart';
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
 import 'package:octonote/presentation/widgets/error_widgets/fetch_error.dart';
@@ -25,13 +28,24 @@ class Menu extends StatelessWidget {
         return Scaffold(
           backgroundColor: backGroundColor,
           appBar: MenuAppBar(),
-          body: state.status.map(
-            initial: (state) => Container(),
-            fetchInProgress: (state) => const Center(child: Loading()),
-            success: (state) => const NotePageListView(),
-            error: (state) => ErrorDisclaimer(
-              onRetry: () => context.read<MenuBloc>().add(const MenuEvent.fetchStarted()),
-            ),
+          body: Column(
+            children: [
+              Expanded(
+                child: state.status.map(
+                  initial: (state) => Container(),
+                  fetchInProgress: (state) => const Center(child: Loading()),
+                  success: (state) => const NotePageListView(),
+                  error: (state) => ErrorDisclaimer(
+                    onRetry: () => context.read<MenuBloc>().add(const MenuEvent.fetchStarted()),
+                  ),
+                ),
+              ),
+              const Divider(),
+              const UserTile(),
+              const SizedBox(
+                height: 5,
+              )
+            ],
           ),
         );
       },
@@ -146,6 +160,43 @@ class CreateNotePage extends StatelessWidget {
             Text(tr("menu.add_page"), style: Theme.of(context).textTheme.headline6),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class UserTile extends StatelessWidget {
+  const UserTile({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final OctoUser user = context.read<UserManagerBloc>().currentUser;
+    return Container(
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        // color: OctonoteColors.primaryColor,
+      ),
+      child: Row(
+        children: [
+          CircleAvatar(
+            foregroundImage: NetworkImage(user.photoURL!),
+            child: user.photoURL != null ? Container() : Text(user.userName?[0] ?? "?"),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Text(
+              user.userName ?? "Anonym",
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+          IconButton(
+            onPressed: () => context.read<AppBloc>().add(const AppEvent.appLogoutRequested()),
+            icon: const Icon(Icons.logout_rounded),
+          ),
+        ],
       ),
     );
   }

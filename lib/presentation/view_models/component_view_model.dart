@@ -1,4 +1,5 @@
 import 'package:octonote/domain/models/component/component.dart';
+import 'package:octonote/presentation/octo_editor/widgets/tasks.dart';
 import 'package:octonote/presentation/view_models/component_content_view_model.dart';
 import 'package:super_editor/super_editor.dart';
 
@@ -11,6 +12,9 @@ extension NodeToComponent on DocumentNode {
     if (this is ImageNode) {
       final ImageNode node = this as ImageNode;
       return ComponentContent.image(content: node.imageUrl);
+    } else if (this is TaskNode) {
+      final node = this as TaskNode;
+      return ComponentContent.todo(content: node.text.text, value: node.isComplete);
     } else if (this is HorizontalRuleNode) {
       return const ComponentContent.text(content: "---");
     } else if (this is ListItemNode) {
@@ -39,6 +43,8 @@ extension NodeToComponent on DocumentNode {
       } else if (blockType == codeAttribution) {
         return ComponentContent.text(content: node.text.text);
       } else {
+        final whatBlockType = blockType;
+        print(whatBlockType);
         return ComponentContent.text(content: node.text.text);
       }
     } else {

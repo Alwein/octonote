@@ -29,7 +29,8 @@ class ComponentRepositoryFirestoreImpl implements ComponentRepository {
           .collection(FirestoreCollectionsNames.NOTEPAGES_COLLECTION)
           .doc(component.pageId)
           .collection(FirestoreCollectionsNames.COMPONENT_COLLECTION)
-          .add(componentEntity.toDocument());
+          .doc(component.id)
+          .set(componentEntity.toDocument());
       return const Left(unit);
     } on FirebaseException catch (error) {
       return Right(AppError(message: "Firebase Error : ${error.message}"));
@@ -47,6 +48,7 @@ class ComponentRepositoryFirestoreImpl implements ComponentRepository {
           .collection(FirestoreCollectionsNames.NOTEPAGES_COLLECTION)
           .doc(notePage.id)
           .collection(FirestoreCollectionsNames.COMPONENT_COLLECTION)
+          .orderBy("index")
           .get();
       final List<Component> components =
           result.docs.map((e) => ComponentEntity.fromDocument(e.data()).toComponent()).toList();

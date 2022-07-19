@@ -25,8 +25,9 @@ class TaskNode extends TextNode {
         super(id: id, text: text, metadata: metadata) {
     // Set a block type so that TaskNode's can be styled by
     // StyleRule's.
-    putMetadataValue("blockType", const NamedAttribution("task"));
+    putMetadataValue("blockType", blockType);
   }
+  static NamedAttribution blockType = const NamedAttribution("task");
 
   /// Whether this task is complete.
   bool get isComplete => _isComplete;

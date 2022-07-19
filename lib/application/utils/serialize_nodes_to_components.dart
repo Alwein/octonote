@@ -25,9 +25,7 @@ Document deserializeComponentsToDocuments(List<Component> components) {
     nodeBuffer.add(
       ParagraphNode(
         id: DocumentEditor.createNodeId(),
-        text: AttributedText(
-          text: 'Bienvenue sur Octonote 🐙',
-        ),
+        text: AttributedText(),
         metadata: {
           'blockType': header1Attribution,
         },

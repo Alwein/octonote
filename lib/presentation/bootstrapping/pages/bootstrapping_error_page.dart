@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:octonote/application/constants/colors.dart';
+import 'package:octonote/presentation/app/bloc/app_bloc.dart';
 import 'package:octonote/presentation/bootstrapping/bootstrapping.dart';
 import 'package:octonote/presentation/widgets/custom_pages/custom_pages.dart';
 
@@ -59,6 +60,13 @@ class BootstrappingErrorPage extends StatelessWidget {
               label: tr('error_page.retry'),
               onPressed: () =>
                   context.read<UserManagerBloc>().add(const UserManagerEvent.fetchStarted()),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            RetryButton(
+              label: tr('error_page.logout'),
+              onPressed: () => context.read<AppBloc>().add(const AppEvent.appLogoutRequested()),
             ),
           ],
         ),
