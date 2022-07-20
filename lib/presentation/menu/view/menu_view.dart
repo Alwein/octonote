@@ -180,7 +180,7 @@ class UserTile extends StatelessWidget {
       child: Row(
         children: [
           CircleAvatar(
-            foregroundImage: NetworkImage(user.photoURL!),
+            foregroundImage: NetworkImage(user.photoURL ?? ""),
             child: user.photoURL != null ? Container() : Text(user.userName?[0] ?? "?"),
           ),
           const SizedBox(

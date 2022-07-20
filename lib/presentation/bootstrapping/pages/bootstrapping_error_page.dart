@@ -57,6 +57,7 @@ class BootstrappingErrorPage extends StatelessWidget {
               height: 50,
             ),
             RetryButton(
+              key: const ValueKey("retry button"),
               label: tr('error_page.retry'),
               onPressed: () =>
                   context.read<UserManagerBloc>().add(const UserManagerEvent.fetchStarted()),
