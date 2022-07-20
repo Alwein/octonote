@@ -132,7 +132,7 @@ class ComponentContentEntity {
         content: componentContent.content,
       ),
       numberedList: (componentContent) => ComponentContentEntity(
-        type: ComponentType.image,
+        type: ComponentType.numberedList,
         content: componentContent.content,
       ),
     );
@@ -175,6 +175,8 @@ extension ComponentTypeExt on ComponentType {
       return ComponentType.citation;
     } else if (value == ComponentType.todo.toString()) {
       return ComponentType.todo;
+    } else if (value == ComponentType.image.toString()) {
+      return ComponentType.image;
     } else {
       return ComponentType.text;
     }

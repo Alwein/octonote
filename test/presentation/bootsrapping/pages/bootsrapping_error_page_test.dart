@@ -98,7 +98,7 @@ void main() {
           ),
         );
       });
-      await tester.tap(find.byType(RetryButton));
+      await tester.tap(find.byKey(const ValueKey("retry button")));
       verify(() => userManagerBloc.add(const UserManagerEvent.fetchStarted())).called(1);
     });
   });

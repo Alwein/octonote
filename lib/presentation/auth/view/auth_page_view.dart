@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:octonote/application/constants/colors.dart';
 import 'package:octonote/application/utils/breakpoints.dart';
 import 'package:octonote/locator.dart' as sl;
 import 'package:octonote/presentation/auth/bloc/auth_bloc.dart';
@@ -18,10 +19,13 @@ class AuthPageView extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl.getIt<AuthBloc>(),
       child: Scaffold(
-        body: AuthSnackbarManager(
-          child: getSize(context).isGreatherThanMobile
-              ? const DesktopAuthView()
-              : const MobileAuthView(),
+        backgroundColor: OctonoteColors.primaryColor,
+        body: SafeArea(
+          child: AuthSnackbarManager(
+            child: getSize(context).isGreatherThanMobile
+                ? const DesktopAuthView()
+                : const MobileAuthView(),
+          ),
         ),
       ),
     );

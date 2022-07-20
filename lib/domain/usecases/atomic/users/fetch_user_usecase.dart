@@ -12,8 +12,7 @@ class FetchUser {
   final UsersRepository usersRepository;
 
   Future<Either<AppError, OctoUser>> call(FetchUserParams params) async {
-    final durationBetweenAttempts =
-        Duration(seconds: ConstantValues.millisecondsBetweenSearchRequests);
+    final durationBetweenAttempts = Duration(seconds: ConstantValues.secondsBetweenFetchAttemps);
 
     int attempts = 0;
     while (attempts < 5) {

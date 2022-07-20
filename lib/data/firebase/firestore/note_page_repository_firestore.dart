@@ -24,7 +24,8 @@ class NotePageRepositoryFirebaseImpl implements NotePageRepository {
           .collection(FirestoreCollectionsNames.USERS_COLLECTION)
           .doc(_user.uid)
           .collection(FirestoreCollectionsNames.NOTEPAGES_COLLECTION)
-          .add(notePageEntity.toDocument());
+          .doc(notePage.id)
+          .set(notePageEntity.toDocument());
       return const Left(unit);
     } on FirebaseException catch (error) {
       return Right(AppError(message: "Firebase Error : ${error.message}"));
@@ -40,6 +41,7 @@ class NotePageRepositoryFirebaseImpl implements NotePageRepository {
           .collection(FirestoreCollectionsNames.USERS_COLLECTION)
           .doc(_user.uid)
           .collection(FirestoreCollectionsNames.NOTEPAGES_COLLECTION)
+          .orderBy("index")
           .get();
       final List<NotePage> notePages =
           result.docs.map((e) => NotePageEntity.fromDocument(e.data()).toNotePage()).toList();
