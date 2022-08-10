@@ -12,6 +12,9 @@ class AddComponentButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+      ),
       child: const AddComponentButtonContent(),
       onPressed: () async {
         await showDialog(
@@ -19,17 +22,24 @@ class AddComponentButton extends StatelessWidget {
           context: context,
           builder: (BuildContext context) {
             return SimpleDialog(
-              elevation: 8.0,
+              elevation: 2.0,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              ),
+              contentPadding: EdgeInsets.zero,
               title: Row(
                 children: [
                   Text(
-                    'Liste des composants', // FIXME: Trad
+                    'Composants', // FIXME: Trad
                     style: Theme.of(context).textTheme.headline5,
                   ),
                 ],
               ),
               children: <Widget>[
-                const Divider(),
+                const SizedBox(height: 10),
+                const Divider(
+                  height: 1,
+                ),
                 ComponentSelector(
                   onComponentSelected: onComponentSelected,
                 ),
@@ -47,11 +57,11 @@ class AddComponentButtonContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const Color textColor = Color(0xff706E59);
+    const Color textColor = Colors.grey;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(10),
         color: OctonoteColors.secondaryColor,
       ),
       child: Row(
@@ -65,7 +75,7 @@ class AddComponentButtonContent extends StatelessWidget {
           SizedBox(width: 10),
           Text(
             "Nouveau composant",
-            style: TextStyle(fontSize: 14, color: textColor),
+            style: TextStyle(fontSize: 14, color: textColor, fontWeight: FontWeight.w500),
           ),
         ],
       ),
@@ -92,7 +102,7 @@ class ComponentSelector extends StatelessWidget {
       const ComponentContent.todo(content: ""),
     ];
     return SizedBox(
-      width: 300,
+      width: 250,
       height: 300,
       child: ListView.builder(
         itemCount: 9,

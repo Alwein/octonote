@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:octonote/application/constants/colors.dart';
+import 'package:octonote/application/constants/layout_values.dart';
 import 'package:octonote/application/utils/generic_blocs/generic_registration_bloc/generic_registration_bloc.dart';
 
 class AuthTitle extends StatelessWidget {
@@ -84,11 +85,11 @@ class OctoTextForm extends StatelessWidget {
         border: InputBorder.none,
         focusedBorder: UnderlineInputBorder(
           borderSide: const BorderSide(color: Colors.transparent),
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(OctoRadius.defaultRadius),
         ),
         enabledBorder: UnderlineInputBorder(
           borderSide: const BorderSide(color: Colors.transparent),
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(OctoRadius.defaultRadius),
         ),
         errorBorder: InputBorder.none,
         disabledBorder: InputBorder.none,
@@ -127,7 +128,7 @@ class OutlinedAuthButton extends StatelessWidget {
         padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 15)),
         shape: MaterialStateProperty.all(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(OctoRadius.defaultRadius),
             side: const BorderSide(color: OctonoteColors.darkColor),
           ),
         ),
@@ -135,7 +136,7 @@ class OutlinedAuthButton extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: Theme.of(context).textTheme.bodyLarge,
+        style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w500),
       ),
     );
   }
@@ -153,10 +154,18 @@ class AuthButton extends StatelessWidget {
       style: ButtonStyle(
         padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 15)),
         backgroundColor: MaterialStateProperty.all(OctonoteColors.darkColor),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(OctoRadius.defaultRadius),
+          ),
+        ),
       ),
       child: Text(
         label,
-        style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: OctonoteColors.primaryColor),
+        style: Theme.of(context)
+            .textTheme
+            .bodyLarge!
+            .copyWith(color: OctonoteColors.primaryColor, fontWeight: FontWeight.w500),
       ),
     );
   }
@@ -177,7 +186,7 @@ class IconAuthButton extends StatelessWidget {
         padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 15)),
         shape: MaterialStateProperty.all(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(OctoRadius.defaultRadius),
             side: const BorderSide(color: OctonoteColors.darkColor),
           ),
         ),
@@ -186,22 +195,17 @@ class IconAuthButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: AutoSizeText(
-                label,
-                maxLines: 1,
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: AutoSizeText(
+              label,
+              maxLines: 1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: SizedBox(
-              height: 20,
-              child: icon,
-            ),
+          SizedBox(
+            height: 20,
+            child: icon,
           ),
         ],
       ),
@@ -257,7 +261,7 @@ class _PasswordFormInputState extends State<PasswordFormInput> {
       obscureText: isObscure,
       suffixIcon: TextButton(
         child: Icon(
-          isObscure ? Icons.visibility : Icons.visibility_off,
+          isObscure ? Icons.visibility_outlined : Icons.visibility,
           color: OctonoteColors.darkColor,
         ),
         onPressed: () => setState(() {
