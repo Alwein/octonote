@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:octonote/application/constants/colors.dart';
 import 'package:octonote/locator.dart' as sl;
 import 'package:octonote/presentation/app/bloc/app_bloc.dart';
@@ -41,83 +42,72 @@ class AppView extends StatelessWidget {
 }
 
 final ThemeData appThemeLight = ThemeData(
-  textTheme: const TextTheme(
-    headline1: TextStyle(
+  textTheme: TextTheme(
+    headline1: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 44,
-      fontFamily: "Inter",
       fontWeight: FontWeight.w700,
     ),
-    headline2: TextStyle(
+    headline2: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 32,
-      fontFamily: "Inter",
       fontWeight: FontWeight.w600,
       letterSpacing: 0.16,
     ),
-    headline3: TextStyle(
+    headline3: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 24,
-      fontFamily: "Inter",
       fontWeight: FontWeight.w600,
       letterSpacing: 0.12,
     ),
-    headline4: TextStyle(
+    headline4: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 20,
-      fontFamily: "Inter",
       fontWeight: FontWeight.w600,
       letterSpacing: 0.10,
     ),
-    headline5: TextStyle(
+    headline5: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 18,
-      fontFamily: "Inter",
       fontWeight: FontWeight.w600,
       letterSpacing: 0.07,
     ),
-    headline6: TextStyle(
+    headline6: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 14,
-      fontFamily: "Inter",
       fontWeight: FontWeight.w500,
       letterSpacing: 0.07,
     ),
-    subtitle1: TextStyle(
+    subtitle1: GoogleFonts.poppins(
       color: Colors.grey,
       fontWeight: FontWeight.w400,
       fontSize: 14,
-      fontFamily: "Inter",
       letterSpacing: 0.06,
     ),
-    subtitle2: TextStyle(
+    subtitle2: GoogleFonts.poppins(
       color: Colors.grey,
       fontWeight: FontWeight.w400,
       fontSize: 12,
-      fontFamily: "Inter",
       letterSpacing: 0.06,
     ),
-    bodyText1: TextStyle(
+    bodyText1: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 14,
-      fontFamily: "Inter",
       letterSpacing: 0.06,
     ),
-    bodyText2: TextStyle(
-      color: OctonoteColors.darkColor,
-      fontSize: 12,
-      fontFamily: "Inter",
-      letterSpacing: 0.06,
-    ),
-    caption: TextStyle(
+    bodyText2: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 12,
       letterSpacing: 0.06,
     ),
-    button: TextStyle(
+    caption: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 12,
-      fontFamily: "Inter",
+      letterSpacing: 0.06,
+    ),
+    button: GoogleFonts.poppins(
+      color: OctonoteColors.darkColor,
+      fontSize: 12,
       fontWeight: FontWeight.w500,
       letterSpacing: 0.06,
     ),

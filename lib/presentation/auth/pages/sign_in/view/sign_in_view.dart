@@ -27,23 +27,25 @@ class SignInView extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(LayoutValues.horizontalPadding),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AuthTitle(title: tr("sign_in_page.sign_in_title")),
                       const SignInEmailFormInput(),
                       const SignInPasswordFormInput(),
+                      const ForgotPasswordButton(),
                       const SignInErrorMessage(),
                       const SignInButton(),
                       const SizedBox(height: 15),
                       const ButtonSeparator(),
                       const SizedBox(height: 15),
+                      Row(
+                        children: const [
+                          Expanded(child: GoogleSignInButton()),
+                          SizedBox(width: 10),
+                          Expanded(child: AppleSignInButton()),
+                        ],
+                      ),
+                      const SizedBox(height: 15),
                       const GoToSignUpButton(),
-                      const SizedBox(height: 15),
-                      const GoogleSignInButton(),
-                      const SizedBox(height: 15),
-                      const AppleSignInButton(),
-                      const SizedBox(height: 15),
-                      const ForgotPasswordButton()
                     ],
                   ),
                 ),
@@ -87,7 +89,7 @@ class SignInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: OutlinedAuthButton(
+      child: AuthButton(
         label: tr("sign_in_page.sign_in_button"),
         onPressed: () => context.read<SignInBloc>().add(
               GenericRegistrationEvent.validate(
@@ -142,9 +144,17 @@ class GoToSignUpButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: AuthButton(
-        label: tr("sign_in_page.sign_up_button"),
-        onPressed: () => context.read<AuthBloc>().add(const AuthEvent.signUpStarted()),
+      child: Row(
+        children: [
+          const Text("Pas encore de compte ?"),
+          TextButton(
+            child: Text(
+              tr("sign_in_page.sign_up_button"),
+              style: Theme.of(context).textTheme.button,
+            ),
+            onPressed: () => context.read<AuthBloc>().add(const AuthEvent.signUpStarted()),
+          ),
+        ],
       ),
     );
   }
@@ -187,20 +197,24 @@ class ForgotPasswordButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      child: Text(
-        tr("sign_in_page.forgot_password_button"),
-        style: Theme.of(context).textTheme.button,
-      ),
-      onPressed: () => context.read<SignInBloc>().add(
-            GenericRegistrationEvent.validate(
-              includePassword: false,
-              onValidateSuccess: (email, password) {
-                context.read<AuthBloc>().add(AuthEvent.resetPassword(email: email));
-                showSnackbar(context, tr('auth_success.send_email_verification_snackbar_text'));
-              },
+    return Container(
+      width: double.infinity,
+      alignment: Alignment.centerRight,
+      child: TextButton(
+        child: Text(
+          tr("sign_in_page.forgot_password_button"),
+          style: Theme.of(context).textTheme.button,
+        ),
+        onPressed: () => context.read<SignInBloc>().add(
+              GenericRegistrationEvent.validate(
+                includePassword: false,
+                onValidateSuccess: (email, password) {
+                  context.read<AuthBloc>().add(AuthEvent.resetPassword(email: email));
+                  showSnackbar(context, tr('auth_success.send_email_verification_snackbar_text'));
+                },
+              ),
             ),
-          ),
+      ),
     );
   }
 }

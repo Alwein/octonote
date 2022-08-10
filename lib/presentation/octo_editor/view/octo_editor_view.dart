@@ -227,24 +227,28 @@ class _OctoEditorState extends State<OctoEditor> {
         ],
         child: Builder(
           builder: (context) {
-            return Column(
+            return Stack(
               children: [
-                Expanded(
-                  child: _buildEditor(),
-                ),
-                AddComponentButton(
-                  onComponentSelected: (componentContent) {
-                    context.read<OctoEditorBloc>().docEditor.executeCommand(
-                      EditorCommandFunction((document, transaction) {
-                        final node = context.read<OctoEditorBloc>().doc.nodes.last;
+                _buildEditor(),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: AddComponentButton(
+                      onComponentSelected: (componentContent) {
+                        context.read<OctoEditorBloc>().docEditor.executeCommand(
+                          EditorCommandFunction((document, transaction) {
+                            final node = context.read<OctoEditorBloc>().doc.nodes.last;
 
-                        transaction.insertNodeAfter(
-                          existingNode: node,
-                          newNode: componentContent.toDocumentNode,
+                            transaction.insertNodeAfter(
+                              existingNode: node,
+                              newNode: componentContent.toDocumentNode,
+                            );
+                          }),
                         );
-                      }),
-                    );
-                  },
+                      },
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   width: 20,

@@ -31,8 +31,8 @@
         "sign_in_button": "Sign up",
         "or_separator": "Or",
         "sign_up_button": "Sign up",
-        "sign_in_with_google_button": "Sign in with Google",
-        "sign_with_apple_button": "Sign in with Apple",
+        "sign_in_with_google_button": "Google",
+        "sign_with_apple_button": "Apple",
         "forgot_password_button": "Forgot password"
     },
     "sign_up_page": {
