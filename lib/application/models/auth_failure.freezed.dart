@@ -81,6 +81,10 @@ class _$AuthFailureTearOff {
   _CredentialAlreadyInUse credentialAlreadyInUse() {
     return const _CredentialAlreadyInUse();
   }
+
+  _RequireLogin requireLogin() {
+    return const _RequireLogin();
+  }
 }
 
 /// @nodoc
@@ -106,6 +110,7 @@ mixin _$AuthFailure {
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -126,6 +131,7 @@ mixin _$AuthFailure {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -146,6 +152,7 @@ mixin _$AuthFailure {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -170,6 +177,7 @@ mixin _$AuthFailure {
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -191,6 +199,7 @@ mixin _$AuthFailure {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -212,6 +221,7 @@ mixin _$AuthFailure {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -298,6 +308,7 @@ class _$_CancelledByUser
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return cancelledByUser();
   }
@@ -321,6 +332,7 @@ class _$_CancelledByUser
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return cancelledByUser?.call();
   }
@@ -344,6 +356,7 @@ class _$_CancelledByUser
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (cancelledByUser != null) {
@@ -374,6 +387,7 @@ class _$_CancelledByUser
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return cancelledByUser(this);
   }
@@ -398,6 +412,7 @@ class _$_CancelledByUser
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return cancelledByUser?.call(this);
   }
@@ -422,6 +437,7 @@ class _$_CancelledByUser
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (cancelledByUser != null) {
@@ -497,6 +513,7 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return serverError();
   }
@@ -520,6 +537,7 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return serverError?.call();
   }
@@ -543,6 +561,7 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -573,6 +592,7 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return serverError(this);
   }
@@ -597,6 +617,7 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return serverError?.call(this);
   }
@@ -621,6 +642,7 @@ class _$_ServerError with DiagnosticableTreeMixin implements _ServerError {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -700,6 +722,7 @@ class _$_EmailAlreadyInUse
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return emailAlreadyInUse();
   }
@@ -723,6 +746,7 @@ class _$_EmailAlreadyInUse
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return emailAlreadyInUse?.call();
   }
@@ -746,6 +770,7 @@ class _$_EmailAlreadyInUse
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (emailAlreadyInUse != null) {
@@ -776,6 +801,7 @@ class _$_EmailAlreadyInUse
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return emailAlreadyInUse(this);
   }
@@ -800,6 +826,7 @@ class _$_EmailAlreadyInUse
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return emailAlreadyInUse?.call(this);
   }
@@ -824,6 +851,7 @@ class _$_EmailAlreadyInUse
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (emailAlreadyInUse != null) {
@@ -899,6 +927,7 @@ class _$_InvalidEmail with DiagnosticableTreeMixin implements _InvalidEmail {
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return invalidEmail();
   }
@@ -922,6 +951,7 @@ class _$_InvalidEmail with DiagnosticableTreeMixin implements _InvalidEmail {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return invalidEmail?.call();
   }
@@ -945,6 +975,7 @@ class _$_InvalidEmail with DiagnosticableTreeMixin implements _InvalidEmail {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -975,6 +1006,7 @@ class _$_InvalidEmail with DiagnosticableTreeMixin implements _InvalidEmail {
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return invalidEmail(this);
   }
@@ -999,6 +1031,7 @@ class _$_InvalidEmail with DiagnosticableTreeMixin implements _InvalidEmail {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return invalidEmail?.call(this);
   }
@@ -1023,6 +1056,7 @@ class _$_InvalidEmail with DiagnosticableTreeMixin implements _InvalidEmail {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -1102,6 +1136,7 @@ class _$_OperationNotAllowed
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return operationNotAllowed();
   }
@@ -1125,6 +1160,7 @@ class _$_OperationNotAllowed
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return operationNotAllowed?.call();
   }
@@ -1148,6 +1184,7 @@ class _$_OperationNotAllowed
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (operationNotAllowed != null) {
@@ -1178,6 +1215,7 @@ class _$_OperationNotAllowed
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return operationNotAllowed(this);
   }
@@ -1202,6 +1240,7 @@ class _$_OperationNotAllowed
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return operationNotAllowed?.call(this);
   }
@@ -1226,6 +1265,7 @@ class _$_OperationNotAllowed
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (operationNotAllowed != null) {
@@ -1301,6 +1341,7 @@ class _$_UserDisabled with DiagnosticableTreeMixin implements _UserDisabled {
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return userDisabled();
   }
@@ -1324,6 +1365,7 @@ class _$_UserDisabled with DiagnosticableTreeMixin implements _UserDisabled {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return userDisabled?.call();
   }
@@ -1347,6 +1389,7 @@ class _$_UserDisabled with DiagnosticableTreeMixin implements _UserDisabled {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (userDisabled != null) {
@@ -1377,6 +1420,7 @@ class _$_UserDisabled with DiagnosticableTreeMixin implements _UserDisabled {
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return userDisabled(this);
   }
@@ -1401,6 +1445,7 @@ class _$_UserDisabled with DiagnosticableTreeMixin implements _UserDisabled {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return userDisabled?.call(this);
   }
@@ -1425,6 +1470,7 @@ class _$_UserDisabled with DiagnosticableTreeMixin implements _UserDisabled {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (userDisabled != null) {
@@ -1500,6 +1546,7 @@ class _$_WeakPassword with DiagnosticableTreeMixin implements _WeakPassword {
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return weakPassword();
   }
@@ -1523,6 +1570,7 @@ class _$_WeakPassword with DiagnosticableTreeMixin implements _WeakPassword {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return weakPassword?.call();
   }
@@ -1546,6 +1594,7 @@ class _$_WeakPassword with DiagnosticableTreeMixin implements _WeakPassword {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (weakPassword != null) {
@@ -1576,6 +1625,7 @@ class _$_WeakPassword with DiagnosticableTreeMixin implements _WeakPassword {
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return weakPassword(this);
   }
@@ -1600,6 +1650,7 @@ class _$_WeakPassword with DiagnosticableTreeMixin implements _WeakPassword {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return weakPassword?.call(this);
   }
@@ -1624,6 +1675,7 @@ class _$_WeakPassword with DiagnosticableTreeMixin implements _WeakPassword {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (weakPassword != null) {
@@ -1702,6 +1754,7 @@ class _$_WrongIosVersion
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return wrongIosVersion();
   }
@@ -1725,6 +1778,7 @@ class _$_WrongIosVersion
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return wrongIosVersion?.call();
   }
@@ -1748,6 +1802,7 @@ class _$_WrongIosVersion
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (wrongIosVersion != null) {
@@ -1778,6 +1833,7 @@ class _$_WrongIosVersion
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return wrongIosVersion(this);
   }
@@ -1802,6 +1858,7 @@ class _$_WrongIosVersion
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return wrongIosVersion?.call(this);
   }
@@ -1826,6 +1883,7 @@ class _$_WrongIosVersion
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (wrongIosVersion != null) {
@@ -1901,6 +1959,7 @@ class _$_LogoutFailure with DiagnosticableTreeMixin implements _LogoutFailure {
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return logoutFailure();
   }
@@ -1924,6 +1983,7 @@ class _$_LogoutFailure with DiagnosticableTreeMixin implements _LogoutFailure {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return logoutFailure?.call();
   }
@@ -1947,6 +2007,7 @@ class _$_LogoutFailure with DiagnosticableTreeMixin implements _LogoutFailure {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (logoutFailure != null) {
@@ -1977,6 +2038,7 @@ class _$_LogoutFailure with DiagnosticableTreeMixin implements _LogoutFailure {
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return logoutFailure(this);
   }
@@ -2001,6 +2063,7 @@ class _$_LogoutFailure with DiagnosticableTreeMixin implements _LogoutFailure {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return logoutFailure?.call(this);
   }
@@ -2025,6 +2088,7 @@ class _$_LogoutFailure with DiagnosticableTreeMixin implements _LogoutFailure {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (logoutFailure != null) {
@@ -2108,6 +2172,7 @@ class _$_InvalidPasswordAndEmailCombination
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return invalidPasswordAndEmailCombination();
   }
@@ -2131,6 +2196,7 @@ class _$_InvalidPasswordAndEmailCombination
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return invalidPasswordAndEmailCombination?.call();
   }
@@ -2154,6 +2220,7 @@ class _$_InvalidPasswordAndEmailCombination
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (invalidPasswordAndEmailCombination != null) {
@@ -2184,6 +2251,7 @@ class _$_InvalidPasswordAndEmailCombination
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return invalidPasswordAndEmailCombination(this);
   }
@@ -2208,6 +2276,7 @@ class _$_InvalidPasswordAndEmailCombination
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return invalidPasswordAndEmailCombination?.call(this);
   }
@@ -2232,6 +2301,7 @@ class _$_InvalidPasswordAndEmailCombination
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (invalidPasswordAndEmailCombination != null) {
@@ -2308,6 +2378,7 @@ class _$_UserMismatch with DiagnosticableTreeMixin implements _UserMismatch {
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return userMismatch();
   }
@@ -2331,6 +2402,7 @@ class _$_UserMismatch with DiagnosticableTreeMixin implements _UserMismatch {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return userMismatch?.call();
   }
@@ -2354,6 +2426,7 @@ class _$_UserMismatch with DiagnosticableTreeMixin implements _UserMismatch {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (userMismatch != null) {
@@ -2384,6 +2457,7 @@ class _$_UserMismatch with DiagnosticableTreeMixin implements _UserMismatch {
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return userMismatch(this);
   }
@@ -2408,6 +2482,7 @@ class _$_UserMismatch with DiagnosticableTreeMixin implements _UserMismatch {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return userMismatch?.call(this);
   }
@@ -2432,6 +2507,7 @@ class _$_UserMismatch with DiagnosticableTreeMixin implements _UserMismatch {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (userMismatch != null) {
@@ -2507,6 +2583,7 @@ class _$_UserNotFound with DiagnosticableTreeMixin implements _UserNotFound {
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return userNotFound();
   }
@@ -2530,6 +2607,7 @@ class _$_UserNotFound with DiagnosticableTreeMixin implements _UserNotFound {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return userNotFound?.call();
   }
@@ -2553,6 +2631,7 @@ class _$_UserNotFound with DiagnosticableTreeMixin implements _UserNotFound {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (userNotFound != null) {
@@ -2583,6 +2662,7 @@ class _$_UserNotFound with DiagnosticableTreeMixin implements _UserNotFound {
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return userNotFound(this);
   }
@@ -2607,6 +2687,7 @@ class _$_UserNotFound with DiagnosticableTreeMixin implements _UserNotFound {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return userNotFound?.call(this);
   }
@@ -2631,6 +2712,7 @@ class _$_UserNotFound with DiagnosticableTreeMixin implements _UserNotFound {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (userNotFound != null) {
@@ -2710,6 +2792,7 @@ class _$_InvalidCredential
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return invalidCredential();
   }
@@ -2733,6 +2816,7 @@ class _$_InvalidCredential
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return invalidCredential?.call();
   }
@@ -2756,6 +2840,7 @@ class _$_InvalidCredential
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (invalidCredential != null) {
@@ -2786,6 +2871,7 @@ class _$_InvalidCredential
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return invalidCredential(this);
   }
@@ -2810,6 +2896,7 @@ class _$_InvalidCredential
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return invalidCredential?.call(this);
   }
@@ -2834,6 +2921,7 @@ class _$_InvalidCredential
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (invalidCredential != null) {
@@ -2909,6 +2997,7 @@ class _$_WrongPassword with DiagnosticableTreeMixin implements _WrongPassword {
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return wrongPassword();
   }
@@ -2932,6 +3021,7 @@ class _$_WrongPassword with DiagnosticableTreeMixin implements _WrongPassword {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return wrongPassword?.call();
   }
@@ -2955,6 +3045,7 @@ class _$_WrongPassword with DiagnosticableTreeMixin implements _WrongPassword {
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (wrongPassword != null) {
@@ -2985,6 +3076,7 @@ class _$_WrongPassword with DiagnosticableTreeMixin implements _WrongPassword {
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return wrongPassword(this);
   }
@@ -3009,6 +3101,7 @@ class _$_WrongPassword with DiagnosticableTreeMixin implements _WrongPassword {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return wrongPassword?.call(this);
   }
@@ -3033,6 +3126,7 @@ class _$_WrongPassword with DiagnosticableTreeMixin implements _WrongPassword {
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (wrongPassword != null) {
@@ -3112,6 +3206,7 @@ class _$_ProviderAlreadyLinked
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return providerAlreadyLinked();
   }
@@ -3135,6 +3230,7 @@ class _$_ProviderAlreadyLinked
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return providerAlreadyLinked?.call();
   }
@@ -3158,6 +3254,7 @@ class _$_ProviderAlreadyLinked
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (providerAlreadyLinked != null) {
@@ -3188,6 +3285,7 @@ class _$_ProviderAlreadyLinked
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return providerAlreadyLinked(this);
   }
@@ -3212,6 +3310,7 @@ class _$_ProviderAlreadyLinked
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return providerAlreadyLinked?.call(this);
   }
@@ -3236,6 +3335,7 @@ class _$_ProviderAlreadyLinked
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (providerAlreadyLinked != null) {
@@ -3315,6 +3415,7 @@ class _$_CredentialAlreadyInUse
     required TResult Function() wrongPassword,
     required TResult Function() providerAlreadyLinked,
     required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
   }) {
     return credentialAlreadyInUse();
   }
@@ -3338,6 +3439,7 @@ class _$_CredentialAlreadyInUse
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
   }) {
     return credentialAlreadyInUse?.call();
   }
@@ -3361,6 +3463,7 @@ class _$_CredentialAlreadyInUse
     TResult Function()? wrongPassword,
     TResult Function()? providerAlreadyLinked,
     TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
     required TResult orElse(),
   }) {
     if (credentialAlreadyInUse != null) {
@@ -3391,6 +3494,7 @@ class _$_CredentialAlreadyInUse
         providerAlreadyLinked,
     required TResult Function(_CredentialAlreadyInUse value)
         credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
   }) {
     return credentialAlreadyInUse(this);
   }
@@ -3415,6 +3519,7 @@ class _$_CredentialAlreadyInUse
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
   }) {
     return credentialAlreadyInUse?.call(this);
   }
@@ -3439,6 +3544,7 @@ class _$_CredentialAlreadyInUse
     TResult Function(_WrongPassword value)? wrongPassword,
     TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
     TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
     required TResult orElse(),
   }) {
     if (credentialAlreadyInUse != null) {
@@ -3450,4 +3556,209 @@ class _$_CredentialAlreadyInUse
 
 abstract class _CredentialAlreadyInUse implements AuthFailure {
   const factory _CredentialAlreadyInUse() = _$_CredentialAlreadyInUse;
+}
+
+/// @nodoc
+abstract class _$RequireLoginCopyWith<$Res> {
+  factory _$RequireLoginCopyWith(
+          _RequireLogin value, $Res Function(_RequireLogin) then) =
+      __$RequireLoginCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$RequireLoginCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements _$RequireLoginCopyWith<$Res> {
+  __$RequireLoginCopyWithImpl(
+      _RequireLogin _value, $Res Function(_RequireLogin) _then)
+      : super(_value, (v) => _then(v as _RequireLogin));
+
+  @override
+  _RequireLogin get _value => super._value as _RequireLogin;
+}
+
+/// @nodoc
+
+class _$_RequireLogin with DiagnosticableTreeMixin implements _RequireLogin {
+  const _$_RequireLogin();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AuthFailure.requireLogin()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'AuthFailure.requireLogin'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _RequireLogin);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() cancelledByUser,
+    required TResult Function() serverError,
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidEmail,
+    required TResult Function() operationNotAllowed,
+    required TResult Function() userDisabled,
+    required TResult Function() weakPassword,
+    required TResult Function() wrongIosVersion,
+    required TResult Function() logoutFailure,
+    required TResult Function() invalidPasswordAndEmailCombination,
+    required TResult Function() userMismatch,
+    required TResult Function() userNotFound,
+    required TResult Function() invalidCredential,
+    required TResult Function() wrongPassword,
+    required TResult Function() providerAlreadyLinked,
+    required TResult Function() credentialAlreadyInUse,
+    required TResult Function() requireLogin,
+  }) {
+    return requireLogin();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? serverError,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidEmail,
+    TResult Function()? operationNotAllowed,
+    TResult Function()? userDisabled,
+    TResult Function()? weakPassword,
+    TResult Function()? wrongIosVersion,
+    TResult Function()? logoutFailure,
+    TResult Function()? invalidPasswordAndEmailCombination,
+    TResult Function()? userMismatch,
+    TResult Function()? userNotFound,
+    TResult Function()? invalidCredential,
+    TResult Function()? wrongPassword,
+    TResult Function()? providerAlreadyLinked,
+    TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
+  }) {
+    return requireLogin?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? serverError,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidEmail,
+    TResult Function()? operationNotAllowed,
+    TResult Function()? userDisabled,
+    TResult Function()? weakPassword,
+    TResult Function()? wrongIosVersion,
+    TResult Function()? logoutFailure,
+    TResult Function()? invalidPasswordAndEmailCombination,
+    TResult Function()? userMismatch,
+    TResult Function()? userNotFound,
+    TResult Function()? invalidCredential,
+    TResult Function()? wrongPassword,
+    TResult Function()? providerAlreadyLinked,
+    TResult Function()? credentialAlreadyInUse,
+    TResult Function()? requireLogin,
+    required TResult orElse(),
+  }) {
+    if (requireLogin != null) {
+      return requireLogin();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CancelledByUser value) cancelledByUser,
+    required TResult Function(_ServerError value) serverError,
+    required TResult Function(_EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(_InvalidEmail value) invalidEmail,
+    required TResult Function(_OperationNotAllowed value) operationNotAllowed,
+    required TResult Function(_UserDisabled value) userDisabled,
+    required TResult Function(_WeakPassword value) weakPassword,
+    required TResult Function(_WrongIosVersion value) wrongIosVersion,
+    required TResult Function(_LogoutFailure value) logoutFailure,
+    required TResult Function(_InvalidPasswordAndEmailCombination value)
+        invalidPasswordAndEmailCombination,
+    required TResult Function(_UserMismatch value) userMismatch,
+    required TResult Function(_UserNotFound value) userNotFound,
+    required TResult Function(_InvalidCredential value) invalidCredential,
+    required TResult Function(_WrongPassword value) wrongPassword,
+    required TResult Function(_ProviderAlreadyLinked value)
+        providerAlreadyLinked,
+    required TResult Function(_CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
+    required TResult Function(_RequireLogin value) requireLogin,
+  }) {
+    return requireLogin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CancelledByUser value)? cancelledByUser,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(_InvalidEmail value)? invalidEmail,
+    TResult Function(_OperationNotAllowed value)? operationNotAllowed,
+    TResult Function(_UserDisabled value)? userDisabled,
+    TResult Function(_WeakPassword value)? weakPassword,
+    TResult Function(_WrongIosVersion value)? wrongIosVersion,
+    TResult Function(_LogoutFailure value)? logoutFailure,
+    TResult Function(_InvalidPasswordAndEmailCombination value)?
+        invalidPasswordAndEmailCombination,
+    TResult Function(_UserMismatch value)? userMismatch,
+    TResult Function(_UserNotFound value)? userNotFound,
+    TResult Function(_InvalidCredential value)? invalidCredential,
+    TResult Function(_WrongPassword value)? wrongPassword,
+    TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
+    TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
+  }) {
+    return requireLogin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CancelledByUser value)? cancelledByUser,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(_InvalidEmail value)? invalidEmail,
+    TResult Function(_OperationNotAllowed value)? operationNotAllowed,
+    TResult Function(_UserDisabled value)? userDisabled,
+    TResult Function(_WeakPassword value)? weakPassword,
+    TResult Function(_WrongIosVersion value)? wrongIosVersion,
+    TResult Function(_LogoutFailure value)? logoutFailure,
+    TResult Function(_InvalidPasswordAndEmailCombination value)?
+        invalidPasswordAndEmailCombination,
+    TResult Function(_UserMismatch value)? userMismatch,
+    TResult Function(_UserNotFound value)? userNotFound,
+    TResult Function(_InvalidCredential value)? invalidCredential,
+    TResult Function(_WrongPassword value)? wrongPassword,
+    TResult Function(_ProviderAlreadyLinked value)? providerAlreadyLinked,
+    TResult Function(_CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    TResult Function(_RequireLogin value)? requireLogin,
+    required TResult orElse(),
+  }) {
+    if (requireLogin != null) {
+      return requireLogin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RequireLogin implements AuthFailure {
+  const factory _RequireLogin() = _$_RequireLogin;
 }

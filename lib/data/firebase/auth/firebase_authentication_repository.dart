@@ -273,6 +273,16 @@ class FirebaseAuthenticationRepositoryImpl implements AuthenticationRepository {
       return const Right(AuthFailure.logoutFailure());
     }
   }
+
+  @override
+  Future<Either<Unit, AuthFailure>> deleteAccount() async {
+    try {
+      await _firebaseAuth.currentUser?.delete();
+      return const Left(unit);
+    } catch (e) {
+      return const Right(AuthFailure.requireLogin());
+    }
+  }
 }
 
 extension on firebase_auth.User {
@@ -310,6 +320,8 @@ extension on firebase_auth.FirebaseAuthException {
       return const AuthFailure.userDisabled();
     } else if (code == 'provider-already-linked') {
       return const AuthFailure.providerAlreadyLinked();
+    } else if (code == 'requires-recent-login') {
+      return const AuthFailure.requireLogin();
     } else if (code == 'credential-already-in-use' ||
         code == 'account-exists-with-different-credential') {
       return const AuthFailure.credentialAlreadyInUse();

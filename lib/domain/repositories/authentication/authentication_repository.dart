@@ -32,4 +32,6 @@ abstract class AuthenticationRepository {
   Future<Either<Unit, AuthFailure>> signInWithApple();
 
   Future<Either<Unit, AuthFailure>> logOut();
+
+  Future<Either<Unit, AuthFailure>> deleteAccount();
 }

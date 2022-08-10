@@ -27,6 +27,7 @@ void init() {
   getIt.registerLazySingleton<AppService>(() => AppServiceImpl());
   getIt.registerFactory<AppBloc>(
     () => AppBloc(
+      deleteAccount: getIt<DeleteAccount>(),
       getUser: getIt<GetUser>(),
       logOut: getIt<LogOut>(),
       getCurrentUser: getIt<GetCurrentUser>(),
@@ -46,9 +47,11 @@ void init() {
   // getIt.registerLazySingleton<ComponentRepository>(() =>  ComponentRepositoryHive());
 
   getIt.registerLazySingleton<NotePageRepository>(
-      () => NotePageRepositoryFirebaseImpl(user: getIt<AuthenticationRepository>().currentUser));
+    () => NotePageRepositoryFirebaseImpl(user: getIt<AuthenticationRepository>().currentUser),
+  );
   getIt.registerLazySingleton<ComponentRepository>(
-      () => ComponentRepositoryFirestoreImpl(user: getIt<AuthenticationRepository>().currentUser));
+    () => ComponentRepositoryFirestoreImpl(user: getIt<AuthenticationRepository>().currentUser),
+  );
 
   getIt.registerLazySingleton<AuthenticationRepository>(
     () => FirebaseAuthenticationRepositoryImpl(),
@@ -91,6 +94,7 @@ void init() {
   );
   getIt.registerFactory<ChangePassword>(() => ChangePassword(getIt<AuthenticationRepository>()));
   getIt.registerFactory<ResetPassword>(() => ResetPassword(getIt<AuthenticationRepository>()));
+  getIt.registerFactory<DeleteAccount>(() => DeleteAccount(getIt<AuthenticationRepository>()));
   getIt
       .registerFactory<SignInWithGoogle>(() => SignInWithGoogle(getIt<AuthenticationRepository>()));
   getIt.registerFactory<SignInWithApple>(() => SignInWithApple(getIt<AuthenticationRepository>()));

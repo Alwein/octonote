@@ -3,7 +3,9 @@
         "untitled": "Sans titre"
     },
     "menu": {
-        "add_page": "Ajouter une page"
+        "add_page": "Ajouter une page",
+        "logout": "Se déconnecter",
+        "delete_account": "Supprimer le compte"
     },
     "note_pad": {
         "delete_note_page": "Supprimer la note ?",
@@ -55,7 +57,8 @@
         "invalidCredential": "Identifiants invalides",
         "wrongPassword": "Mauvais mot de passe",
         "credentialAlreadyInUse": "Ce compte est déjà utilisé par un autre utilisateur",
-        "providerAlreadyLinked": "Ce compte a déjà été associé"
+        "providerAlreadyLinked": "Ce compte a déjà été associé",
+        "requireLogin": "Vous devez vous reconnecter pour effectuer cette action"
     },
     "auth_success": {
         "send_email_verification_snackbar_text": "Un email vous a été envoyé pour récupérer votre mot de passe"

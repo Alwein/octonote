@@ -27,6 +27,10 @@ class _$AppEventTearOff {
   _AppLogoutRequested appLogoutRequested() {
     return const _AppLogoutRequested();
   }
+
+  _AppDeleteAccount appDeleteAccount() {
+    return const _AppDeleteAccount();
+  }
 }
 
 /// @nodoc
@@ -38,18 +42,21 @@ mixin _$AppEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(OctoUser user) appUserChanged,
     required TResult Function() appLogoutRequested,
+    required TResult Function() appDeleteAccount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(OctoUser user)? appUserChanged,
     TResult Function()? appLogoutRequested,
+    TResult Function()? appDeleteAccount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OctoUser user)? appUserChanged,
     TResult Function()? appLogoutRequested,
+    TResult Function()? appDeleteAccount,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -57,18 +64,21 @@ mixin _$AppEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_AppUserChanged value) appUserChanged,
     required TResult Function(_AppLogoutRequested value) appLogoutRequested,
+    required TResult Function(_AppDeleteAccount value) appDeleteAccount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_AppUserChanged value)? appUserChanged,
     TResult Function(_AppLogoutRequested value)? appLogoutRequested,
+    TResult Function(_AppDeleteAccount value)? appDeleteAccount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AppUserChanged value)? appUserChanged,
     TResult Function(_AppLogoutRequested value)? appLogoutRequested,
+    TResult Function(_AppDeleteAccount value)? appDeleteAccount,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -174,6 +184,7 @@ class _$_AppUserChanged
   TResult when<TResult extends Object?>({
     required TResult Function(OctoUser user) appUserChanged,
     required TResult Function() appLogoutRequested,
+    required TResult Function() appDeleteAccount,
   }) {
     return appUserChanged(user);
   }
@@ -183,6 +194,7 @@ class _$_AppUserChanged
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(OctoUser user)? appUserChanged,
     TResult Function()? appLogoutRequested,
+    TResult Function()? appDeleteAccount,
   }) {
     return appUserChanged?.call(user);
   }
@@ -192,6 +204,7 @@ class _$_AppUserChanged
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OctoUser user)? appUserChanged,
     TResult Function()? appLogoutRequested,
+    TResult Function()? appDeleteAccount,
     required TResult orElse(),
   }) {
     if (appUserChanged != null) {
@@ -205,6 +218,7 @@ class _$_AppUserChanged
   TResult map<TResult extends Object?>({
     required TResult Function(_AppUserChanged value) appUserChanged,
     required TResult Function(_AppLogoutRequested value) appLogoutRequested,
+    required TResult Function(_AppDeleteAccount value) appDeleteAccount,
   }) {
     return appUserChanged(this);
   }
@@ -214,6 +228,7 @@ class _$_AppUserChanged
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_AppUserChanged value)? appUserChanged,
     TResult Function(_AppLogoutRequested value)? appLogoutRequested,
+    TResult Function(_AppDeleteAccount value)? appDeleteAccount,
   }) {
     return appUserChanged?.call(this);
   }
@@ -223,6 +238,7 @@ class _$_AppUserChanged
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AppUserChanged value)? appUserChanged,
     TResult Function(_AppLogoutRequested value)? appLogoutRequested,
+    TResult Function(_AppDeleteAccount value)? appDeleteAccount,
     required TResult orElse(),
   }) {
     if (appUserChanged != null) {
@@ -292,6 +308,7 @@ class _$_AppLogoutRequested
   TResult when<TResult extends Object?>({
     required TResult Function(OctoUser user) appUserChanged,
     required TResult Function() appLogoutRequested,
+    required TResult Function() appDeleteAccount,
   }) {
     return appLogoutRequested();
   }
@@ -301,6 +318,7 @@ class _$_AppLogoutRequested
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(OctoUser user)? appUserChanged,
     TResult Function()? appLogoutRequested,
+    TResult Function()? appDeleteAccount,
   }) {
     return appLogoutRequested?.call();
   }
@@ -310,6 +328,7 @@ class _$_AppLogoutRequested
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OctoUser user)? appUserChanged,
     TResult Function()? appLogoutRequested,
+    TResult Function()? appDeleteAccount,
     required TResult orElse(),
   }) {
     if (appLogoutRequested != null) {
@@ -323,6 +342,7 @@ class _$_AppLogoutRequested
   TResult map<TResult extends Object?>({
     required TResult Function(_AppUserChanged value) appUserChanged,
     required TResult Function(_AppLogoutRequested value) appLogoutRequested,
+    required TResult Function(_AppDeleteAccount value) appDeleteAccount,
   }) {
     return appLogoutRequested(this);
   }
@@ -332,6 +352,7 @@ class _$_AppLogoutRequested
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_AppUserChanged value)? appUserChanged,
     TResult Function(_AppLogoutRequested value)? appLogoutRequested,
+    TResult Function(_AppDeleteAccount value)? appDeleteAccount,
   }) {
     return appLogoutRequested?.call(this);
   }
@@ -341,6 +362,7 @@ class _$_AppLogoutRequested
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AppUserChanged value)? appUserChanged,
     TResult Function(_AppLogoutRequested value)? appLogoutRequested,
+    TResult Function(_AppDeleteAccount value)? appDeleteAccount,
     required TResult orElse(),
   }) {
     if (appLogoutRequested != null) {
@@ -352,6 +374,124 @@ class _$_AppLogoutRequested
 
 abstract class _AppLogoutRequested implements AppEvent {
   const factory _AppLogoutRequested() = _$_AppLogoutRequested;
+}
+
+/// @nodoc
+abstract class _$AppDeleteAccountCopyWith<$Res> {
+  factory _$AppDeleteAccountCopyWith(
+          _AppDeleteAccount value, $Res Function(_AppDeleteAccount) then) =
+      __$AppDeleteAccountCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$AppDeleteAccountCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
+    implements _$AppDeleteAccountCopyWith<$Res> {
+  __$AppDeleteAccountCopyWithImpl(
+      _AppDeleteAccount _value, $Res Function(_AppDeleteAccount) _then)
+      : super(_value, (v) => _then(v as _AppDeleteAccount));
+
+  @override
+  _AppDeleteAccount get _value => super._value as _AppDeleteAccount;
+}
+
+/// @nodoc
+
+class _$_AppDeleteAccount
+    with DiagnosticableTreeMixin
+    implements _AppDeleteAccount {
+  const _$_AppDeleteAccount();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AppEvent.appDeleteAccount()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'AppEvent.appDeleteAccount'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _AppDeleteAccount);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(OctoUser user) appUserChanged,
+    required TResult Function() appLogoutRequested,
+    required TResult Function() appDeleteAccount,
+  }) {
+    return appDeleteAccount();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(OctoUser user)? appUserChanged,
+    TResult Function()? appLogoutRequested,
+    TResult Function()? appDeleteAccount,
+  }) {
+    return appDeleteAccount?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(OctoUser user)? appUserChanged,
+    TResult Function()? appLogoutRequested,
+    TResult Function()? appDeleteAccount,
+    required TResult orElse(),
+  }) {
+    if (appDeleteAccount != null) {
+      return appDeleteAccount();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AppUserChanged value) appUserChanged,
+    required TResult Function(_AppLogoutRequested value) appLogoutRequested,
+    required TResult Function(_AppDeleteAccount value) appDeleteAccount,
+  }) {
+    return appDeleteAccount(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_AppUserChanged value)? appUserChanged,
+    TResult Function(_AppLogoutRequested value)? appLogoutRequested,
+    TResult Function(_AppDeleteAccount value)? appDeleteAccount,
+  }) {
+    return appDeleteAccount?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppUserChanged value)? appUserChanged,
+    TResult Function(_AppLogoutRequested value)? appLogoutRequested,
+    TResult Function(_AppDeleteAccount value)? appDeleteAccount,
+    required TResult orElse(),
+  }) {
+    if (appDeleteAccount != null) {
+      return appDeleteAccount(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppDeleteAccount implements AppEvent {
+  const factory _AppDeleteAccount() = _$_AppDeleteAccount;
 }
 
 /// @nodoc

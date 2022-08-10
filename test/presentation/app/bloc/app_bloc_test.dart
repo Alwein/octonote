@@ -10,11 +10,14 @@ class MockGetUser with Mock implements GetUser {}
 
 class MockLogOut with Mock implements LogOut {}
 
+class MockDeleteAccount with Mock implements DeleteAccount {}
+
 class MockGetCurrentUser with Mock implements GetCurrentUser {}
 
 void main() {
   late GetUser getUser;
   late LogOut logOut;
+  late DeleteAccount deleteAccount;
   late GetCurrentUser getCurrentUser;
 
   Stream<OctoUser> octoUserStream() async* {}
@@ -22,6 +25,7 @@ void main() {
   setUp(() {
     getUser = MockGetUser();
     logOut = MockLogOut();
+    deleteAccount = MockDeleteAccount();
     getCurrentUser = MockGetCurrentUser();
 
     when(() => getUser()).thenAnswer((_) => octoUserStream());
@@ -33,6 +37,7 @@ void main() {
   AppBloc _buildAppBloc() => AppBloc(
         getUser: getUser,
         logOut: logOut,
+        deleteAccount: deleteAccount,
         getCurrentUser: getCurrentUser,
       );
 
@@ -66,6 +71,18 @@ void main() {
       build: () => _buildAppBloc(),
       seed: () => const AppState.authenticated(user: testUser),
       act: (bloc) => bloc.add(const AppEvent.appLogoutRequested()),
+      expect: () => const <AppState>[],
+    );
+
+    blocTest<AppBloc, AppState>(
+      'should delete user and emit nothing',
+      setUp: () {
+        when(() => getCurrentUser()).thenReturn(testUser);
+        when(() => deleteAccount()).thenAnswer((_) async => const Left(unit));
+      },
+      build: () => _buildAppBloc(),
+      seed: () => const AppState.authenticated(user: testUser),
+      act: (bloc) => bloc.add(const AppEvent.appDeleteAccount()),
       expect: () => const <AppState>[],
     );
   });

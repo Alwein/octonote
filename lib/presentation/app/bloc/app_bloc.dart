@@ -13,10 +13,12 @@ part 'app_state.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
     required GetUser getUser,
+    required DeleteAccount deleteAccount,
     required LogOut logOut,
     required GetCurrentUser getCurrentUser,
   })  : _userStream = getUser(),
         _logOut = logOut,
+        _deleteAccount = deleteAccount,
         super(
           getCurrentUser().isNotEmpty
               ? _Authenticated(user: getCurrentUser())
@@ -25,9 +27,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     _userSubscription = _userStream.listen(_userChanged);
     on<_AppUserChanged>(_onUserChanged);
     on<_AppLogoutRequested>(_onLogoutRequested);
+    on<_AppDeleteAccount>(_onAppDeleteAccount);
   }
   final Stream<OctoUser> _userStream;
   final LogOut _logOut;
+  final DeleteAccount _deleteAccount;
   late final StreamSubscription<OctoUser> _userSubscription;
 
   void _userChanged(OctoUser user) => add(AppEvent.appUserChanged(user: user));
@@ -48,5 +52,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _onLogoutRequested(_AppLogoutRequested event, Emitter<AppState> emit) {
     unawaited(_logOut());
+  }
+
+  FutureOr<void> _onAppDeleteAccount(_AppDeleteAccount event, Emitter<AppState> emit) async {
+    await _deleteAccount();
   }
 }

@@ -22,4 +22,5 @@ class AuthFailure with _$AuthFailure {
   const factory AuthFailure.wrongPassword() = _WrongPassword;
   const factory AuthFailure.providerAlreadyLinked() = _ProviderAlreadyLinked;
   const factory AuthFailure.credentialAlreadyInUse() = _CredentialAlreadyInUse;
+  const factory AuthFailure.requireLogin() = _RequireLogin;
 }
