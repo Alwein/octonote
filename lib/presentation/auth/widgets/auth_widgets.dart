@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:octonote/application/constants/colors.dart';
 import 'package:octonote/application/constants/layout_values.dart';
@@ -306,5 +307,37 @@ class ErrorMessage extends StatelessWidget {
       text = tr("auth_widgets.password_invalid_message");
     }
     return text;
+  }
+}
+
+class TextWithButton extends StatelessWidget {
+  const TextWithButton({
+    Key? key,
+    required this.onTap,
+    required this.text,
+    required this.label,
+  }) : super(key: key);
+  final void Function() onTap;
+  final String text;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      alignment: Alignment.centerLeft,
+      child: RichText(
+        text: TextSpan(
+          children: <TextSpan>[
+            TextSpan(text: text, style: Theme.of(context).textTheme.bodyMedium),
+            TextSpan(
+              text: label,
+              style: Theme.of(context).textTheme.button,
+              recognizer: TapGestureRecognizer()..onTap = onTap,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

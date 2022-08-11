@@ -46,6 +46,8 @@ class SignInView extends StatelessWidget {
                       ),
                       const SizedBox(height: 15),
                       const GoToSignUpButton(),
+                      const SizedBox(height: 15),
+                      // const ShowPrivacyPolicy(),
                     ],
                   ),
                 ),
@@ -142,23 +144,26 @@ class GoToSignUpButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Row(
-        children: [
-          const Text("Pas encore de compte ?"),
-          TextButton(
-            child: Text(
-              tr("sign_in_page.sign_up_button"),
-              style: Theme.of(context).textTheme.button,
-            ),
-            onPressed: () => context.read<AuthBloc>().add(const AuthEvent.signUpStarted()),
-          ),
-        ],
-      ),
+    return TextWithButton(
+      text: "Pas encore de compte ? ",
+      label: tr("sign_in_page.sign_up_button"),
+      onTap: () => context.read<AuthBloc>().add(const AuthEvent.signUpStarted()),
     );
   }
 }
+
+// class ShowPrivacyPolicy extends StatelessWidget {
+//   const ShowPrivacyPolicy({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return TextWithButton(
+//       text: "Consultez nos règles de",
+//       label: "confidentialité",
+//       onTap: () => launchUrl(Uri.parse('https://sites.google.com/view/octonote-app/accueil')),
+//     );
+//   }
+// }
 
 class GoogleSignInButton extends StatelessWidget {
   const GoogleSignInButton({Key? key}) : super(key: key);

@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
+import 'package:octonote/domain/models/octo_user/octo_user.dart';
+import 'package:octonote/presentation/bootstrapping/bootstrapping.dart';
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 import 'package:octonote/presentation/menu/view/menu_view.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
@@ -18,9 +20,13 @@ class MockMenuBloc extends MockBloc<MenuEvent, MenuState> implements MenuBloc {}
 
 class MockNotePadBloc extends MockBloc<NotePadEvent, NotePadState> implements NotePadBloc {}
 
+class MockUserManagerBloc extends MockBloc<UserManagerEvent, UserManagerState>
+    implements UserManagerBloc {}
+
 void main() {
   late MenuBloc menuBloc;
   late NotePadBloc notePadBloc;
+  late UserManagerBloc userManagerBloc;
 
   const exampleNotePage = NotePage(id: "id", index: 0, title: "title");
 
@@ -29,12 +35,16 @@ void main() {
   setUp(() async {
     menuBloc = MockMenuBloc();
     notePadBloc = MockNotePadBloc();
+    userManagerBloc = MockUserManagerBloc();
 
     await initServices();
 
     when(() => menuBloc.state).thenReturn(initialMenuState);
     when(() => notePadBloc.state).thenReturn(
       const NotePadState(notePage: exampleNotePage),
+    );
+    when(() => userManagerBloc.currentUser).thenReturn(
+      const OctoUser.empty(),
     );
   });
 
@@ -47,6 +57,9 @@ void main() {
           ),
           BlocProvider(
             create: (context) => notePadBloc,
+          ),
+          BlocProvider.value(
+            value: userManagerBloc,
           ),
         ],
         child: const Menu(),
@@ -68,21 +81,6 @@ void main() {
     });
 
     group('Menu State', () {
-      testWidgets('should dispaly a Container on initial state', (tester) async {
-        when(() => menuBloc.state)
-            .thenReturn(initialMenuState.copyWith(status: const MenuStatus.initial()));
-
-        await tester.runAsync(() async {
-          await mountLocalizedPage(
-            tester,
-            makeTestatableWidget(),
-          );
-        });
-        await tester.pump();
-
-        expect(find.byType(Container), findsOneWidget);
-      });
-
       testWidgets('should dispaly a Loading on fetchInProgress state', (tester) async {
         when(() => menuBloc.state)
             .thenReturn(initialMenuState.copyWith(status: const MenuStatus.fetchInProgress()));

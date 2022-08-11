@@ -1,9 +1,12 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
+import 'package:octonote/domain/models/octo_user/octo_user.dart';
 import 'package:octonote/locator.dart' as sl;
+import 'package:octonote/presentation/bootstrapping/bootstrapping.dart';
 import 'package:octonote/presentation/home_page/view/home_page_view.dart';
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 import 'package:octonote/presentation/menu/view/menu_view.dart';
@@ -16,20 +19,26 @@ class MockMenuBloc extends MockBloc<MenuEvent, MenuState> implements MenuBloc {}
 
 class MockNotePadBloc extends MockBloc<NotePadEvent, NotePadState> implements NotePadBloc {}
 
+class MockUserManagerBloc extends MockBloc<UserManagerEvent, UserManagerState>
+    implements UserManagerBloc {}
+
 void main() {
   late MenuBloc menuBloc;
   late NotePadBloc notePadBloc;
+  late UserManagerBloc userManagerBloc;
 
   const exampleNotePage = NotePage(id: "id", index: 0, title: "title");
 
   setUp(() async {
     menuBloc = MockMenuBloc();
     notePadBloc = MockNotePadBloc();
+    userManagerBloc = MockUserManagerBloc();
 
     await initServices();
 
     sl.getIt.registerFactory<MenuBloc>(() => menuBloc);
     sl.getIt.registerFactory<NotePadBloc>(() => notePadBloc);
+    sl.getIt.registerFactory<UserManagerBloc>(() => userManagerBloc);
 
     when(() => menuBloc.state).thenReturn(
       const MenuState(notePageSelected: exampleNotePage),
@@ -37,17 +46,30 @@ void main() {
     when(() => notePadBloc.state).thenReturn(
       const NotePadState(notePage: exampleNotePage),
     );
+    when(() => userManagerBloc.currentUser).thenReturn(
+      const OctoUser.empty(),
+    );
   });
 
   Widget makeTestatableWidget() {
-    return const MyTestApp(
-      page: HomePage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(
+          value: userManagerBloc,
+        ),
+      ],
+      child: const MyTestApp(
+        page: HomePage(),
+      ),
     );
   }
 
   group('Home Page View', () {
     testWidgets('should dispaly a Menu', (tester) async {
       await tester.runAsync(() async {
+        const desktopWidth = 1920.0;
+        const desktopHeight = 1080.0;
+        await tester.setScreenSize(width: desktopWidth, height: desktopHeight);
         await mountLocalizedPage(
           tester,
           makeTestatableWidget(),

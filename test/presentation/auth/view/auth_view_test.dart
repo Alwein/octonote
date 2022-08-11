@@ -42,7 +42,7 @@ void main() {
   group('AuthPageView', () {
     testWidgets('should dispaly a AuthSnackbarManager', (tester) async {
       await tester.runAsync(() async {
-        const screenWidth = 299.0;
+        const screenWidth = 450.0;
         const screenHeight = 600.0;
         await tester.setScreenSize(width: screenWidth, height: screenHeight);
         await mountLocalizedPage(
