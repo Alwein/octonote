@@ -1,4 +1,5 @@
 export 'change_password_usecase.dart';
+export 'delete_account_usecase.dart';
 export 'get_current_user_usecase.dart';
 export 'get_user_usecase.dart';
 export 'log_out_usecase.dart';

@@ -116,7 +116,7 @@ class NotePageTile extends StatelessWidget {
               child: Text(
                 notePage.title != '' ? notePage.title : tr("note_page.untitled"),
                 maxLines: 1,
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.subtitle1,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -175,7 +175,6 @@ class UserTile extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        // color: OctonoteColors.primaryColor,
       ),
       child: Row(
         children: [
@@ -192,12 +191,90 @@ class UserTile extends StatelessWidget {
               style: Theme.of(context).textTheme.headline6,
             ),
           ),
-          IconButton(
-            onPressed: () => context.read<AppBloc>().add(const AppEvent.appLogoutRequested()),
-            icon: const Icon(Icons.logout_rounded),
-          ),
+          const SettingsMenu(),
         ],
       ),
     );
   }
 }
+
+class SettingsMenu extends StatelessWidget {
+  const SettingsMenu({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: Theme.of(context).copyWith(
+        dividerTheme: const DividerThemeData(
+          color: OctonoteColors.secondaryColor,
+          thickness: 1,
+        ),
+      ),
+      child: PopupMenuButton<MenuAction>(
+        tooltip: "",
+        color: OctonoteColors.primaryColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const Padding(
+          padding: EdgeInsets.all(8),
+          child: Icon(Icons.settings_outlined),
+        ),
+        onSelected: (profileLayoutStatus) {
+          switch (profileLayoutStatus) {
+            case MenuAction.logout:
+              context.read<AppBloc>().add(const AppEvent.appLogoutRequested());
+              break;
+            case MenuAction.deleteAccount:
+              context.read<AppBloc>().add(const AppEvent.appDeleteAccount());
+              break;
+          }
+        },
+        itemBuilder: (BuildContext context) => [
+          PopupMenuItem(
+            value: MenuAction.logout,
+            child: filterSelection(
+              context,
+              label: tr("menu.logout"),
+              icon: Icons.login_rounded,
+            ),
+          ),
+          const PopupMenuDivider(
+            height: 1,
+          ),
+          PopupMenuItem(
+            value: MenuAction.deleteAccount,
+            child: filterSelection(
+              context,
+              label: tr("menu.delete_account"),
+              icon: Icons.person_off_outlined,
+              color: Colors.red,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget filterSelection(
+    BuildContext context, {
+    required String label,
+    required IconData icon,
+    Color? color,
+  }) {
+    final contentColor = color ?? OctonoteColors.darkColor;
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, color: contentColor),
+        const SizedBox(width: 10),
+        Text(
+          label,
+          style: Theme.of(context).textTheme.subtitle1?.copyWith(color: contentColor),
+        ),
+      ],
+    );
+  }
+}
+
+enum MenuAction { logout, deleteAccount }

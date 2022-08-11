@@ -3,7 +3,9 @@
         "untitled": "Untitled"
     },
     "menu": {
-        "add_page": "Add Page"
+        "add_page": "Add Page",
+        "logout": "Logout",
+        "delete_account": "Delete account"
     },
     "note_pad": {
         "delete_note_page": "Delete note ?",
@@ -55,7 +57,8 @@
         "invalidCredential": "Invalid credentials",
         "wrongPassword": "wrong password",
         "credentialAlreadyInUse": "This account is already in use by another user",
-        "providerAlreadyLinked": "This account has already been linked"
+        "providerAlreadyLinked": "This account has already been linked",
+        "requireLogin": "You need to log out and login again to perform this action"
     },
     "auth_success": {
         "send_email_verification_snackbar_text": "An email has been sent to you to retrieve your password"

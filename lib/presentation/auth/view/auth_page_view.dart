@@ -96,6 +96,7 @@ class AuthSnackbarManager extends StatelessWidget {
               userNotFound: (_) => showSnackbar(context, tr('auth_error.userNotFound')),
               invalidCredential: (_) => showSnackbar(context, tr('auth_error.invalidCredential')),
               wrongPassword: (_) => showSnackbar(context, tr('auth_error.wrongPassword')),
+              requireLogin: (_) => showSnackbar(context, tr('auth_error.requireLogin')),
               credentialAlreadyInUse: (_) =>
                   showSnackbar(context, tr('auth_error.credentialAlreadyInUse')),
               providerAlreadyLinked: (_) =>

@@ -486,5 +486,30 @@ void main() {
         );
       });
     });
+
+    group('delete account', () {
+      test('should delete account', () async {
+        final firebaseUser = MockFirebaseUser();
+        when(() => firebaseAuth.currentUser).thenAnswer((_) => firebaseUser);
+        when(() => firebaseAuth.currentUser?.delete()).thenAnswer((_) {
+          return null;
+        });
+        expect(
+          await authenticationRepository.deleteAccount(),
+          const Left(unit),
+        );
+      });
+
+      test('should throw an error on delete account', () async {
+        final firebaseUser = MockFirebaseUser();
+        when(() => firebaseAuth.currentUser).thenAnswer((_) => firebaseUser);
+        when(() => firebaseAuth.currentUser?.delete())
+            .thenThrow(firebase_auth.FirebaseAuthException(code: 'requires-recent-login'));
+        expect(
+          await authenticationRepository.deleteAccount(),
+          const Right(AuthFailure.requireLogin()),
+        );
+      });
+    });
   });
 }
