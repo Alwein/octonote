@@ -8,7 +8,6 @@ import 'package:octonote/domain/models/octo_user/octo_user.dart';
 import 'package:octonote/presentation/app/bloc/app_bloc.dart';
 import 'package:octonote/presentation/bootstrapping/bootstrapping.dart';
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
-import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
 import 'package:octonote/presentation/widgets/error_widgets/fetch_error.dart';
 import 'package:octonote/presentation/widgets/loading.dart';
 import 'package:octonote/presentation/widgets/menu_app_bar.dart';
@@ -19,11 +18,7 @@ class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final backGroundColor = Theme.of(context).scaffoldBackgroundColor;
-    return BlocConsumer<MenuBloc, MenuState>(
-      listenWhen: (previous, current) => previous.notePageSelected != current.notePageSelected,
-      listener: (context, state) => context
-          .read<NotePadBloc>()
-          .add(NotePadEvent.fetchStarted(notePage: state.notePageSelected)),
+    return BlocBuilder<MenuBloc, MenuState>(
       builder: (context, state) {
         return Scaffold(
           backgroundColor: backGroundColor,

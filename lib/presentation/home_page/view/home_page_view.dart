@@ -24,7 +24,15 @@ class HomePage extends StatelessWidget {
               sl.getIt<NotePadBloc>(param1: context.read<MenuBloc>(), param2: sl.NoParams()),
         ),
       ],
-      child: getSize(context).isGreatherThanMobile ? const DesktopView() : const MobileView(),
+      child: BlocListener<MenuBloc, MenuState>(
+        listenWhen: (previous, current) => previous.notePageSelected != current.notePageSelected,
+        listener: (context, state) {
+          context
+              .read<NotePadBloc>()
+              .add(NotePadEvent.fetchStarted(notePage: state.notePageSelected));
+        },
+        child: getSize(context).isGreatherThanMobile ? const DesktopView() : const MobileView(),
+      ),
     );
   }
 }

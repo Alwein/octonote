@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -120,6 +121,44 @@ void main() {
         await tester.pump();
 
         expect(find.byType(DesktopView), findsOneWidget);
+      });
+    });
+
+    group('listeners', () {
+      const previouslySelectedNotePage = NotePage(id: "id2", index: 1, title: "title2");
+      const notePageSelected = NotePage(id: "id", index: 0, title: "title");
+      const exampleNotePage = NotePage(id: "id", index: 0, title: "title");
+
+      testWidgets('should send a note page event when CreateNotePage is pressed', (tester) async {
+        whenListen(
+          menuBloc,
+          Stream.fromIterable([
+            const MenuState(notePageSelected: exampleNotePage).copyWith(
+              status: const MenuStatus.success(),
+              notePageSelected: notePageSelected,
+            ),
+          ]),
+        );
+        when(() => menuBloc.state).thenReturn(
+          const MenuState(notePageSelected: exampleNotePage).copyWith(
+            status: const MenuStatus.success(),
+            notePageSelected: previouslySelectedNotePage,
+            notePages: [],
+          ),
+        );
+
+        await tester.runAsync(() async {
+          await mountLocalizedPage(
+            tester,
+            makeTestatableWidget(),
+          );
+        });
+
+        expect(find.text(tr("menu.add_page")), findsOneWidget);
+
+        await tester.tap(find.text(tr("menu.add_page")));
+        verify(() => notePadBloc.add(const NotePadEvent.fetchStarted(notePage: notePageSelected)))
+            .called(1);
       });
     });
   });
