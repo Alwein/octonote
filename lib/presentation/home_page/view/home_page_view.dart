@@ -20,16 +20,13 @@ class HomePage extends StatelessWidget {
           create: (context) => sl.getIt<MenuBloc>()..add(const MenuEvent.fetchStarted()),
         ),
         BlocProvider(
-          create: (context) =>
-              sl.getIt<NotePadBloc>(param1: context.read<MenuBloc>(), param2: sl.NoParams()),
+          create: (context) => sl.getIt<NotePadBloc>(param1: context.read<MenuBloc>(), param2: sl.NoParams()),
         ),
       ],
       child: BlocListener<MenuBloc, MenuState>(
         listenWhen: (previous, current) => previous.notePageSelected != current.notePageSelected,
         listener: (context, state) {
-          context
-              .read<NotePadBloc>()
-              .add(NotePadEvent.fetchStarted(notePage: state.notePageSelected));
+          context.read<NotePadBloc>().add(NotePadEvent.fetchStarted(notePage: state.notePageSelected));
         },
         child: getSize(context).isGreatherThanMobile ? const DesktopView() : const MobileView(),
       ),
@@ -42,9 +39,9 @@ class DesktopView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Row(
-        children: const [
+        children: [
           SizedBox(
             width: 220,
             child: Menu(),

@@ -5,8 +5,8 @@ import 'package:octonote/application/utils/breakpoints.dart';
 import 'package:octonote/domain/models/note_page/note_page.dart';
 import 'package:octonote/presentation/menu/bloc/menu_bloc.dart';
 
-class NotepadAppBar extends StatelessWidget with PreferredSizeWidget {
-  NotepadAppBar({Key? key})
+class NotepadAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const NotepadAppBar({Key? key})
       : preferredSize = const Size.fromHeight(36),
         super(key: key);
 
@@ -21,8 +21,8 @@ class NotepadAppBar extends StatelessWidget with PreferredSizeWidget {
         final NotePage currentPage = state.notePageSelected;
         return AppBar(
           elevation: 0,
-          backgroundColor: Theme.of(context).backgroundColor,
-          foregroundColor: Theme.of(context).textTheme.headline5!.color,
+          backgroundColor: Theme.of(context).colorScheme.background,
+          foregroundColor: Theme.of(context).textTheme.headlineSmall!.color,
           centerTitle: false,
           leading: desktopView
               ? null
@@ -34,7 +34,7 @@ class NotepadAppBar extends StatelessWidget with PreferredSizeWidget {
                 ),
           title: Text(
             currentPage.title != '' ? currentPage.title : tr("note_page.untitled"),
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           actions: [
             IconButton(
@@ -68,18 +68,18 @@ class DeleteNotePage extends StatelessWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       title: Text(
         tr("note_pad.delete_note_page"),
-        style: Theme.of(context).textTheme.headline5,
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
       content: Text(
         tr("note_pad.delete_note_page_subtitle"),
-        style: Theme.of(context).textTheme.subtitle1,
+        style: Theme.of(context).textTheme.titleMedium,
       ),
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
           child: Text(
             tr("note_pad.cancel"),
-            style: Theme.of(context).textTheme.button,
+            style: Theme.of(context).textTheme.labelLarge,
           ),
         ),
         TextButton(
@@ -89,7 +89,7 @@ class DeleteNotePage extends StatelessWidget {
           },
           child: Text(
             tr("note_pad.delete"),
-            style: Theme.of(context).textTheme.button!.copyWith(color: Colors.red),
+            style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Colors.red),
           ),
         ),
       ],

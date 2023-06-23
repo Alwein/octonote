@@ -76,7 +76,7 @@ void main() {
     test('default state should have initial status and empty list of Component', () {
       expect(
         _buildBloc().state,
-        const NotePadState(notePage: NotePage.empty(), status: NotePadStatus.initial()),
+        const NotePadState(notePage: NotePage.empty()),
       );
     });
 
@@ -84,8 +84,7 @@ void main() {
       blocTest<NotePadBloc, NotePadState>(
         'should emit NotePadStatus.success() and a list of Component',
         setUp: () {
-          when(() => getComponents(notePage: exampleNotePage))
-              .thenAnswer((_) async => Left([exampleComponent]));
+          when(() => getComponents(notePage: exampleNotePage)).thenAnswer((_) async => Left([exampleComponent]));
         },
         build: () => _buildBloc(),
         act: (bloc) => bloc.add(const NotePadEvent.fetchStarted(notePage: exampleNotePage)),
@@ -101,14 +100,13 @@ void main() {
       blocTest<NotePadBloc, NotePadState>(
         'should emit NotePadStatus.error() when getComponents fails',
         setUp: () {
-          when(() => getComponents(notePage: exampleNotePage))
-              .thenAnswer((_) async => Right(AppError()));
+          when(() => getComponents(notePage: exampleNotePage)).thenAnswer((_) async => Right(AppError()));
         },
         build: () => _buildBloc(),
         act: (bloc) => bloc.add(const NotePadEvent.fetchStarted(notePage: exampleNotePage)),
         expect: () => const [
           NotePadState(notePage: exampleNotePage, status: NotePadStatus.fetchInProgress()),
-          NotePadState(notePage: exampleNotePage, status: NotePadStatus.error(), components: []),
+          NotePadState(notePage: exampleNotePage, status: NotePadStatus.error()),
         ],
       );
     });
@@ -117,14 +115,12 @@ void main() {
       blocTest<NotePadBloc, NotePadState>(
         'should emit same state with a new component',
         setUp: () {
-          when(() => addComponent(component: exampleComponent))
-              .thenAnswer((_) async => const Left(unit));
+          when(() => addComponent(component: exampleComponent)).thenAnswer((_) async => const Left(unit));
         },
         build: () => _buildBloc(),
         seed: () => const NotePadState(
           notePage: exampleNotePage,
           status: NotePadStatus.success(),
-          components: [],
         ),
         act: (bloc) => bloc.add(NotePadEvent.addComponent(component: exampleComponent)),
         expect: () => [
@@ -140,14 +136,12 @@ void main() {
       blocTest<NotePadBloc, NotePadState>(
         'should emit nothing when addComponent fails',
         setUp: () {
-          when(() => addComponent(component: exampleComponent))
-              .thenAnswer((_) async => Right(AppError()));
+          when(() => addComponent(component: exampleComponent)).thenAnswer((_) async => Right(AppError()));
         },
         build: () => _buildBloc(),
         seed: () => const NotePadState(
           notePage: exampleNotePage,
           status: NotePadStatus.success(),
-          components: [],
         ),
         act: (bloc) => bloc.add(NotePadEvent.addComponent(component: exampleComponent)),
         expect: () => const [],
@@ -217,7 +211,6 @@ void main() {
           NotePadState(
             notePage: exampleNotePage,
             status: NotePadStatus.success(),
-            components: [],
           ),
         ],
       );
@@ -272,14 +265,12 @@ void main() {
       blocTest<NotePadBloc, NotePadState>(
         'should add an event to create a new default component and another to select it',
         setUp: () {
-          when(() => addComponent(component: testGeneratedComponent))
-              .thenAnswer((_) async => const Left(unit));
+          when(() => addComponent(component: testGeneratedComponent)).thenAnswer((_) async => const Left(unit));
         },
         build: () => _buildBloc(),
         seed: () => const NotePadState(
           notePage: exampleNotePage,
           status: NotePadStatus.success(),
-          components: [],
         ),
         act: (bloc) => bloc.add(const NotePadEvent.createEmptyComponent()),
         expect: () => [
@@ -299,14 +290,12 @@ void main() {
         pageId: exampleNotePage.id,
         content: const ComponentContent.text(content: 'first'),
       );
-      final secondTestComponent =
-          testComponent.copyWith(content: const ComponentContent.text(content: 'second'));
+      final secondTestComponent = testComponent.copyWith(content: const ComponentContent.text(content: 'second'));
 
       blocTest<NotePadBloc, NotePadState>(
         'should delete only modified or deleted components and save new ones',
         setUp: () {
-          when(() => addComponent(component: any(named: "component")))
-              .thenAnswer((_) async => const Left(unit));
+          when(() => addComponent(component: any(named: "component"))).thenAnswer((_) async => const Left(unit));
           when(() => removeComponent(component: any(named: "component"))).thenAnswer(
             (_) async => const Left(unit),
           );

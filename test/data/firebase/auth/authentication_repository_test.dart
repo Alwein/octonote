@@ -294,8 +294,7 @@ void main() {
       });
 
       test('should succeed when signIWithApple succeed', () async {
-        when(() => firebaseAuth.signInWithCredential(any()))
-            .thenAnswer((_) => Future.value(MockUserCredential()));
+        when(() => firebaseAuth.signInWithCredential(any())).thenAnswer((_) => Future.value(MockUserCredential()));
         apple.SignInWithApple.channel.setMockMethodCallHandler((methodCall) async {
           if (methodCall.method == 'performAuthorizationRequest') {
             return <dynamic, dynamic>{
@@ -316,8 +315,7 @@ void main() {
       });
 
       test('should fail when signIWithApple fails', () async {
-        when(() => firebaseAuth.signInWithCredential(any()))
-            .thenAnswer((_) => Future.value(MockUserCredential()));
+        when(() => firebaseAuth.signInWithCredential(any())).thenAnswer((_) => Future.value(MockUserCredential()));
         apple.SignInWithApple.channel.setMockMethodCallHandler((methodCall) async {
           if (methodCall.method == 'performAuthorizationRequest') {}
           throw Exception('Unexpected method');
@@ -357,13 +355,10 @@ void main() {
         final googleSignInAccount = MockGoogleSignInAccount();
         when(() => googleSignInAuthentication.accessToken).thenReturn(accessToken);
         when(() => googleSignInAuthentication.idToken).thenReturn(idToken);
-        when(() => googleSignInAccount.authentication)
-            .thenAnswer((_) async => googleSignInAuthentication);
+        when(() => googleSignInAccount.authentication).thenAnswer((_) async => googleSignInAuthentication);
         when(() => googleSignIn.signIn()).thenAnswer((_) async => googleSignInAccount);
-        when(() => firebaseAuth.signInWithCredential(any()))
-            .thenAnswer((_) => Future.value(MockUserCredential()));
-        when(() => firebaseAuth.signInWithPopup(any()))
-            .thenAnswer((_) => Future.value(MockUserCredential()));
+        when(() => firebaseAuth.signInWithCredential(any())).thenAnswer((_) => Future.value(MockUserCredential()));
+        when(() => firebaseAuth.signInWithPopup(any())).thenAnswer((_) => Future.value(MockUserCredential()));
       });
 
       test('should calls signIn authentication, and signInWithCredential', () async {
@@ -374,8 +369,7 @@ void main() {
 
       test('signInWithPopup should be called on web', () async {
         await expectLater(
-          (authenticationRepository as FirebaseAuthenticationRepositoryImpl)
-              .signInWithGoogle(isTestWeb: true),
+          (authenticationRepository as FirebaseAuthenticationRepositoryImpl).signInWithGoogle(isTestWeb: true),
           completes,
         );
         verifyNever(() => googleSignIn.signIn());

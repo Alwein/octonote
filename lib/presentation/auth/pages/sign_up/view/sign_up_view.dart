@@ -51,8 +51,7 @@ class SignUpEmailFormInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return EmailFormInput(
-      onChanged: (value) =>
-          context.read<SignUpBloc>().add(GenericRegistrationEvent.emailChanged(value)),
+      onChanged: (value) => context.read<SignUpBloc>().add(GenericRegistrationEvent.emailChanged(value)),
     );
   }
 }
@@ -63,13 +62,12 @@ class SignUpPasswordFormInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PasswordFormInput(
-      onChanged: (value) =>
-          context.read<SignUpBloc>().add(GenericRegistrationEvent.passwordChanged(value)),
+      onChanged: (value) => context.read<SignUpBloc>().add(GenericRegistrationEvent.passwordChanged(value)),
     );
   }
 }
 
-class SignUpAppbar extends StatelessWidget with PreferredSizeWidget {
+class SignUpAppbar extends StatelessWidget implements PreferredSizeWidget {
   const SignUpAppbar({Key? key}) : super(key: key);
 
   @override

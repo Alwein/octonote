@@ -12,9 +12,9 @@ class WelcomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: OctonoteColors.primaryColor,
-      child: Stack(
+      child: const Stack(
         fit: StackFit.expand,
-        children: const [
+        children: [
           BackgroundHover(),
           CoverBody(),
         ],
@@ -73,14 +73,14 @@ class CoverBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const SizedBox(
+        SizedBox(
           height: LayoutValues.horizontalPadding,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             OctonoteLogoOutlined(),
             SizedBox(
               width: 30,
@@ -88,10 +88,10 @@ class CoverBody extends StatelessWidget {
             WelcomeMessage(),
           ],
         ),
-        const SizedBox(
+        SizedBox(
           height: 30,
         ),
-        const Expanded(child: CoverIllustration()),
+        Expanded(child: CoverIllustration()),
       ],
     );
   }

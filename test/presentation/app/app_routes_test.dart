@@ -12,7 +12,7 @@ void main() {
       expect(onGenerateAppViewPages(appState), [BootstrappingView.page()]);
     });
     test('onGenerateAuthViewPages should return HomePage we-hen AppState is authenticated', () {
-      const AppState appState = AppState.unauthenticated(user: OctoUser.empty());
+      const AppState appState = AppState.unauthenticated();
       expect(onGenerateAppViewPages(appState), [AuthPageView.page()]);
     });
   });

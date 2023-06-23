@@ -22,9 +22,7 @@ class AuthPageView extends StatelessWidget {
         backgroundColor: OctonoteColors.primaryColor,
         body: SafeArea(
           child: AuthSnackbarManager(
-            child: getSize(context).isGreatherThanMobile
-                ? const DesktopAuthView()
-                : const MobileAuthView(),
+            child: getSize(context).isGreatherThanMobile ? const DesktopAuthView() : const MobileAuthView(),
           ),
         ),
       ),
@@ -48,8 +46,8 @@ class DesktopAuthView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: const [
+    return const Row(
+      children: [
         Flexible(
           flex: 16,
           child: WelcomeView(),
@@ -82,8 +80,7 @@ class AuthSnackbarManager extends StatelessWidget {
               serverError: (_) => showSnackbar(context, tr('auth_error.serverError')),
               emailAlreadyInUse: (_) => showSnackbar(context, tr('auth_error.emailAlreadyInUse')),
               invalidEmail: (_) => showSnackbar(context, tr('auth_error.invalidEmail')),
-              operationNotAllowed: (_) =>
-                  showSnackbar(context, tr('auth_error.operationNotAllowed')),
+              operationNotAllowed: (_) => showSnackbar(context, tr('auth_error.operationNotAllowed')),
               userDisabled: (_) => showSnackbar(context, tr('auth_error.userDisabled')),
               weakPassword: (_) => showSnackbar(context, tr('auth_error.weakPassword')),
               wrongIosVersion: (_) => showSnackbar(context, tr('auth_error.wrongIosVersion')),
@@ -97,10 +94,8 @@ class AuthSnackbarManager extends StatelessWidget {
               invalidCredential: (_) => showSnackbar(context, tr('auth_error.invalidCredential')),
               wrongPassword: (_) => showSnackbar(context, tr('auth_error.wrongPassword')),
               requireLogin: (_) => showSnackbar(context, tr('auth_error.requireLogin')),
-              credentialAlreadyInUse: (_) =>
-                  showSnackbar(context, tr('auth_error.credentialAlreadyInUse')),
-              providerAlreadyLinked: (_) =>
-                  showSnackbar(context, tr('auth_error.providerAlreadyLinked')),
+              credentialAlreadyInUse: (_) => showSnackbar(context, tr('auth_error.credentialAlreadyInUse')),
+              providerAlreadyLinked: (_) => showSnackbar(context, tr('auth_error.providerAlreadyLinked')),
             );
           },
         );

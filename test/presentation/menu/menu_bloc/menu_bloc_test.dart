@@ -55,8 +55,6 @@ void main() {
         _buildBloc().state,
         const MenuState(
           notePageSelected: NotePage.empty(),
-          notePages: [],
-          status: MenuStatus.initial(),
         ),
       );
     });
@@ -84,8 +82,7 @@ void main() {
         'should call CreateEmptyNotePage when notePages is empty',
         setUp: () {
           when(() => getNotePages()).thenAnswer((_) async => const Left([]));
-          when(() => addNotePage(notePage: testGeneratedNotePage))
-              .thenAnswer((_) async => const Left(unit));
+          when(() => addNotePage(notePage: testGeneratedNotePage)).thenAnswer((_) async => const Left(unit));
         },
         build: () => _buildBloc(),
         act: (bloc) => bloc.add(const MenuEvent.fetchStarted()),
@@ -109,7 +106,7 @@ void main() {
         act: (bloc) => bloc.add(const MenuEvent.fetchStarted()),
         expect: () => const [
           MenuState(notePageSelected: NotePage.empty(), status: MenuStatus.fetchInProgress()),
-          MenuState(notePageSelected: NotePage.empty(), status: MenuStatus.error(), notePages: []),
+          MenuState(notePageSelected: NotePage.empty(), status: MenuStatus.error()),
         ],
       );
     });
@@ -118,14 +115,12 @@ void main() {
       blocTest<MenuBloc, MenuState>(
         'should emit same state with a new page',
         setUp: () {
-          when(() => addNotePage(notePage: exampleNotePage))
-              .thenAnswer((_) async => const Left(unit));
+          when(() => addNotePage(notePage: exampleNotePage)).thenAnswer((_) async => const Left(unit));
         },
         build: () => _buildBloc(),
         seed: () => const MenuState(
           notePageSelected: NotePage.empty(),
           status: MenuStatus.success(),
-          notePages: [],
         ),
         act: (bloc) => bloc.add(const MenuEvent.addPage(notePage: exampleNotePage)),
         expect: () => const [
@@ -148,7 +143,6 @@ void main() {
         seed: () => const MenuState(
           notePageSelected: NotePage.empty(),
           status: MenuStatus.success(),
-          notePages: [],
         ),
         act: (bloc) => bloc.add(const MenuEvent.addPage(notePage: exampleNotePage)),
         expect: () => const [],
@@ -215,7 +209,6 @@ void main() {
           MenuState(
             notePageSelected: NotePage.empty(),
             status: MenuStatus.success(),
-            notePages: [],
           ),
         ],
       );
@@ -262,14 +255,12 @@ void main() {
       blocTest<MenuBloc, MenuState>(
         'should add an event to create a new default notePage and another to select it',
         setUp: () {
-          when(() => addNotePage(notePage: testGeneratedNotePage))
-              .thenAnswer((_) async => const Left(unit));
+          when(() => addNotePage(notePage: testGeneratedNotePage)).thenAnswer((_) async => const Left(unit));
         },
         build: () => _buildBloc(),
         seed: () => const MenuState(
           notePageSelected: NotePage.empty(),
           status: MenuStatus.success(),
-          notePages: [],
         ),
         act: (bloc) => bloc.add(const MenuEvent.createEmptyNotePage()),
         expect: () => [

@@ -28,7 +28,7 @@ void main() {
     test('returns [SplashPage.page()] on initial state', () {
       expect(
         onGenerateBootstrappingViewPages(
-          const UserManagerState(status: UserManagerStatus.initial()),
+          const UserManagerState(),
         ),
         [isA<SweetTransitionPage>().having((p) => p.child, 'child', isA<SplashPage>())],
       );

@@ -23,7 +23,7 @@ class ErrorDisclaimer extends StatelessWidget {
               Expanded(
                 child: Text(
                   tr("error_widget.an_error_occurred_while_loading"),
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
             ],
@@ -40,11 +40,11 @@ class ErrorDisclaimer extends StatelessWidget {
             icon: Icon(
               Icons.autorenew_rounded,
               size: 18,
-              color: Theme.of(context).textTheme.headline6!.color,
+              color: Theme.of(context).textTheme.titleLarge!.color,
             ),
             label: Text(
               tr("error_widget.retry"),
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
         ],

@@ -27,7 +27,7 @@ class TextComponentView extends StatelessWidget {
         contentPadding: EdgeInsets.symmetric(vertical: 8),
         border: InputBorder.none,
       ),
-      style: Theme.of(context).textTheme.bodyText1,
+      style: Theme.of(context).textTheme.bodyLarge,
       keyboardType: TextInputType.text,
       onChanged: (value) {
         onChanged?.call(value.replaceAll("\u200b", ""));
@@ -68,7 +68,7 @@ class NotePadSelectableArea extends StatelessWidget {
               contentPadding: EdgeInsets.symmetric(vertical: 8),
               border: InputBorder.none,
             ),
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
             keyboardType: TextInputType.text,
           ),
         ),

@@ -31,7 +31,7 @@ class AddComponentButton extends StatelessWidget {
                 children: [
                   Text(
                     'Composants', // FIXME: Trad
-                    style: Theme.of(context).textTheme.headline5,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ],
               ),
@@ -64,9 +64,9 @@ class AddComponentButtonContent extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         color: OctonoteColors.secondaryColor,
       ),
-      child: Row(
+      child: const Row(
         mainAxisSize: MainAxisSize.min,
-        children: const [
+        children: [
           Icon(
             Icons.add_rounded,
             color: textColor,
@@ -225,11 +225,11 @@ class ComponentContentTile extends StatelessWidget {
               children: [
                 Text(
                   name,
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 Text(
                   name,
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ],
             )

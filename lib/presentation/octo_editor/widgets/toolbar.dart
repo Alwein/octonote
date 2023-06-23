@@ -83,8 +83,7 @@ class _EditorToolbarState extends State<EditorToolbar> {
   ///
   /// Throws an exception if the currently selected node is not a text node.
   _TextType _getCurrentTextType() {
-    final selectedNode =
-        widget.editor!.document.getNodeById(widget.composer.selection!.extent.nodeId);
+    final selectedNode = widget.editor!.document.getNodeById(widget.composer.selection!.extent.nodeId);
     if (selectedNode is ParagraphNode) {
       final type = selectedNode.getMetadataValue('blockType');
 
@@ -100,9 +99,7 @@ class _EditorToolbarState extends State<EditorToolbar> {
         return _TextType.paragraph;
       }
     } else if (selectedNode is ListItemNode) {
-      return selectedNode.type == ListItemType.ordered
-          ? _TextType.orderedListItem
-          : _TextType.unorderedListItem;
+      return selectedNode.type == ListItemType.ordered ? _TextType.orderedListItem : _TextType.unorderedListItem;
     } else {
       throw Exception('Invalid node type: $selectedNode');
     }
@@ -112,8 +109,7 @@ class _EditorToolbarState extends State<EditorToolbar> {
   ///
   /// Throws an exception if the currently selected node is not a text node.
   TextAlign _getCurrentTextAlignment() {
-    final selectedNode =
-        widget.editor!.document.getNodeById(widget.composer.selection!.extent.nodeId);
+    final selectedNode = widget.editor!.document.getNodeById(widget.composer.selection!.extent.nodeId);
     if (selectedNode is ParagraphNode) {
       final align = selectedNode.getMetadataValue('textAlign');
       switch (align) {
@@ -162,8 +158,7 @@ class _EditorToolbarState extends State<EditorToolbar> {
       widget.editor!.executeCommand(
         ChangeListItemTypeCommand(
           nodeId: widget.composer.selection!.extent.nodeId,
-          newType:
-              newType == _TextType.orderedListItem ? ListItemType.ordered : ListItemType.unordered,
+          newType: newType == _TextType.orderedListItem ? ListItemType.ordered : ListItemType.unordered,
         ),
       );
     } else if (_isListItem(existingTextType) && !_isListItem(newType)) {
@@ -179,14 +174,13 @@ class _EditorToolbarState extends State<EditorToolbar> {
       widget.editor!.executeCommand(
         ConvertParagraphToListItemCommand(
           nodeId: widget.composer.selection!.extent.nodeId,
-          type:
-              newType == _TextType.orderedListItem ? ListItemType.ordered : ListItemType.unordered,
+          type: newType == _TextType.orderedListItem ? ListItemType.ordered : ListItemType.unordered,
         ),
       );
     } else {
       // Apply a new block type to an existing paragraph node.
-      final existingNode = widget.editor!.document
-          .getNodeById(widget.composer.selection!.extent.nodeId)! as ParagraphNode;
+      final existingNode =
+          widget.editor!.document.getNodeById(widget.composer.selection!.extent.nodeId)! as ParagraphNode;
       existingNode.putMetadataValue('blockType', _getBlockTypeAttribution(newType));
     }
   }
@@ -305,10 +299,9 @@ class _EditorToolbarState extends State<EditorToolbar> {
     if (overlappingLinkAttributions.isNotEmpty) {
       // The selected text contains one other link.
       final overlappingLinkSpan = overlappingLinkAttributions.first;
-      final isLinkSelectionOnTrailingEdge = (overlappingLinkSpan.start >= selectionRange.start &&
-              overlappingLinkSpan.start <= selectionRange.end) ||
-          (overlappingLinkSpan.end >= selectionRange.start &&
-              overlappingLinkSpan.end <= selectionRange.end);
+      final isLinkSelectionOnTrailingEdge =
+          (overlappingLinkSpan.start >= selectionRange.start && overlappingLinkSpan.start <= selectionRange.end) ||
+              (overlappingLinkSpan.end >= selectionRange.start && overlappingLinkSpan.end <= selectionRange.end);
 
       if (isLinkSelectionOnTrailingEdge) {
         // The selected text covers the beginning, or the end, or the entire
@@ -404,8 +397,7 @@ class _EditorToolbarState extends State<EditorToolbar> {
         break;
     }
 
-    final selectedNode = widget.editor!.document
-        .getNodeById(widget.composer.selection!.extent.nodeId) as ParagraphNode;
+    final selectedNode = widget.editor!.document.getNodeById(widget.composer.selection!.extent.nodeId) as ParagraphNode;
     selectedNode.putMetadataValue('textAlign', newAlignmentValue);
   }
 
@@ -537,8 +529,7 @@ class _EditorToolbarState extends State<EditorToolbar> {
               child: IconButton(
                 onPressed: _areMultipleLinksSelected() ? null : _onLinkPressed,
                 icon: const Icon(Icons.link),
-                color:
-                    _isSingleLinkSelected() ? const Color(0xFF007AFF) : IconTheme.of(context).color,
+                color: _isSingleLinkSelected() ? const Color(0xFF007AFF) : IconTheme.of(context).color,
                 splashRadius: 16,
                 tooltip: "Link",
               ),

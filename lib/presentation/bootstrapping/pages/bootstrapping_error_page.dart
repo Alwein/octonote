@@ -44,7 +44,7 @@ class BootstrappingErrorPage extends StatelessWidget {
                     child: Text(
                       tr("error_page.data_recuperation_error"),
                       maxLines: 3,
-                      style: Theme.of(context).textTheme.headline5,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                   ),
                 ),
@@ -59,8 +59,7 @@ class BootstrappingErrorPage extends StatelessWidget {
             RetryButton(
               key: const ValueKey("retry button"),
               label: tr('error_page.retry'),
-              onPressed: () =>
-                  context.read<UserManagerBloc>().add(const UserManagerEvent.fetchStarted()),
+              onPressed: () => context.read<UserManagerBloc>().add(const UserManagerEvent.fetchStarted()),
             ),
             const SizedBox(
               height: 10,
@@ -89,7 +88,7 @@ class RetryButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(360),
-          border: Border.all(color: Theme.of(context).textTheme.subtitle1!.color!),
+          border: Border.all(color: Theme.of(context).textTheme.titleMedium!.color!),
         ),
         padding: const EdgeInsets.symmetric(
           horizontal: 10,
@@ -101,7 +100,7 @@ class RetryButton extends StatelessWidget {
             Icon(
               Icons.refresh_rounded,
               size: 18,
-              color: Theme.of(context).textTheme.bodyText1!.color,
+              color: Theme.of(context).textTheme.bodyLarge!.color,
             ),
             const SizedBox(
               width: 10,

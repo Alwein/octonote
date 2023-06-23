@@ -43,69 +43,69 @@ class AppView extends StatelessWidget {
 
 final ThemeData appThemeLight = ThemeData(
   textTheme: TextTheme(
-    headline1: GoogleFonts.poppins(
+    displayLarge: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 44,
       fontWeight: FontWeight.w700,
     ),
-    headline2: GoogleFonts.poppins(
+    displayMedium: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 32,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.16,
     ),
-    headline3: GoogleFonts.poppins(
+    displaySmall: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 24,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.12,
     ),
-    headline4: GoogleFonts.poppins(
+    headlineMedium: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 20,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.10,
     ),
-    headline5: GoogleFonts.poppins(
+    headlineSmall: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 18,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.07,
     ),
-    headline6: GoogleFonts.poppins(
+    titleLarge: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 14,
       fontWeight: FontWeight.w500,
       letterSpacing: 0.07,
     ),
-    subtitle1: GoogleFonts.poppins(
+    titleMedium: GoogleFonts.poppins(
       color: Colors.grey,
       fontWeight: FontWeight.w400,
       fontSize: 14,
       letterSpacing: 0.06,
     ),
-    subtitle2: GoogleFonts.poppins(
+    titleSmall: GoogleFonts.poppins(
       color: Colors.grey,
       fontWeight: FontWeight.w400,
       fontSize: 12,
       letterSpacing: 0.06,
     ),
-    bodyText1: GoogleFonts.poppins(
+    bodyLarge: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 14,
       letterSpacing: 0.06,
     ),
-    bodyText2: GoogleFonts.poppins(
+    bodyMedium: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 12,
       letterSpacing: 0.06,
     ),
-    caption: GoogleFonts.poppins(
+    bodySmall: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 12,
       letterSpacing: 0.06,
     ),
-    button: GoogleFonts.poppins(
+    labelLarge: GoogleFonts.poppins(
       color: OctonoteColors.darkColor,
       fontSize: 12,
       fontWeight: FontWeight.w500,
@@ -116,5 +116,9 @@ final ThemeData appThemeLight = ThemeData(
     displayColor: OctonoteColors.darkColor,
   ),
   scaffoldBackgroundColor: OctonoteColors.secondaryColor,
-  backgroundColor: OctonoteColors.primaryColor,
+  colorScheme: ColorScheme.fromSwatch().copyWith(
+    primary: OctonoteColors.primaryColor,
+    secondary: OctonoteColors.secondaryColor,
+    background: OctonoteColors.primaryColor,
+  ),
 );

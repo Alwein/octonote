@@ -15,7 +15,7 @@ class AuthTitle extends StatelessWidget {
     return AutoSizeText(
       title,
       maxLines: 2,
-      style: Theme.of(context).textTheme.headline2,
+      style: Theme.of(context).textTheme.displayMedium,
     );
   }
 }
@@ -109,15 +109,14 @@ class FormTitle extends StatelessWidget {
       padding: const EdgeInsets.only(top: 20, bottom: 5),
       child: Text(
         label,
-        style: Theme.of(context).textTheme.headline5,
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
     );
   }
 }
 
 class OutlinedAuthButton extends StatelessWidget {
-  const OutlinedAuthButton({Key? key, required this.label, required this.onPressed})
-      : super(key: key);
+  const OutlinedAuthButton({Key? key, required this.label, required this.onPressed}) : super(key: key);
   final String label;
   final void Function() onPressed;
 
@@ -173,8 +172,7 @@ class AuthButton extends StatelessWidget {
 }
 
 class IconAuthButton extends StatelessWidget {
-  const IconAuthButton({Key? key, required this.label, required this.onPressed, required this.icon})
-      : super(key: key);
+  const IconAuthButton({Key? key, required this.label, required this.onPressed, required this.icon}) : super(key: key);
   final String label;
   final Widget icon;
   final void Function() onPressed;
@@ -332,7 +330,7 @@ class TextWithButton extends StatelessWidget {
             TextSpan(text: text, style: Theme.of(context).textTheme.bodyMedium),
             TextSpan(
               text: label,
-              style: Theme.of(context).textTheme.button,
+              style: Theme.of(context).textTheme.labelLarge,
               recognizer: TapGestureRecognizer()..onTap = onTap,
             ),
           ],

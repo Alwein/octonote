@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:octonote/application/constants/layout_values.dart';
 
-class MenuAppBar extends StatelessWidget with PreferredSizeWidget {
-  MenuAppBar({Key? key})
+class MenuAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const MenuAppBar({Key? key})
       : preferredSize = const Size.fromHeight(36),
         super(key: key);
 
@@ -13,7 +13,7 @@ class MenuAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     final backGroundColor = Theme.of(context).scaffoldBackgroundColor;
     return AppBar(
-      foregroundColor: Theme.of(context).textTheme.headline6!.color,
+      foregroundColor: Theme.of(context).textTheme.titleLarge!.color,
       titleSpacing: LayoutValues.horizontalPadding,
       toolbarHeight: 36,
       backgroundColor: backGroundColor,
@@ -21,7 +21,7 @@ class MenuAppBar extends StatelessWidget with PreferredSizeWidget {
       centerTitle: false,
       title: Text(
         '🐙  Octonote',
-        style: Theme.of(context).textTheme.headline5,
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
     );
   }

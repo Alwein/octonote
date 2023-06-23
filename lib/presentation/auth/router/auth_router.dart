@@ -25,8 +25,7 @@ List<Page> onGenerateAuthViewPages(AuthState state) {
   if (state.authStatus.isLoading) {
     pageStack.add(
       SweetTransitionPage(
-        child:
-            Container(color: Colors.grey.withOpacity(0.2), child: const Center(child: Loading())),
+        child: Container(color: Colors.grey.withOpacity(0.2), child: const Center(child: Loading())),
       ),
     );
   }
@@ -34,8 +33,7 @@ List<Page> onGenerateAuthViewPages(AuthState state) {
   return pageStack;
 }
 
-class AuthRouterDelegate extends RouterDelegate
-    with ChangeNotifier, PopNavigatorRouterDelegateMixin {
+class AuthRouterDelegate extends RouterDelegate with ChangeNotifier, PopNavigatorRouterDelegateMixin {
   AuthRouterDelegate() : navigatorKey = GlobalKey<NavigatorState>();
 
   @override
@@ -75,8 +73,6 @@ class SweetTransitionPage extends Page {
       transitionDuration: const Duration(milliseconds: 100),
       opaque: false,
       settings: this,
-      barrierColor: null,
-      barrierLabel: null,
       pageBuilder: (
         BuildContext context,
         Animation<double> animation,

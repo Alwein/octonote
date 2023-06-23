@@ -5,7 +5,6 @@ import 'package:octonote/application/utils/serialize_nodes_to_components.dart';
 import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
 import 'package:octonote/presentation/octo_editor/bloc/octo_editor_bloc.dart';
 import 'package:octonote/presentation/octo_editor/view/widgets/add_component_button.dart';
-import 'package:octonote/presentation/octo_editor/widgets/tasks.dart';
 import 'package:octonote/presentation/octo_editor/widgets/toolbar.dart';
 import 'package:octonote/presentation/view_models/component_content_view_model.dart';
 import 'package:super_editor/super_editor.dart';
@@ -41,7 +40,7 @@ class _OctoEditorState extends State<OctoEditor> {
       );
 
       // Display the toolbar in the application overlay.
-      final overlay = Overlay.of(context)!;
+      final overlay = Overlay.of(context);
       overlay.insert(_textFormatBarOverlayEntry!);
     }
 
@@ -53,9 +52,9 @@ class _OctoEditorState extends State<OctoEditor> {
         return;
       }
 
-      final docBoundingBox = (bloc.docLayoutKey.currentState as DocumentLayout)
+      final docBoundingBox = (bloc.docLayoutKey.currentState! as DocumentLayout)
           .getRectForSelection(bloc.composer.selection!.base, bloc.composer.selection!.extent)!;
-      final docBox = bloc.docLayoutKey.currentContext!.findRenderObject() as RenderBox;
+      final docBox = bloc.docLayoutKey.currentContext!.findRenderObject()! as RenderBox;
       final overlayBoundingBox = Rect.fromPoints(
         docBox.localToGlobal(docBoundingBox.topLeft),
         docBox.localToGlobal(docBoundingBox.bottomRight),
@@ -112,7 +111,7 @@ class _OctoEditorState extends State<OctoEditor> {
       );
 
       // Display the toolbar in the application overlay.
-      final overlay = Overlay.of(context)!;
+      final overlay = Overlay.of(context);
       overlay.insert(_imageFormatBarOverlayEntry!);
     }
 
@@ -124,9 +123,9 @@ class _OctoEditorState extends State<OctoEditor> {
         return;
       }
 
-      final docBoundingBox = (bloc.docLayoutKey.currentState as DocumentLayout)
+      final docBoundingBox = (bloc.docLayoutKey.currentState! as DocumentLayout)
           .getRectForSelection(bloc.composer.selection!.base, bloc.composer.selection!.extent)!;
-      final docBox = bloc.docLayoutKey.currentContext!.findRenderObject() as RenderBox;
+      final docBox = bloc.docLayoutKey.currentContext!.findRenderObject()! as RenderBox;
       final overlayBoundingBox = Rect.fromPoints(
         docBox.localToGlobal(docBoundingBox.topLeft),
         docBox.localToGlobal(docBoundingBox.bottomRight),
@@ -172,7 +171,7 @@ class _OctoEditorState extends State<OctoEditor> {
 
   bool get _isMobile => _gestureMode != DocumentGestureMode.mouse;
 
-  DocumentInputSource get _inputSource {
+  TextInputSource get _inputSource {
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
       case TargetPlatform.iOS:
@@ -180,7 +179,7 @@ class _OctoEditorState extends State<OctoEditor> {
       case TargetPlatform.linux:
       case TargetPlatform.macOS:
       case TargetPlatform.windows:
-        return DocumentInputSource.ime;
+        return TextInputSource.ime;
       // return DocumentInputSource.keyboard;
     }
   }
@@ -189,8 +188,7 @@ class _OctoEditorState extends State<OctoEditor> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => OctoEditorBloc(
-        initialDocument:
-            deserializeComponentsToDocuments(context.read<NotePadBloc>().state.components),
+        initialDocument: deserializeComponentsToDocuments(context.read<NotePadBloc>().state.components),
         onSaveDocument: (doc) {
           final NotePadBloc notePadBloc = context.read<NotePadBloc>();
           notePadBloc.add(
@@ -203,8 +201,7 @@ class _OctoEditorState extends State<OctoEditor> {
       child: MultiBlocListener(
         listeners: [
           BlocListener<OctoEditorBloc, OctoEditorState>(
-            listenWhen: (previous, current) =>
-                previous.showEditorToolBar != current.showEditorToolBar,
+            listenWhen: (previous, current) => previous.showEditorToolBar != current.showEditorToolBar,
             listener: (context, state) {
               if (state.showEditorToolBar) {
                 _showEditorToolbar(context);
@@ -214,8 +211,7 @@ class _OctoEditorState extends State<OctoEditor> {
             },
           ),
           BlocListener<OctoEditorBloc, OctoEditorState>(
-            listenWhen: (previous, current) =>
-                previous.showImageToolBar != current.showImageToolBar,
+            listenWhen: (previous, current) => previous.showImageToolBar != current.showImageToolBar,
             listener: (context, state) {
               if (state.showEditorToolBar) {
                 _showImageToolbar(context);
@@ -291,6 +287,7 @@ class _OctoEditorState extends State<OctoEditor> {
             onSelectAllPressed: () => bloc.add(const OctoEditorEvent.selectAll()),
           ),
           iOSToolbarBuilder: (_) => IOSTextEditingFloatingToolbar(
+            focalPoint: Offset.zero,
             onCutPressed: () => bloc.add(const OctoEditorEvent.cut()),
             onCopyPressed: () => bloc.add(const OctoEditorEvent.copy()),
             onPastePressed: () => bloc.add(const OctoEditorEvent.paste()),
@@ -426,7 +423,6 @@ class HeaderWithHintComponentBuilder implements ComponentBuilder {
       ),
       textSelection: textSelection,
       selectionColor: componentViewModel.selectionColor,
-      showCaret: componentViewModel.caret != null,
     );
   }
 }

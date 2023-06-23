@@ -22,7 +22,7 @@ class Menu extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           backgroundColor: backGroundColor,
-          appBar: MenuAppBar(),
+          appBar: const MenuAppBar(),
           body: Column(
             children: [
               Expanded(
@@ -85,8 +85,7 @@ class NotePageListView extends StatelessWidget {
 }
 
 class NotePageTile extends StatelessWidget {
-  const NotePageTile({Key? key, required this.notePage, this.onSelected, this.isSelected = false})
-      : super(key: key);
+  const NotePageTile({Key? key, required this.notePage, this.onSelected, this.isSelected = false}) : super(key: key);
   final NotePage notePage;
   final void Function(NotePage notePage)? onSelected;
   final bool isSelected;
@@ -111,7 +110,7 @@ class NotePageTile extends StatelessWidget {
               child: Text(
                 notePage.title != '' ? notePage.title : tr("note_page.untitled"),
                 maxLines: 1,
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.titleMedium,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -152,7 +151,7 @@ class CreateNotePage extends StatelessWidget {
             const SizedBox(
               width: 5,
             ),
-            Text(tr("menu.add_page"), style: Theme.of(context).textTheme.headline6),
+            Text(tr("menu.add_page"), style: Theme.of(context).textTheme.titleLarge),
           ],
         ),
       ),
@@ -183,7 +182,7 @@ class UserTile extends StatelessWidget {
           Expanded(
             child: Text(
               user.userName ?? "Anonym",
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
           const SettingsMenu(),
@@ -265,7 +264,7 @@ class SettingsMenu extends StatelessWidget {
         const SizedBox(width: 10),
         Text(
           label,
-          style: Theme.of(context).textTheme.subtitle1?.copyWith(color: contentColor),
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(color: contentColor),
         ),
       ],
     );

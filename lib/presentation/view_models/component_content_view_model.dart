@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:octonote/domain/models/component/component.dart';
-import 'package:octonote/presentation/octo_editor/widgets/tasks.dart';
 import 'package:super_editor/super_editor.dart';
 
 extension ComponentViewModel on ComponentContent {

@@ -53,13 +53,13 @@ void main() {
         seed: () => const AuthState(authView: AuthView.signUp()),
         build: () => _buildBloc(),
         act: (bloc) => bloc.add(const AuthEvent.signInStarted()),
-        expect: () => const [AuthState(authView: AuthView.signIn())],
+        expect: () => const [AuthState()],
       );
     });
     group('onSignUpStarted', () {
       blocTest<AuthBloc, AuthState>(
         'should emit same state with AuthView to signUp',
-        seed: () => const AuthState(authView: AuthView.signIn()),
+        seed: () => const AuthState(),
         build: () => _buildBloc(),
         act: (bloc) => bloc.add(const AuthEvent.signUpStarted()),
         expect: () => const [AuthState(authView: AuthView.signUp())],
@@ -69,8 +69,7 @@ void main() {
       blocTest<AuthBloc, AuthState>(
         'should emit success on success',
         setUp: () {
-          when(() => resetPassword(email: any(named: "email")))
-              .thenAnswer((_) async => const Left(unit));
+          when(() => resetPassword(email: any(named: "email"))).thenAnswer((_) async => const Left(unit));
         },
         build: () => _buildBloc(),
         act: (bloc) => bloc.add(const AuthEvent.resetPassword(email: "any")),

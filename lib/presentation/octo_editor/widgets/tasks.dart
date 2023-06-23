@@ -49,10 +49,7 @@ class TaskNode extends TextNode {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      super == other &&
-          other is TaskNode &&
-          runtimeType == other.runtimeType &&
-          isComplete == other.isComplete;
+      super == other && other is TaskNode && runtimeType == other.runtimeType && isComplete == other.isComplete;
 
   @override
   int get hashCode => super.hashCode ^ isComplete.hashCode;
@@ -129,8 +126,7 @@ class TaskComponentBuilder implements ComponentBuilder {
 /// various properties in the view model. For example, one phase applies
 /// all [StyleRule]s, and another phase configures content selection
 /// and caret appearance.
-class TaskComponentViewModel extends SingleColumnLayoutComponentViewModel
-    with TextComponentViewModel {
+class TaskComponentViewModel extends SingleColumnLayoutComponentViewModel with TextComponentViewModel {
   TaskComponentViewModel({
     required String nodeId,
     double? maxWidth,
@@ -273,8 +269,6 @@ class TaskComponent extends StatelessWidget {
             },
             textSelection: viewModel.selection,
             selectionColor: viewModel.selectionColor,
-            showCaret: viewModel.caret != null,
-            caretColor: viewModel.caretColor,
             highlightWhenEmpty: viewModel.highlightWhenEmpty,
             showDebugPaint: showDebugPaint,
           ),

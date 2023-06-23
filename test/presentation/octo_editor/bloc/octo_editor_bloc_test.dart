@@ -36,7 +36,7 @@ void main() {
     seed: () => const OctoEditorState(showEditorToolBar: true),
     build: () => _buildBloc(),
     act: (bloc) => bloc.add(const OctoEditorEvent.hideEditorToolbar()),
-    expect: () => const <OctoEditorState>[OctoEditorState(showEditorToolBar: false)],
+    expect: () => const <OctoEditorState>[OctoEditorState()],
   );
 
   blocTest<OctoEditorBloc, OctoEditorState>(
@@ -51,6 +51,6 @@ void main() {
     seed: () => const OctoEditorState(showImageToolBar: true),
     build: () => _buildBloc(),
     act: (bloc) => bloc.add(const OctoEditorEvent.hideImageToolbar()),
-    expect: () => const <OctoEditorState>[OctoEditorState(showImageToolBar: false)],
+    expect: () => const <OctoEditorState>[OctoEditorState()],
   );
 }

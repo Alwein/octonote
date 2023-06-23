@@ -22,7 +22,6 @@ import 'package:octonote/presentation/notepad/bloc/notepad_bloc.dart';
 final getIt = GetIt.instance;
 
 void init() {
-  const bool isLocal = false;
   // app
   getIt.registerLazySingleton<AppService>(() => AppServiceImpl());
   getIt.registerFactory<AppBloc>(
@@ -95,8 +94,7 @@ void init() {
   getIt.registerFactory<ChangePassword>(() => ChangePassword(getIt<AuthenticationRepository>()));
   getIt.registerFactory<ResetPassword>(() => ResetPassword(getIt<AuthenticationRepository>()));
   getIt.registerFactory<DeleteAccount>(() => DeleteAccount(getIt<AuthenticationRepository>()));
-  getIt
-      .registerFactory<SignInWithGoogle>(() => SignInWithGoogle(getIt<AuthenticationRepository>()));
+  getIt.registerFactory<SignInWithGoogle>(() => SignInWithGoogle(getIt<AuthenticationRepository>()));
   getIt.registerFactory<SignInWithApple>(() => SignInWithApple(getIt<AuthenticationRepository>()));
   getIt.registerFactory<LogOut>(() => LogOut(getIt<AuthenticationRepository>()));
   getIt.registerFactory<FetchUser>(() => FetchUser(getIt<UsersRepository>()));

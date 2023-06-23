@@ -1,5 +1,4 @@
 import 'package:flutter/rendering.dart';
-import 'package:octonote/presentation/octo_editor/widgets/tasks.dart';
 import 'package:super_editor/super_editor.dart';
 
 Document createInitialDocument() {
@@ -7,8 +6,7 @@ Document createInitialDocument() {
     nodes: [
       ImageNode(
         id: "1",
-        imageUrl:
-            'https://www.consoglobe.com/wp-content/uploads/2019/02/poulpe-ban_shutterstock_726155656.jpg',
+        imageUrl: 'https://www.consoglobe.com/wp-content/uploads/2019/02/poulpe-ban_shutterstock_726155656.jpg',
         metadata: const SingleColumnLayoutComponentStyles(
           width: double.infinity,
           padding: EdgeInsets.zero,
@@ -48,8 +46,7 @@ Document createInitialDocument() {
       ListItemNode.unordered(
         id: DocumentEditor.createNodeId(),
         text: AttributedText(
-          text:
-              'Enitèrement réalisé en Flutter pour supporter toutes les plateformes (mobile, web et destop)',
+          text: 'Enitèrement réalisé en Flutter pour supporter toutes les plateformes (mobile, web et destop)',
         ),
       ),
       ParagraphNode(

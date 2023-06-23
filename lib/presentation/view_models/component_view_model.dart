@@ -1,5 +1,4 @@
 import 'package:octonote/domain/models/component/component.dart';
-import 'package:octonote/presentation/octo_editor/widgets/tasks.dart';
 import 'package:octonote/presentation/view_models/component_content_view_model.dart';
 import 'package:super_editor/super_editor.dart';
 

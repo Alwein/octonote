@@ -16,8 +16,8 @@ class Notepad extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           drawer: drawer,
-          backgroundColor: Theme.of(context).backgroundColor,
-          appBar: NotepadAppBar(),
+          backgroundColor: Theme.of(context).colorScheme.background,
+          appBar: const NotepadAppBar(),
           body: state.status.map(
             initial: (_) => Container(),
             fetchInProgress: (_) => const Center(child: Loading()),
@@ -25,9 +25,7 @@ class Notepad extends StatelessWidget {
               key: ValueKey(state.notePage.id),
             ),
             error: (_) => ErrorDisclaimer(
-              onRetry: () => context
-                  .read<NotePadBloc>()
-                  .add(NotePadEvent.fetchStarted(notePage: state.notePage)),
+              onRetry: () => context.read<NotePadBloc>().add(NotePadEvent.fetchStarted(notePage: state.notePage)),
             ),
           ),
         );

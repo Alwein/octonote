@@ -12,8 +12,7 @@ part 'octo_editor_event.dart';
 part 'octo_editor_state.dart';
 
 class OctoEditorBloc extends Bloc<OctoEditorEvent, OctoEditorState> {
-  OctoEditorBloc({required this.onSaveDocument, required Document initialDocument})
-      : super(const _OctoEditorState()) {
+  OctoEditorBloc({required this.onSaveDocument, required Document initialDocument}) : super(const _OctoEditorState()) {
     initState(initialDocument);
     on<_HideOrShowToolbar>(_onHideOrShowToolbar);
     on<_ShowEditorToolbar>(_onShowEditorToolbar);
@@ -49,16 +48,14 @@ class OctoEditorBloc extends Bloc<OctoEditorEvent, OctoEditorState> {
   void initState(Document document) {
     doc = document..addListener(_onDocumentChangeUdpate);
     docEditor = DocumentEditor(document: doc as MutableDocument);
-    composer = DocumentComposer()
-      ..addListener(() => add(const OctoEditorEvent.hideOrShowToolbar()));
+    composer = DocumentComposer()..addListener(() => add(const OctoEditorEvent.hideOrShowToolbar()));
     docOps = CommonEditorOperations(
       editor: docEditor,
       composer: composer,
-      documentLayoutResolver: () => docLayoutKey.currentState as DocumentLayout,
+      documentLayoutResolver: () => docLayoutKey.currentState! as DocumentLayout,
     );
     editorFocusNode = FocusNode();
-    scrollController = ScrollController()
-      ..addListener(() => add(const OctoEditorEvent.hideOrShowToolbar()));
+    scrollController = ScrollController()..addListener(() => add(const OctoEditorEvent.hideOrShowToolbar()));
     _saveDebouncer = Debouncer(milliseconds: 1000);
   }
 
@@ -169,21 +166,6 @@ extension OctoEditorBlocEx on OctoEditorBloc {
       case TargetPlatform.macOS:
       case TargetPlatform.windows:
         return DocumentGestureMode.mouse;
-    }
-  }
-
-  bool get _isMobile => _gestureMode != DocumentGestureMode.mouse;
-
-  DocumentInputSource get _inputSource {
-    switch (defaultTargetPlatform) {
-      case TargetPlatform.android:
-      case TargetPlatform.iOS:
-      case TargetPlatform.fuchsia:
-      case TargetPlatform.linux:
-      case TargetPlatform.macOS:
-      case TargetPlatform.windows:
-        return DocumentInputSource.ime;
-      // return DocumentInputSource.keyboard;
     }
   }
 }

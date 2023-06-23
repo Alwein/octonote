@@ -37,8 +37,8 @@ class SignInView extends StatelessWidget {
                       const SizedBox(height: 15),
                       const ButtonSeparator(),
                       const SizedBox(height: 15),
-                      Row(
-                        children: const [
+                      const Row(
+                        children: [
                           Expanded(child: GoogleSignInButton()),
                           SizedBox(width: 10),
                           Expanded(child: AppleSignInButton()),
@@ -66,8 +66,7 @@ class SignInEmailFormInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return EmailFormInput(
-      onChanged: (value) =>
-          context.read<SignInBloc>().add(GenericRegistrationEvent.emailChanged(value)),
+      onChanged: (value) => context.read<SignInBloc>().add(GenericRegistrationEvent.emailChanged(value)),
     );
   }
 }
@@ -78,8 +77,7 @@ class SignInPasswordFormInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PasswordFormInput(
-      onChanged: (value) =>
-          context.read<SignInBloc>().add(GenericRegistrationEvent.passwordChanged(value)),
+      onChanged: (value) => context.read<SignInBloc>().add(GenericRegistrationEvent.passwordChanged(value)),
     );
   }
 }
@@ -95,9 +93,8 @@ class SignInButton extends StatelessWidget {
         label: tr("sign_in_page.sign_in_button"),
         onPressed: () => context.read<SignInBloc>().add(
               GenericRegistrationEvent.validate(
-                onValidateSuccess: (email, password) => context
-                    .read<AuthBloc>()
-                    .add(AuthEvent.logInWithEmailAndPassword(email: email, password: password)),
+                onValidateSuccess: (email, password) =>
+                    context.read<AuthBloc>().add(AuthEvent.logInWithEmailAndPassword(email: email, password: password)),
               ),
             ),
       ),
@@ -208,7 +205,7 @@ class ForgotPasswordButton extends StatelessWidget {
       child: TextButton(
         child: Text(
           tr("sign_in_page.forgot_password_button"),
-          style: Theme.of(context).textTheme.button,
+          style: Theme.of(context).textTheme.labelLarge,
         ),
         onPressed: () => context.read<SignInBloc>().add(
               GenericRegistrationEvent.validate(
